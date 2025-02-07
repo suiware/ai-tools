@@ -2,11 +2,11 @@ import { Signer } from '@mysten/sui/cryptography'
 import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519'
 import { Secp256k1Keypair } from '@mysten/sui/keypairs/secp256k1'
 import { Secp256r1Keypair } from '@mysten/sui/keypairs/secp256r1'
-import { Environment } from '../misc/Environment'
+import { getSetting } from '../core/utils/environment'
 
 export class SuiAccount {
   parseAccount(): Signer {
-    const privateKey = Environment.getSetting('SUI_PRIVATE_KEY')
+    const privateKey = getSetting('SUI_PRIVATE_KEY')
     if (!privateKey) {
       throw new Error('SUI_PRIVATE_KEY is not set')
     }

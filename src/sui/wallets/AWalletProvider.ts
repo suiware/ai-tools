@@ -1,7 +1,7 @@
 import { TSuiNetwork } from "../types/TSuiNetwork";
 
 /**
- * WalletProvider is the abstract base class for all wallet providers.
+ * AWalletProvider is the abstract base class for all wallet providers.
  *
  * @abstract
  */

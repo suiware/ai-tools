@@ -16,8 +16,12 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^1.1.6",
     "@mysten/sui": "^1.21.1",
     "@mysten/wallet-standard": "^0.13.25",
-    "dotenv": "^16.4.7"
+    "ai": "^4.1.25",
+    "bignumber.js": "^9.1.2",
+    "dotenv": "^16.4.7",
+    "zod": "^3.24.1"
   }
 }

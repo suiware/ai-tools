@@ -1,17 +1,16 @@
-import { SuiClient, SuiTransactionBlockResponse } from "@mysten/sui/client";
-import { Transaction } from "@mysten/sui/transactions";
-import { Environment } from "../../misc/Environment";
-import { SuiAccount } from "../SuiAccount";
-import { TSuiNetwork } from "../types/TSuiNetwork";
-import { AWalletProvider } from "./AWalletProvider";
-import { Signer } from "@mysten/sui/cryptography";
+import { SuiClient, SuiTransactionBlockResponse } from '@mysten/sui/client'
+import { Signer } from '@mysten/sui/cryptography'
+import { Transaction } from '@mysten/sui/transactions'
+import { getSetting } from '../../core/utils/environment'
+import { TSuiNetwork } from '../types/TSuiNetwork'
+import { AWalletProvider } from './AWalletProvider'
 
 /**
  * A wallet provider that uses the Sui library.
  */
 export class SuiServerWalletProvider extends AWalletProvider {
-  #signer: Signer;
-  #publicClient: SuiClient;
+  #signer: Signer
+  #publicClient: SuiClient
 
   /**
    * Constructs a new SuiServerWalletProvider.
@@ -20,9 +19,9 @@ export class SuiServerWalletProvider extends AWalletProvider {
    * @param publicClient - The Sui client for RPC calls.
    */
   constructor(signer: Signer, publicClient: SuiClient) {
-    super();
-    this.#signer = signer;
-    this.#publicClient = publicClient;
+    super()
+    this.#signer = signer
+    this.#publicClient = publicClient
   }
 
   /**
@@ -35,13 +34,13 @@ export class SuiServerWalletProvider extends AWalletProvider {
     transaction: Transaction
   ): Promise<SuiTransactionBlockResponse> {
     if (!this.#signer) {
-      throw new Error("Signer not found");
+      throw new Error('Signer not found')
     }
 
     return this.#publicClient.signAndExecuteTransaction({
       transaction,
       signer: this.#signer,
-    });
+    })
   }
 
   /**
@@ -50,7 +49,7 @@ export class SuiServerWalletProvider extends AWalletProvider {
    * @returns The address of the wallet.
    */
   getAddress(): string {
-    return this.#signer.toSuiAddress();
+    return this.#signer.toSuiAddress()
   }
 
   /**
@@ -59,7 +58,7 @@ export class SuiServerWalletProvider extends AWalletProvider {
    * @returns The network of the wallet.
    */
   getNetwork(): TSuiNetwork {
-    return Environment.getSetting("SUI_NETWORK") as TSuiNetwork;
+    return getSetting('SUI_NETWORK') as TSuiNetwork
   }
 
   /**
@@ -68,7 +67,7 @@ export class SuiServerWalletProvider extends AWalletProvider {
    * @returns The name of the wallet provider.
    */
   getName(): string {
-    return "sui-server-wallet-provider";
+    return 'sui-server-wallet-provider'
   }
 
   /**
@@ -77,16 +76,16 @@ export class SuiServerWalletProvider extends AWalletProvider {
    * @returns The balance of the wallet in MIST (smallest Sui unit).
    */
   async getBalance(): Promise<bigint> {
-    const address = this.getAddress();
+    const address = this.getAddress()
     if (!address) {
-      throw new Error("Address not found");
+      throw new Error('Address not found')
     }
 
     const balance = await this.#publicClient.getBalance({
       owner: address,
-    });
+    })
 
-    return BigInt(balance.totalBalance);
+    return BigInt(balance.totalBalance)
   }
 
   /**
@@ -104,7 +103,7 @@ export class SuiServerWalletProvider extends AWalletProvider {
         showEvents: true,
         showEffects: true,
       },
-    });
+    })
   }
 
   /**
@@ -119,21 +118,21 @@ export class SuiServerWalletProvider extends AWalletProvider {
     value: string
   ): Promise<`0x${string}`> {
     // Convert whole SUI units to MIST (1 SUI = 1e9 MIST)
-    const amountInMist = BigInt(parseFloat(value) * 1e9);
+    const amountInMist = parseFloat(value) * 1e9
 
-    const tx = new Transaction();
+    const tx = new Transaction()
 
     // first, split the gas coin into multiple coins
-    const [coin] = tx.splitCoins(tx.gas, [amountInMist]);
+    const [coin] = tx.splitCoins(tx.gas, [amountInMist])
 
-    tx.transferObjects([coin], to);
+    tx.transferObjects([coin], to)
 
-    const response = await this.executeTransaction(tx);
+    const response = await this.executeTransaction(tx)
 
     if (!response.digest) {
-      throw new Error("Transaction failed");
+      throw new Error('Transaction failed')
     }
 
-    return response.digest as `0x${string}`;
+    return response.digest as `0x${string}`
   }
 }

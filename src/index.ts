@@ -1,33 +1,49 @@
-import { getFullnodeUrl, SuiClient } from '@mysten/sui/client'
-import { SuiAccount } from './core/sui/SuiAccount'
-import { SuiServerWalletProvider } from './core/sui/wallets/SuiServerWalletProvider'
+import { anthropic } from '@ai-sdk/anthropic'
+import { CoreMessage, streamText } from 'ai'
+import { configDotenv } from 'dotenv'
+import * as readline from 'node:readline/promises'
+import { suiTransferTool } from './ai/tools/suiTransferTool'
+import { suiWalletBalanceTool } from './ai/tools/suiWalletBalanceTool'
+import { weatherTool } from './ai/tools/weatherTool'
+
+configDotenv()
+
+const terminal = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+})
+
+const messages: CoreMessage[] = []
 
 async function main() {
-  try {
-    const suiClient = new SuiClient({ url: getFullnodeUrl('localnet') })
-    const signer = new SuiAccount().parseAccount()
-    console.log(signer.getPublicKey().toSuiAddress())
-    const walletProvider = new SuiServerWalletProvider(signer, suiClient)
+  while (true) {
+    const userInput = await terminal.question('You: ')
 
-    let balance = await walletProvider.getBalance()
-    console.log(`Balance: ${balance}`)
+    messages.push({ role: 'user', content: userInput })
 
-    const recipientAddress =
-      '0x'
-    const amount = '1'
-    const txDigest = await walletProvider.nativeTransfer(
-      recipientAddress,
-      amount
-    )
-    console.log(`Transaction successful! Digest: ${txDigest}`)
-    // Wait for transaction receipt
-    const receipt = await walletProvider.waitForTransactionReceipt(txDigest)
-    // console.log('Transaction receipt:', receipt)
+    const result = streamText({
+      model: anthropic('claude-3-5-sonnet-latest'),
+      messages,
+      tools: {
+        weather: weatherTool,
+        balance: suiWalletBalanceTool,
+        transfer: suiTransferTool,
+      },
+      maxSteps: 5,
+      system: `You are a helpful financial assistant who manages user's Sui account. 
+      Answer very briefly and concisely, straight to the point. 
+      Every sentence on a separate lint.`,
+    })
 
-    balance = await walletProvider.getBalance()
-    console.log(`Balance: ${balance}`)
-  } catch (error) {
-    console.error('Error performing transfer:', error)
+    let fullResponse = ''
+    process.stdout.write('\nAssistant: ')
+    for await (const delta of result.textStream) {
+      fullResponse += delta
+      process.stdout.write(delta)
+    }
+    process.stdout.write('\n\n')
+
+    messages.push({ role: 'assistant', content: fullResponse })
   }
 }
 
