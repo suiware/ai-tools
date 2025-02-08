@@ -4,7 +4,6 @@ import { configDotenv } from 'dotenv'
 import * as readline from 'node:readline/promises'
 import { suiTransferTool } from './ai/tools/suiTransferTool'
 import { suiWalletBalanceTool } from './ai/tools/suiWalletBalanceTool'
-import { weatherTool } from './ai/tools/weatherTool'
 
 configDotenv()
 
@@ -25,7 +24,6 @@ async function main() {
       model: anthropic('claude-3-5-sonnet-latest'),
       messages,
       tools: {
-        weather: weatherTool,
         balance: suiWalletBalanceTool,
         transfer: suiTransferTool,
       },
