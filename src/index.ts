@@ -8,6 +8,7 @@ import {
 } from 'ai'
 import { configDotenv } from 'dotenv'
 import * as readline from 'node:readline/promises'
+import { suiSwapTool } from './ai/tools/suiSwapTool'
 import { suiTransferTool } from './ai/tools/suiTransferTool'
 import { suiWalletBalanceTool } from './ai/tools/suiWalletBalanceTool'
 import { vixTool } from './ai/tools/vixTool'
@@ -34,6 +35,7 @@ async function main() {
         balance: suiWalletBalanceTool,
         transfer: suiTransferTool,
         vix: vixTool,
+        swap: suiSwapTool,
       },
       maxSteps: 5,
       system: `You are a helpful financial assistant who manages user's Sui account. 
@@ -44,7 +46,7 @@ async function main() {
         if (NoSuchToolError.isInstance(error)) {
           process.stdout.write(`\nNo such tool: ${error.toolName}\n`)
         } else if (InvalidToolArgumentsError.isInstance(error)) {
-          process.stdout.write(`\nInvalid arguments: ${error.toolName}\n`)
+          process.stdout.write(`\nInvalid arguments: ${error.toolName}: ${error.message}\n`)
         } else if (ToolExecutionError.isInstance(error)) {
           process.stdout.write(
             `\nTool execution error: ${error.toolName}: ${error.message}\n`

@@ -1,1 +1,1 @@
-# wish-command
+# @suiware/ai-tools Monorepo
