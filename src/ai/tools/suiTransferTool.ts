@@ -4,7 +4,7 @@ import { tool } from 'ai'
 import z from 'zod'
 import { getSetting } from '../../core/utils/environment'
 import { formatBalance } from '../../core/utils/utils'
-import { SuiAccount } from '../../sui/SuiAccount'
+import { SuiService } from '../../sui/services/SuiService'
 import { TSuiNetwork } from '../../sui/types/TSuiNetwork'
 import { SuiServerWalletProvider } from '../../sui/wallets/SuiServerWalletProvider'
 
@@ -12,13 +12,16 @@ export const suiTransferTool = tool({
   description: 'Transfer the amount of SUI to the specified address',
   parameters: z.object({
     amount: z.string().describe('The amount of SUI'),
-    address: z.string().describe('The target address'),
+    address: z
+      .string()
+      .refine(SuiService.isValidSuiAddress, { message: 'Invalid Sui address' })
+      .describe('The target address'),
   }),
   execute: async ({ amount, address }) => {
     const suiClient = new SuiClient({
       url: getFullnodeUrl(getSetting('SUI_NETWORK') as TSuiNetwork),
     })
-    const signer = new SuiAccount().parseAccount()
+    const signer = SuiService.parseAccount()
     const walletProvider = new SuiServerWalletProvider(signer, suiClient)
 
     const txDigest = await walletProvider.nativeTransfer(
@@ -32,6 +35,7 @@ export const suiTransferTool = tool({
     const balanceInSui = formatBalance(balance, SUI_DECIMALS)
 
     return {
+      digest: txDigest,
       balance: `${balanceInSui} SUI`,
     }
   },

@@ -4,7 +4,7 @@ import { tool } from 'ai'
 import z from 'zod'
 import { getSetting } from '../../core/utils/environment'
 import { formatBalance } from '../../core/utils/utils'
-import { SuiAccount } from '../../sui/SuiAccount'
+import { SuiService } from '../../sui/services/SuiService'
 import { TSuiNetwork } from '../../sui/types/TSuiNetwork'
 import { SuiServerWalletProvider } from '../../sui/wallets/SuiServerWalletProvider'
 
@@ -15,7 +15,7 @@ export const suiWalletBalanceTool = tool({
     const suiClient = new SuiClient({
       url: getFullnodeUrl(getSetting('SUI_NETWORK') as TSuiNetwork),
     })
-    const signer = new SuiAccount().parseAccount()
+    const signer = SuiService.parseAccount()
     const walletProvider = new SuiServerWalletProvider(signer, suiClient)
 
     const balance = await walletProvider.getBalance()

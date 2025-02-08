@@ -100,8 +100,8 @@ export class SuiServerWalletProvider extends AWalletProvider {
     return this.#publicClient.waitForTransaction({
       digest,
       options: {
-        showEvents: true,
-        showEffects: true,
+        // showEvents: true,
+        // showEffects: true,
       },
     })
   }
