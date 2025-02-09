@@ -40,13 +40,13 @@ const {text} = await generateText({
 console.log(text)
 ```
 
-See **[examples](packages/examples/README.md)** for more usage examples.
+See **[examples](../examples/README.md)** for more usage examples.
 
 ## Available Tools
 
 ### suiWalletBalanceTool
 
-Gets the balance of the wallet.
+Gets Sui wallet balance.
 
 Examples:
 - `get my sui wallet balance`

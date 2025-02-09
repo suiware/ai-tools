@@ -1,22 +1,17 @@
 # @suiware/ai-tools Monorepo
 
-This is a monorepo for the `@suiware/ai-tools` project, which includes:
+This monorepo includes:
 
 - [@suiware/ai-tools](packages/tools/README.md) - a collection of pluggable [Tools](https://sdk.vercel.ai/docs/foundations/tools) for [Vercel AI SDK](https://sdk.vercel.ai/), which allow AI assistants to interact with Sui Network and perform various actions.
 
 - [Examples](packages/examples/README.md) - example of AI assistants, demonstrating `@suiware/ai-tools` in action.
 
----
 
-TBC: move examples docs to specific repo
-
----
-
-## Tools
+## Available Tools
 
 ### suiWalletBalanceTool
 
-Gets the balance of the wallet.
+Gets Sui wallet balance.
 
 Examples:
 - `get my sui wallet balance`
@@ -37,7 +32,7 @@ Uses [Navi SDK](https://github.com/naviprotocol/navi-sdk) for swapping.
 
 Examples:
 - `swap 1 sui for usdc`
-- `convert 10 usdc for sui`
+- `convert 10 usdc to sui`
 
 ### vixTool
 
@@ -56,7 +51,7 @@ Examples:
 pnpm install
 ```
 
-### 2. Configure examples
+### 2. Configure environment variables
 
 ```bash
 cp packages/examples/.env.example packages/examples/.env
@@ -69,11 +64,17 @@ Then update the environment variables in the `packages/examples/.env` file.
 #### Anthropic example
 
 ```bash
-pnpm start || pnpm start:anthropic
+pnpm start || pnpm start:anthropic:streaming
 ```
 
-#### OpenAI example
+#### OpenAI streaming example
 
 ```bash
-pnpm start:openai
+pnpm start:openai:streaming
+```
+
+#### OpenAI generating example
+
+```bash
+pnpm start:openai:generating
 ```
