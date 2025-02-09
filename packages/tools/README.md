@@ -76,3 +76,4 @@ Gets the current CBOE Volatility Index (VIX) index value.
 Examples:
 - `get current cboe vix`
 - `get vix`
+
