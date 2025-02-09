@@ -7,42 +7,6 @@
 - [Examples](packages/examples/README.md) - example of AI assistants, demonstrating `@suiware/ai-tools` in action.
 
 
-## Available Tools
-
-### suiWalletBalanceTool
-
-Gets Sui wallet balance.
-
-Examples:
-- `get my sui wallet balance`
-- `my sui balance`
-
-### suiTransferTool
-
-Transfers the specified amount of SUI to the specified address.
-
-Examples:
-- `transfer 1 sui to 0x1234567890abcdef`
-- `send 10 sui to 0x1234567890abcdef`
-
-### suiSwapTool
-
-Swaps SUI for USDC or vice versa.  
-Uses [Navi SDK](https://github.com/naviprotocol/navi-sdk) for swapping.
-
-Examples:
-- `swap 1 sui for usdc`
-- `convert 10 usdc to sui`
-
-### vixTool
-
-Gets the current CBOE Volatility Index (VIX) index value.
-
-Examples:
-- `get current cboe vix`
-- `get vix`
-
-
 ## To Work with Examples
 
 ### 1. Install dependencies
@@ -78,3 +42,39 @@ pnpm start:openai:streaming
 ```bash
 pnpm start:openai:generating
 ```
+
+
+## Available Tools
+
+### suiWalletBalanceTool
+
+Gets Sui wallet balance.
+
+Examples:
+- `get my sui wallet balance`
+- `my sui balance`
+
+### suiTransferTool
+
+Transfers the specified amount of SUI to the specified address.
+
+Examples:
+- `transfer 1 sui to 0x1234567890abcdef`
+- `send 10 sui to 0x1234567890abcdef`
+
+### suiSwapTool
+
+Swaps SUI for USDC or vice versa.  
+Uses [Navi SDK](https://github.com/naviprotocol/navi-sdk) for swapping.
+
+Examples:
+- `swap 1 sui for usdc`
+- `convert 10 usdc to sui`
+
+### vixTool
+
+Gets the current CBOE Volatility Index (VIX) index value.
+
+Examples:
+- `get current cboe vix`
+- `get vix`
