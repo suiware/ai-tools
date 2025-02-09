@@ -79,7 +79,7 @@ Examples:
 - `get current cboe vix`
 - `get vix`
 
-Check the [source code](./packages/tools/src) of the tools.
+Check the [source code](./packages/tools/src/ai/tools) of the tools.
 
 ## How to contribute
 
