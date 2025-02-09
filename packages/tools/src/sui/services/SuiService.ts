@@ -143,7 +143,7 @@ export class SuiService {
       try {
         return KeypairClass.fromSecretKey(privateKey)
       } catch {
-        // Removed unnecessary continue
+        
       }
     }
     throw new Error('Failed to initialize keypair from secret key')

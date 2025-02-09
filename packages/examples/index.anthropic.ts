@@ -1,5 +1,11 @@
 import { anthropic } from '@ai-sdk/anthropic'
 import {
+  suiSwapTool,
+  suiTransferTool,
+  suiWalletBalanceTool,
+  vixTool,
+} from '@suiware/ai-tools'
+import {
   CoreMessage,
   InvalidToolArgumentsError,
   NoSuchToolError,
@@ -8,10 +14,6 @@ import {
 } from 'ai'
 import { configDotenv } from 'dotenv'
 import * as readline from 'node:readline/promises'
-import { suiSwapTool } from './ai/tools/suiSwapTool'
-import { suiTransferTool } from './ai/tools/suiTransferTool'
-import { suiWalletBalanceTool } from './ai/tools/suiWalletBalanceTool'
-import { vixTool } from './ai/tools/vixTool'
 
 configDotenv()
 

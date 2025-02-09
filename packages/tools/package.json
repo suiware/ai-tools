@@ -1,0 +1,99 @@
+{
+  "name": "@suiware/ai-tools",
+  "version": "0.1.0",
+  "sideEffects": false,
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./suiSwapTool": {
+      "import": {
+        "types": "./dist/ai/tools/suiSwapTool.d.mts",
+        "default": "./dist/ai/tools/suiSwapTool.mjs"
+      },
+      "require": {
+        "types": "./dist/ai/tools/suiSwapTool.d.ts",
+        "default": "./dist/ai/tools/suiSwapTool.js"
+      }
+    },
+    "./suiTransferTool": {
+      "import": {
+        "types": "./dist/ai/tools/suiTransferTool.d.mts",
+        "default": "./dist/ai/tools/suiTransferTool.mjs"
+      },
+      "require": {
+        "types": "./dist/ai/tools/suiTransferTool.d.ts",
+        "default": "./dist/ai/tools/suiTransferTool.js"
+      }
+    },
+    "./suiWalletBalanceTool": {
+      "import": {
+        "types": "./dist/ai/tools/suiWalletBalanceTool.d.mts",
+        "default": "./dist/ai/tools/suiWalletBalanceTool.mjs"
+      },
+      "require": {
+        "types": "./dist/ai/tools/suiWalletBalanceTool.d.ts",
+        "default": "./dist/ai/tools/suiWalletBalanceTool.js"
+      }
+    },
+    "./vixTool": {
+      "import": {
+        "types": "./dist/ai/tools/vixTool.d.mts",
+        "default": "./dist/ai/tools/vixTool.mjs"
+      },
+      "require": {
+        "types": "./dist/ai/tools/vixTool.d.ts",
+        "default": "./dist/ai/tools/vixTool.js"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "license": "Apache-2.0",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "tsup": "^8.3.6"
+  },
+  "dependencies": {
+    "@mysten/sui": "^1.21.1",
+    "@mysten/wallet-standard": "^0.13.25",
+    "ai": "^4.1.25",
+    "bignumber.js": "^9.1.2",
+    "navi-sdk": "^1.4.27",
+    "zod": "^3.24.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "sui",
+    "suiware",
+    "suiware-ai-tools",
+    "ai-tools",
+    "ai",
+    "library"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suiware/ai-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/suiware/ai-tools/issues"
+  }
+}
