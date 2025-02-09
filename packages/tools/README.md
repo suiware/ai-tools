@@ -40,7 +40,7 @@ const {text} = await generateText({
 console.log(text)
 ```
 
-See **[examples](../examples/README.md)** for more usage examples.
+See **[examples](https://github.com/suiware/ai-tools/packages/examples/README.md)** for more usage examples.
 
 ## Available tools
 
@@ -77,3 +77,4 @@ Examples:
 - `get current cboe vix`
 - `get vix`
 
+Check the [source code](https://github.com/suiware/ai-tools/packages/tools/src/ai/tools) of the tools.
