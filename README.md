@@ -7,7 +7,7 @@
 - [Examples](packages/examples/README.md) - example of AI assistants, demonstrating `@suiware/ai-tools` in action.
 
 
-## To Work with Examples
+## How to Work with Examples
 
 ### 1. Install dependencies
 
@@ -78,3 +78,8 @@ Gets the current CBOE Volatility Index (VIX) index value.
 Examples:
 - `get current cboe vix`
 - `get vix`
+
+## How to Contribute
+
+Learn `packages/tools` repo and contribute your own tool by sending a PR to this repository. 
+It can be an integration with pools, lending protocols, or any other services that can be beneficial for building Sui AI assistants.
