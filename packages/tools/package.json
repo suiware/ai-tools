@@ -67,13 +67,14 @@
   "license": "Apache-2.0",
   "description": "",
   "devDependencies": {
-    "typescript": "^5.7.3",
-    "tsup": "^8.3.6"
+    "@types/node": "^22.13.1",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@mysten/sui": "^1.21.1",
-    "@mysten/wallet-standard": "^0.13.25",
-    "ai": "^4.1.25",
+    "@mysten/sui": "^1.21.2",
+    "@mysten/wallet-standard": "^0.13.26",
+    "ai": "^4.1.28",
     "bignumber.js": "^9.1.2",
     "navi-sdk": "^1.4.27",
     "zod": "^3.24.1"
@@ -86,6 +87,8 @@
     "suiware",
     "suiware-ai-tools",
     "ai-tools",
+    "ai-sdk",
+    "vercel-ai-sdk",
     "ai",
     "library"
   ],

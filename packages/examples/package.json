@@ -2,21 +2,22 @@
   "name": "examples",
   "version": "0.0.0",
   "scripts": {
-    "start:anthropic": "ts-node index.anthropic.ts",
-    "start:openai": "ts-node index.openai.ts"
+    "start:anthropic:streaming": "tsx src/anthropic-streaming.ts",
+    "start:openai:streaming": "tsx src/openai-streaming.ts",
+    "start:openai:generating": "tsx src/openai-generating.ts"
   },
   "devDependencies": {
     "@types/node": "^22.13.1",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@suiware/ai-tools": "workspace:*",
     "@ai-sdk/anthropic": "^1.1.6",
     "@ai-sdk/openai": "^1.1.9",
-    "@mysten/sui": "^1.21.1",
-    "@mysten/wallet-standard": "^0.13.25",
-    "ai": "^4.1.25",
+    "@mysten/sui": "^1.21.2",
+    "@mysten/wallet-standard": "^0.13.26",
+    "@suiware/ai-tools": "workspace:*",
+    "ai": "^4.1.28",
     "bignumber.js": "^9.1.2",
     "dotenv": "^16.4.7",
     "navi-sdk": "^1.4.27",

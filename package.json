@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "build": "pnpm --filter @suiware/ai-tools build",
-    "start": "pnpm start:anthropic",
-    "start:anthropic": "pnpm build && pnpm --filter examples start:anthropic",
-    "start:openai": "pnpm build && pnpm --filter examples start:openai"
+    "start": "pnpm start:anthropic:streaming",
+    "start:anthropic:streaming": "pnpm build && pnpm --filter examples start:anthropic:streaming",
+    "start:openai:streaming": "pnpm build && pnpm --filter examples start:openai:streaming",
+    "start:openai:generating": "pnpm build && pnpm --filter examples start:openai:generating"
   },
   "license": "Apache-2.0",
   "workspaces": [
