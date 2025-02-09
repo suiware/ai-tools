@@ -1,6 +1,6 @@
 # @suiware/ai-tools Monorepo
 
-This monorepo includes:
+## Packages
 
 - [@suiware/ai-tools](packages/tools/README.md) - a collection of pluggable [Tools](https://sdk.vercel.ai/docs/foundations/tools) for [Vercel AI SDK](https://sdk.vercel.ai/), which allow AI assistants to interact with Sui Network and perform various actions.
 
