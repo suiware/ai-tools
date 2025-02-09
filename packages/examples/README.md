@@ -1,6 +1,6 @@
 # Examples for @suiware/ai-tools
 
-Find examples in the [src](./src/) directory.
+Find source code of the examples in the [src](./src/) directory.
 
 ## To Work with Examples
 
