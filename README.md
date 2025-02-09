@@ -81,5 +81,5 @@ Examples:
 
 ## How to Contribute
 
-Learn `packages/tools` repo and contribute your own tool by sending a PR to this repository. 
+Learn [packages/tools](./packages/tools/) package and contribute your own tool by sending a PR to this repository. 
 It can be an integration with pools, lending protocols, or any other services that can be beneficial for building Sui AI assistants.
