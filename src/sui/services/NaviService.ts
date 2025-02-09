@@ -6,8 +6,8 @@ export class NaviService {
   public static getSwappableTokens(): CoinInfo[] {
     const networkType = getSetting('SUI_NETWORK')
 
-    if (!networkType || !['mainnet'].includes(networkType)) {
-      return []
+    if (!networkType || !['testnet', 'mainnet'].includes(networkType)) {
+      throw new Error('Sorry, testnet is not supported for swap')
     }
 
     return [Sui, nUSDC]

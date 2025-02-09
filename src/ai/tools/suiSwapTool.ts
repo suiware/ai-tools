@@ -2,6 +2,7 @@ import { tool } from 'ai'
 import { NAVISDKClient } from 'navi-sdk'
 import z from 'zod'
 import { getSetting } from '../../core/utils/environment'
+import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
 import { NaviService } from '../../sui/services/NaviService'
 import { SuiService } from '../../sui/services/SuiService'
 import { TSuiNetwork } from '../../sui/types/TSuiNetwork'
@@ -24,14 +25,21 @@ export const suiSwapTool = tool({
       .describe('The target token'),
   }),
   execute: async ({ amount, sourceToken, targetToken }) => {
-    SuiService.parseAccount()
+    const privateKey = getSetting('SUI_PRIVATE_KEY') as string
+    SuiService.isValidPrivateKey(privateKey)
 
-    // @todo: Check that the private key is set.
-    // @todo: Check that it's the mainnet, the only network supported by Navi for USDC.
+    const suiNetwork = getSetting('SUI_NETWORK') as TSuiNetwork
+    if (suiNetwork !== 'mainnet') {
+      throw new Error('Only mainnet is supported for USDC swaps')
+    }
+
+    // We need to suppress the Navi's console log messages not to pollute the output.
+    // See https://github.com/naviprotocol/navi-sdk/issues/82
+    const originalConsoleLog = disableConsoleLog()
 
     const client = new NAVISDKClient({
-      privateKeyList: [getSetting('SUI_PRIVATE_KEY') as string],
-      networkType: getSetting('SUI_NETWORK') as TSuiNetwork,
+      privateKeyList: [privateKey],
+      networkType: suiNetwork,
     })
 
     const account = client.accounts[0]
@@ -50,6 +58,9 @@ export const suiSwapTool = tool({
     )
 
     const balances = await NaviService.getAllBalances(client)
+
+    // Get logs back.
+    enableConsoleLog(originalConsoleLog)
 
     return {
       digest: transactionResult.digest,

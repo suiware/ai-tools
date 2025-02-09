@@ -8,13 +8,16 @@ import { getSetting } from '../../core/utils/environment'
 export class SuiService {
   public static parseAccount(): Signer {
     const privateKey = getSetting('SUI_PRIVATE_KEY')
-    if (!privateKey) {
-      throw new Error('SUI_PRIVATE_KEY is not set')
+
+    if (!this.isValidPrivateKey(privateKey)) {
+      throw new Error('Invalid SUI_PRIVATE_KEY in the config')
     }
-    if (!privateKey.startsWith('suiprivkey')) {
-      throw new Error('SUI_PRIVATE_KEY should start from suiprivkey...')
-    }
-    return this.loadFromSecretKey(privateKey)
+
+    return this.loadFromSecretKey(privateKey!)
+  }
+
+  public static isValidPrivateKey(privateKey: string | null) {
+    return privateKey && privateKey.startsWith('suiprivkey')
   }
 
   public static isValidSuiAddress(address: string) {
