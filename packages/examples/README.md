@@ -1,5 +1,7 @@
 # Examples for @suiware/ai-tools
 
+Find examples in the [src](./src/) directory.
+
 ## To Work with Examples
 
 ### 1. Install dependencies
@@ -35,4 +37,3 @@ pnpm start:openai:streaming
 ```bash
 pnpm start:openai:generating
 ```
-
