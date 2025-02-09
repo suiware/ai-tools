@@ -43,7 +43,7 @@ Examples:
 - `get vix`
 
 
-## How to run examples
+## To Work with Examples
 
 ### 1. Install dependencies
 

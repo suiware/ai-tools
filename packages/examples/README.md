@@ -1,6 +1,6 @@
 # Examples for @suiware/ai-tools
 
-## How to run examples
+## To Work with Examples
 
 ### 1. Install dependencies
 
