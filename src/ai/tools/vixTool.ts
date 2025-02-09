@@ -6,7 +6,8 @@ export const vixTool = tool({
   description: 'Get current CBOE Volatility Index (VIX) index value',
   parameters: z.object({}),
   execute: async () => {
-    const vixValue = await VixService.getCurrentVix()
+    const vixService = new VixService()
+    const vixValue = await vixService.getCurrentVix()
 
     return {
       vixValue,

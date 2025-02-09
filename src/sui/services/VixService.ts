@@ -1,8 +1,8 @@
 export class VixService {
-  private static readonly yahooFinanceChartEndpoint =
+  private readonly yahooFinanceChartEndpoint =
     'https://query1.finance.yahoo.com/v8/finance/chart'
 
-  public static async getCurrentVix() {
+  public async getCurrentVix() {
     const url = `${this.yahooFinanceChartEndpoint}/^VIX`
 
     try {
@@ -21,7 +21,7 @@ export class VixService {
     }
   }
 
-  public static async getAverageVix() {
+  public async getAverageVix() {
     const numDays = 5
     const url = `${this.yahooFinanceChartEndpoint}/^VIX?interval=1d&range=${numDays}d`
 
