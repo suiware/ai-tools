@@ -7,7 +7,9 @@
 - [Examples](packages/examples/README.md) - example of AI assistants, demonstrating `@suiware/ai-tools` in action.
 
 
-## How to work with examples
+## Demos
+
+To work with demos/examples, follow the instructions below.
 
 ### 1. Install dependencies
 
@@ -42,7 +44,6 @@ pnpm start:openai:streaming
 ```bash
 pnpm start:openai:generating
 ```
-
 
 ## Available tools
 
