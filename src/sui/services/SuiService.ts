@@ -97,10 +97,11 @@ export class SuiService {
    */
   public async nativeTransfer(
     to: `0x${string}`,
-    value: string
+    value: string | number
   ): Promise<`0x${string}`> {
     // Convert whole SUI units to MIST (1 SUI = 1e9 MIST)
-    const amountInMist = parseFloat(value) * 1e9
+    const amountInMist =
+      (typeof value === 'string' ? parseFloat(value) : value) * 1e9
 
     const tx = new Transaction()
 

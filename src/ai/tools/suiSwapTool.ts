@@ -6,7 +6,7 @@ import { NaviService } from '../../sui/services/NaviService'
 export const suiSwapTool = tool({
   description: 'Swap SUI to USDC or vice versa',
   parameters: z.object({
-    amount: z.string().describe('The amount of source token to swap'),
+    amount: z.number().describe('The amount of source token to swap'),
     sourceToken: z
       .string()
       .refine((arg: string) => NaviService.isSwappableToken(arg), {

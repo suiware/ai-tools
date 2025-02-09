@@ -9,7 +9,7 @@ export function formatBalance(
 
 export function disableConsoleLog() {
   const originalConsoleLog = console.log
-  // console.log = () => {}
+  console.log = () => {}
   return originalConsoleLog
 }
 

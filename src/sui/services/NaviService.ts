@@ -32,13 +32,19 @@ export class NaviService {
     }))
   }
 
-  public async swap(sourceToken: string, targetToken: string, amount: string) {
+  public async swap(
+    sourceToken: string,
+    targetToken: string,
+    amount: string | number
+  ) {
     const account = this.client.accounts[0]
 
     const sourceTokenMetadata = NaviService.getSwappableToken(sourceToken)
     const targetTokenMetadata = NaviService.getSwappableToken(targetToken)
 
-    const amountIn = parseFloat(amount) * 10 ** sourceTokenMetadata!.decimal
+    const amountIn =
+      (typeof amount === 'string' ? parseFloat(amount) : amount) *
+      10 ** sourceTokenMetadata!.decimal
 
     return await account.swap(
       sourceTokenMetadata!.address,
@@ -71,6 +77,14 @@ export class NaviService {
       (swappableToken) =>
         this.naviUsdcToUsdc(swappableToken.symbol).toUpperCase() ===
         token.toUpperCase()
+    )
+  }
+
+  public static getMissingSwappableToken(passedToken: string) {
+    return this.getSwappableTokens().find(
+      (swappableToken) =>
+        this.naviUsdcToUsdc(swappableToken.symbol).toUpperCase() !==
+        passedToken.toUpperCase()
     )
   }
 

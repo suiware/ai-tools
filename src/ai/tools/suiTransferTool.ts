@@ -7,7 +7,7 @@ import { SuiService } from '../../sui/services/SuiService'
 export const suiTransferTool = tool({
   description: 'Transfer the amount of SUI to the specified address',
   parameters: z.object({
-    amount: z.string().describe('The amount of SUI'),
+    amount: z.number().describe('The amount of SUI'),
     address: z
       .string()
       .refine(SuiService.isValidSuiAddress, { message: 'Invalid Sui address' })

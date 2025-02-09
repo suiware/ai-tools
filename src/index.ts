@@ -38,15 +38,16 @@ async function main() {
         swap: suiSwapTool,
       },
       maxSteps: 5,
-      system: `You are a helpful financial assistant who manages user's Sui account. 
-      Answer very briefly and concisely, straight to the point. 
-      Every sentence on a separate line. 
-      If you don't know, don't emulate.`,
+      system: `You are Charlie, a financial assistant who manages user's portfolio on Sui blockchain network. 
+      Answer very briefly and concisely. Every sentence of the answer should be on a separate line. 
+      If you don't know, don't make it up.`,
       onError: ({ error }) => {
         if (NoSuchToolError.isInstance(error)) {
           process.stdout.write(`\nNo such tool: ${error.toolName}\n`)
         } else if (InvalidToolArgumentsError.isInstance(error)) {
-          process.stdout.write(`\nInvalid arguments: ${error.toolName}: ${error.message}\n`)
+          process.stdout.write(
+            `\nInvalid arguments: ${error.toolName}: ${error.message}\n`
+          )
         } else if (ToolExecutionError.isInstance(error)) {
           process.stdout.write(
             `\nTool execution error: ${error.toolName}: ${error.message}\n`
