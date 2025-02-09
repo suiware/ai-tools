@@ -13,10 +13,10 @@ pnpm install
 ### 2. Configure environment variables
 
 ```bash
-cp packages/examples/.env.example packages/examples/.env
+cp .env.example .env
 ```
 
-Then update the environment variables in the `packages/examples/.env` file.
+Then update the environment variables in the `.env` file.
 
 ### 3. Run examples
 
