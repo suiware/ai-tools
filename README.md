@@ -7,7 +7,7 @@
 - [Examples](packages/examples/README.md) - example of AI assistants, demonstrating `@suiware/ai-tools` in action.
 
 
-## How to Work with Examples
+## How to work with examples
 
 ### 1. Install dependencies
 
@@ -44,7 +44,7 @@ pnpm start:openai:generating
 ```
 
 
-## Available Tools
+## Available tools
 
 ### suiWalletBalanceTool
 

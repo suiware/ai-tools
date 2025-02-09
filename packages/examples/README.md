@@ -2,7 +2,7 @@
 
 Find source code of the examples in the [src](./src/) directory.
 
-## To Work with Examples
+## How to work with examples
 
 ### 1. Install dependencies
 

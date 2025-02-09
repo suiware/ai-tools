@@ -42,7 +42,7 @@ console.log(text)
 
 See **[examples](../examples/README.md)** for more usage examples.
 
-## Available Tools
+## Available tools
 
 ### suiWalletBalanceTool
 
