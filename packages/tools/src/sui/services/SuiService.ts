@@ -142,9 +142,7 @@ export class SuiService {
     for (const KeypairClass of keypairClasses) {
       try {
         return KeypairClass.fromSecretKey(privateKey)
-      } catch {
-        
-      }
+      } catch {}
     }
     throw new Error('Failed to initialize keypair from secret key')
   }

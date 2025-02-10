@@ -1,1 +1,1 @@
-export type TSuiNetwork = "mainnet" | "testnet" | "devnet" | "localnet";
+export type TSuiNetwork = 'mainnet' | 'testnet' | 'devnet' | 'localnet'

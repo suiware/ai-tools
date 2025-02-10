@@ -16,4 +16,3 @@ export function disableConsoleLog() {
 export function enableConsoleLog(originalConsoleLog: any) {
   console.log = originalConsoleLog
 }
-

@@ -37,6 +37,9 @@ importers:
       navi-sdk:
         specifier: ^1.4.27
         version: 1.4.27(@types/node@22.13.1)(typescript@5.7.3)
+      prettier:
+        specifier: ^3.4.2
+        version: 3.5.0
       zod:
         specifier: ^3.24.1
         version: 3.24.1
@@ -75,6 +78,9 @@ importers:
       '@types/node':
         specifier: ^22.13.1
         version: 22.13.1
+      prettier:
+        specifier: ^3.4.2
+        version: 3.5.0
       tsup:
         specifier: ^8.3.6
         version: 8.3.6(postcss@8.5.1)(tsx@4.19.2)(typescript@5.7.3)
@@ -1499,6 +1505,11 @@ packages:
   postcss@8.5.1:
     resolution: {integrity: sha512-6oz2beyjc5VMn/KV1pPw8fliQkhBXrVn1Z3TVyqZxU8kZpzEKhBdmCFqI6ZbmGtamQvQGuU1sgPTk8ZrXDD7jQ==}
     engines: {node: ^10 || ^12 || >=14}
+
+  prettier@3.5.0:
+    resolution: {integrity: sha512-quyMrVt6svPS7CjQ9gKb3GLEX/rl3BCL2oa/QkNcXv4YNVBC9olt3s+H7ukto06q7B1Qz46PbrKLO34PR6vXcA==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   pretty-format@29.7.0:
     resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
@@ -3025,6 +3036,8 @@ snapshots:
       nanoid: 3.3.8
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  prettier@3.5.0: {}
 
   pretty-format@29.7.0:
     dependencies:

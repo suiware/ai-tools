@@ -62,14 +62,16 @@
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch"
+    "dev": "tsup --watch",
+    "format": "prettier --write './src/**/*.{js,ts}'"
   },
   "license": "Apache-2.0",
   "description": "",
   "devDependencies": {
     "@types/node": "^22.13.1",
     "tsup": "^8.3.6",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "prettier": "^3.4.2"
   },
   "dependencies": {
     "@mysten/sui": "^1.21.2",

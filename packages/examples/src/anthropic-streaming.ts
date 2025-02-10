@@ -10,7 +10,7 @@ import {
   InvalidToolArgumentsError,
   NoSuchToolError,
   streamText,
-  ToolExecutionError
+  ToolExecutionError,
 } from 'ai'
 import { configDotenv } from 'dotenv'
 import * as readline from 'node:readline/promises'
