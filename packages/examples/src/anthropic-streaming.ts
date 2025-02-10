@@ -25,6 +25,10 @@ const terminal = readline.createInterface({
 const messages: CoreMessage[] = []
 
 async function main() {
+  process.stdout.write(
+    `The agent is connected and awaiting your instructions...\n\n`
+  )
+
   while (true) {
     const userInput = await terminal.question('You: ')
 
