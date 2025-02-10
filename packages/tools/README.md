@@ -46,7 +46,7 @@ async function main() {
 main().catch(console.error)
 ```
 
-See more usage **[examples](https://github.com/suiware/ai-tools/blob/main/packages/examples/README.md)**.
+See more **[usage examples](https://github.com/suiware/ai-tools/blob/main/packages/examples/README.md)**.
 
 ## Available tools
 
