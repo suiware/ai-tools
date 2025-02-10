@@ -24,6 +24,8 @@ const terminal = readline.createInterface({
 
 const messages: CoreMessage[] = []
 
+const AGENT_NAME = 'Charlie'
+
 async function main() {
   process.stdout.write(
     `The agent is connected and awaiting your instructions...\n\n`
@@ -44,7 +46,7 @@ async function main() {
         swap: suiSwapTool,
       },
       maxSteps: 5,
-      system: `You are Charlie, a financial assistant who manages user's portfolio on Sui blockchain network. 
+      system: `You are ${AGENT_NAME}, a financial assistant who manages user's portfolio on Sui blockchain network. 
       Answer very briefly and concisely. Every sentence of the answer should be on a separate line. 
       If you don't know, don't make it up.`,
       onError: ({ error }) => {
@@ -67,7 +69,7 @@ async function main() {
     })
 
     let fullResponse = ''
-    process.stdout.write('\nAssistant: ')
+    process.stdout.write(`\n${AGENT_NAME}: `)
     for await (const delta of result?.textStream ?? []) {
       fullResponse += delta
       process.stdout.write(delta)
