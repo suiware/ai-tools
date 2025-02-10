@@ -4,12 +4,12 @@
 
 - [@suiware/ai-tools](packages/tools/README.md) - a collection of pluggable [Tools](https://sdk.vercel.ai/docs/foundations/tools) for [Vercel AI SDK](https://sdk.vercel.ai/), which allow AI assistants to interact with Sui Network and perform various actions.
 
-- [Examples](packages/examples/README.md) - example of AI assistants, demonstrating `@suiware/ai-tools` in action.
+- [Examples](packages/examples/README.md) - examples of AI assistants, demonstrating `@suiware/ai-tools` in action.
 
 
-## Demos
+## Examples
 
-To work with demos/examples, follow the instructions below.
+To work with examples, follow the instructions below.
 
 ### 1. Install dependencies
 
