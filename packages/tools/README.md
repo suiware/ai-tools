@@ -22,22 +22,28 @@ pnpm add @ai-sdk/anthropic dotenv
 ```
 
 ```ts
-import { createOpenAI } from 'ai'
-import { suiWalletBalanceTool } from '@suiware/ai-tools'
+// src/index.ts
 import { anthropic } from '@ai-sdk/anthropic'
+import { suiWalletBalanceTool } from '@suiware/ai-tools'
+import { generateText } from 'ai'
 import { configDotenv } from 'dotenv'
 
 configDotenv()
 
-const {text} = await generateText({
-  model: anthropic('claude-3-5-sonnet-latest'),
-  prompt: 'get my sui wallet balance',
-  tools: {
-    balance: suiWalletBalanceTool,
-  },
-})
+async function main() {
+  const { text } = await generateText({
+    model: anthropic('claude-3-5-sonnet-latest'),
+    prompt: 'get my sui wallet balance',
+    tools: {
+      balance: suiWalletBalanceTool,
+    },
+    maxSteps: 5,
+  })
 
-console.log(text)
+  console.log(text)
+}
+
+main().catch(console.error)
 ```
 
 See **[examples](https://github.com/suiware/ai-tools/blob/main/packages/examples/README.md)** for more usage examples.
