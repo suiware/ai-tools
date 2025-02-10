@@ -1,6 +1,6 @@
 import { NAVISDKClient, nUSDC, Sui } from 'navi-sdk'
 import { CoinInfo } from 'navi-sdk/dist/types'
-import { getSetting } from '../../core/utils/environment'
+import { getSetting } from '../core/utils/environment'
 import { TSuiNetwork } from '../types/TSuiNetwork'
 import { SuiService } from './SuiService'
 

@@ -2,7 +2,7 @@ import { SUI_DECIMALS } from '@mysten/sui/utils'
 import { tool } from 'ai'
 import z from 'zod'
 import { formatBalance } from '../../core/utils/utils'
-import { SuiService } from '../../sui/services/SuiService'
+import { SuiService } from '../../services/SuiService'
 
 export const suiTransferTool = tool({
   description: 'Transfer the amount of SUI to the specified address',

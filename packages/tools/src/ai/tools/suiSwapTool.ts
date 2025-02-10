@@ -1,7 +1,7 @@
 import { tool } from 'ai'
 import z from 'zod'
 import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
-import { NaviService } from '../../sui/services/NaviService'
+import { NaviService } from '../../services/NaviService'
 
 export const suiSwapTool = tool({
   description: 'Swap SUI for USDC or vice versa',
