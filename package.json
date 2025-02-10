@@ -1,6 +1,5 @@
 {
   "name": "suiware-ai-tools",
-  "version": "0.0.0",
   "scripts": {
     "build": "pnpm --filter @suiware/ai-tools build",
     "start": "pnpm start:anthropic:streaming",
