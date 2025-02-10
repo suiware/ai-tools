@@ -2,6 +2,7 @@
   "name": "examples",
   "version": "0.0.0",
   "scripts": {
+    "start:anthropic:simple:balance": "tsx src/anthropic-simple-balance.ts",
     "start:anthropic:streaming": "tsx src/anthropic-streaming.ts",
     "start:openai:streaming": "tsx src/openai-streaming.ts",
     "start:openai:generating": "tsx src/openai-generating.ts",

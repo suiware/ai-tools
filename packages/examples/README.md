@@ -20,7 +20,13 @@ Then update the environment variables in the `.env` file.
 
 ### 3. Run examples
 
-#### Anthropic example
+#### Anthropic simple balance example
+
+```bash
+pnpm start:anthropic:simple:balance
+```
+
+#### Anthropic streaming example
 
 ```bash
 pnpm start:anthropic:streaming

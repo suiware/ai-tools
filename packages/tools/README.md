@@ -1,6 +1,6 @@
 # @suiware/ai-tools
 
-Pluggable [tools](https://sdk.vercel.ai/docs/foundations/tools) for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assistants to interact with Sui Network and perform various actions.
+Pluggable tools for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assistants to interact with Sui Network and perform various actions.
 
 ## Installation
 
@@ -15,14 +15,8 @@ such as `SUI_PRIVATE_KEY` and `SUI_NETWORK` as well as `ANTHROPIC_API_KEY` and `
 
 ## Usage
 
-Make sure you have the corresponding model adapter and `dotenv` installed:
-
-```bash
-pnpm add @ai-sdk/anthropic dotenv
-```
-
 ```ts
-// src/index.ts
+// Source: https://github.com/suiware/ai-tools/blob/main/packages/examples/src/anthropic-simple-balance.ts
 import { anthropic } from '@ai-sdk/anthropic'
 import { suiWalletBalanceTool } from '@suiware/ai-tools'
 import { generateText } from 'ai'
@@ -35,6 +29,7 @@ async function main() {
     model: anthropic('claude-3-5-sonnet-latest'),
     prompt: 'get my sui wallet balance',
     tools: {
+      // Plug a tool this way:
       balance: suiWalletBalanceTool,
     },
     maxSteps: 5,
@@ -84,3 +79,8 @@ Examples:
 - `get vix`
 
 Check the [source code](https://github.com/suiware/ai-tools/tree/main/packages/tools/src/ai/tools) of the tools.
+
+## Links
+
+- [Vercel AI SDK](https://sdk.vercel.ai/)
+- [Vercel AI SDK Tools: Docs](https://sdk.vercel.ai/docs/foundations/tools)
