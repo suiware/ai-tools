@@ -69,7 +69,7 @@ Examples:
 - `transfer 1 sui to 0x1234567890abcdef`
 - `send 10 sui to 0x1234567890abcdef`
 
-### suiSwapTool
+### suiSwapTool (mainnet only)
 
 Swaps SUI for USDC or vice versa.  
 Uses [Navi SDK](https://github.com/naviprotocol/navi-sdk) for swapping.
