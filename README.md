@@ -1,4 +1,6 @@
-# @suiware/ai-tools Monorepo
+# Sui tools for Vercel AI SDK (monorepo)
+
+Pluggable tools for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assistants to interact with Sui Network and perform various actions.
 
 ## Packages
 
