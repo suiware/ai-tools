@@ -63,7 +63,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "format": "prettier --write './src/**/*.{js,ts}'"
+    "format": "prettier --write './src/**/*.{js,ts}'",
+    "prepublishOnly": "pnpm build"
   },
   "license": "Apache-2.0",
   "description": "",
