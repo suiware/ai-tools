@@ -12,6 +12,7 @@ import {
   NoSuchToolError,
   ToolExecutionError,
 } from 'ai'
+import chalk from 'chalk'
 import { configDotenv } from 'dotenv'
 import * as readline from 'node:readline/promises'
 
@@ -28,11 +29,11 @@ const AGENT_NAME = 'Charlie'
 
 async function main() {
   process.stdout.write(
-    `The agent is connected and awaiting your instructions...\n\n`
+    chalk.cyan(`\nThe agent is connected and awaiting your instructions...\n\n`)
   )
 
   while (true) {
-    const userInput = await terminal.question('You: ')
+    const userInput = await terminal.question(chalk.green('You: '))
 
     messages.push({ role: 'user', content: userInput })
 
@@ -52,27 +53,35 @@ async function main() {
       If you don't know, don't make it up.`,
       })
 
-      process.stdout.write(`\n${AGENT_NAME}: `)
+      process.stdout.write(`\n${chalk.cyan(`${AGENT_NAME}: `)}`)
       process.stdout.write(text)
       process.stdout.write('\n\n')
 
       messages.push({ role: 'assistant', content: text })
     } catch (error) {
       if (NoSuchToolError.isInstance(error)) {
-        process.stdout.write(`\nNo such tool: ${error.toolName}\n`)
+        process.stdout.write(chalk.red(`\nNo such tool: ${error.toolName}\n`))
       } else if (InvalidToolArgumentsError.isInstance(error)) {
         process.stdout.write(
-          `\nInvalid arguments: ${error.toolName}: ${error.message}\n`
+          chalk.red(
+            `\nInvalid arguments: ${error.toolName}: ${error.message}\n`
+          )
         )
       } else if (ToolExecutionError.isInstance(error)) {
         process.stdout.write(
-          `\nTool execution error: ${error.toolName}: ${error.message}\n`
+          chalk.red(
+            `\nTool execution error: ${error.toolName}: ${error.message}\n`
+          )
         )
       } else {
-        process.stdout.write(`\nUnknown error: ${(error as Error)?.message}\n`)
+        process.stdout.write(
+          chalk.red(`\nUnknown error: ${(error as Error)?.message}\n`)
+        )
       }
     }
   }
 }
 
-main().catch(console.error)
+main().catch((error) => {
+  console.error(chalk.red('🚨 Fatal error:'), error)
+})
