@@ -83,6 +83,16 @@ pnpm start:openai:streaming
 pnpm start:openai:generating
 ```
 
+## Future vision
+
+- Improve suiTransferTool: SuiNS support, support for other tokens
+- Add more tools: staking, lending, pools, etc.
+- Add more services: Suilend, Bluefin, Cetus, DefiLlama, etc.
+- Add more model providers: Atoma, local models
+- Implement Command scheduling
+- Add Web UI examples
+- Create automated tests
+
 ## How to contribute
 
 Learn the simple [packages/tools](./packages/tools/) package and contribute your own tool by sending a PR to this repository. 
