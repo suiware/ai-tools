@@ -9,7 +9,7 @@ import { Secp256k1Keypair } from '@mysten/sui/keypairs/secp256k1'
 import { Secp256r1Keypair } from '@mysten/sui/keypairs/secp256r1'
 import { Transaction } from '@mysten/sui/transactions'
 import { isValidSuiAddress } from '@mysten/sui/utils'
-import { getSetting } from '../../core/utils/environment'
+import { getSetting } from '../core/utils/environment'
 import { TSuiNetwork } from '../types/TSuiNetwork'
 
 export class SuiService {
