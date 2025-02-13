@@ -55,8 +55,6 @@ Check the [source code](./packages/tools/src/ai/tools) of the tools.
 
 ## How to use examples
 
-To work with examples, follow the instructions below.
-
 ### 1. Install dependencies
 
 ```bash
@@ -73,27 +71,13 @@ Then update the environment variables in the `packages/examples/.env` file.
 
 ### 3. Run examples
 
-#### Anthropic simple balance example
-
 ```bash
 pnpm start:anthropic:simple:balance
-```
-
-#### Anthropic streaming example
-
-```bash
+# or
 pnpm start || pnpm start:anthropic:streaming
-```
-
-#### OpenAI streaming example
-
-```bash
+# or 
 pnpm start:openai:streaming
-```
-
-#### OpenAI generating example
-
-```bash
+# or
 pnpm start:openai:generating
 ```
 

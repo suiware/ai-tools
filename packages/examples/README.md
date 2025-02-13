@@ -27,26 +27,12 @@ Then update the environment variables in the `.env` file.
 
 ### 3. Run examples
 
-#### Anthropic simple balance example
-
 ```bash
 pnpm start:anthropic:simple:balance
-```
-
-#### Anthropic streaming example
-
-```bash
-pnpm start:anthropic:streaming
-```
-
-#### OpenAI streaming example
-
-```bash
+# or
+pnpm start || pnpm start:anthropic:streaming
+# or 
 pnpm start:openai:streaming
-```
-
-#### OpenAI generating example
-
-```bash
+# or
 pnpm start:openai:generating
 ```
