@@ -25,6 +25,15 @@ export class SuiService {
   }
 
   /**
+   * Get the SuiClient instance.
+   *
+   * @returns {SuiClient} - SuiClient instance
+   */
+  public getSuiClient(): SuiClient {
+    return this.client
+  }
+
+  /**
    * Execute a transaction.
    *
    * @param transaction - The transaction block to execute.

@@ -76,6 +76,7 @@
   },
   "dependencies": {
     "@mysten/sui": "^1.21.2",
+    "@mysten/suins": "^0.7.2",
     "@mysten/wallet-standard": "^0.13.26",
     "ai": "^4.1.39",
     "bignumber.js": "^9.1.2",

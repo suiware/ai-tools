@@ -25,6 +25,8 @@ Transfers the specified amount of SUI to the specified address.
 Examples:
 - `transfer 1 sui to 0x1234567890abcdef`
 - `send 10 sui to 0x1234567890abcdef`
+- `donate 1 sui to @abcdef1234567890`
+- `throw 1 sui to abcdef1234567890.sui`
 
 ### suiSwapTool (mainnet only)
 
@@ -85,13 +87,14 @@ pnpm start:openai:generating
 
 ## Future vision
 
-- Improve suiTransferTool: SuiNS support, support for other tokens
-- Add more tools: staking, lending, pools, etc.
-- Add more services: Suilend, Bluefin, Cetus, DefiLlama, etc.
-- Add more model providers: Atoma, local models
-- Implement Command scheduling
-- Add Web UI examples
-- Create automated tests
+- [x] Improve suiTransferTool: add support for SuiNS names
+- [ ] Improve suiTransferTool: add support for other tokens
+- [ ] Add more tools: staking, lending, pools, etc.
+- [ ] Add more services: Suilend, Bluefin, Cetus, DefiLlama, etc.
+- [ ] Add more model providers: Atoma, local models
+- [ ] Implement Command scheduling
+- [ ] Add Web UI examples
+- [ ] Create automated tests
 
 ## How to contribute
 
