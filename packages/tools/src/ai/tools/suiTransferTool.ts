@@ -17,15 +17,24 @@ export const suiTransferTool = tool({
           SuinsService.isValidSuinsName(value),
         { message: 'Invalid Sui address' }
       )
-      .describe('The target address'),
+      .describe('The target address. Suins names starting with @ or ending with .sui are supported.'),
   }),
   execute: async ({ amount, address }) => {
-    return console.log('address valid')
-
     const suiService = new SuiService()
 
+    let resolvedAddress: string | null = address
+
+    // If it's a Suins name, try to resolve it a Sui address.
+    if (SuinsService.isValidSuinsName(address)) {
+      const suinsService = new SuinsService(suiService.getSuiClient())
+      resolvedAddress = await suinsService.resolveSuinsName(address)
+      if (!resolvedAddress) {
+        throw new Error(`Suins name ${address} not found`)
+      }
+    }
+
     const txDigest = await suiService.nativeTransfer(
-      address as `0x{string}`,
+      resolvedAddress as `0x{string}`,
       amount
     )
 
