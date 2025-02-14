@@ -1,6 +1,5 @@
 import { tool } from 'ai'
 import z from 'zod'
-import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
 import { NaviService } from '../../services/NaviService'
 
 export const suiSwapTool = tool({
@@ -21,10 +20,6 @@ export const suiSwapTool = tool({
       .describe('The target token'),
   }),
   execute: async ({ amount, sourceToken, targetToken }) => {
-    // We need to suppress the Navi's console log messages not to pollute the output.
-    // See https://github.com/naviprotocol/navi-sdk/issues/82
-    const originalConsoleLog = disableConsoleLog()
-
     const naviService = new NaviService()
 
     const transactionResult = await naviService.swap(
@@ -34,9 +29,6 @@ export const suiSwapTool = tool({
     )
 
     const balances = await naviService.getAllBalances()
-
-    // Get logs back.
-    enableConsoleLog(originalConsoleLog)
 
     return {
       digest: transactionResult.digest,
