@@ -1,9 +1,7 @@
-import { getFullnodeUrl, SuiClient } from '@mysten/sui/client'
+import { SuiClient } from '@mysten/sui/client'
 import { SuinsClient } from '@mysten/suins'
-import { getSetting } from '../core/utils/environment'
-import { TSuiNetwork } from '../types/TSuiNetwork'
 
-export class SuiService {
+export class SuinsService {
   private suinsClient: SuinsClient
   private suiClient: SuiClient
 
@@ -12,14 +10,17 @@ export class SuiService {
 
     this.suinsClient = new SuinsClient({
       client: this.suiClient,
-      network: getFullnodeUrl(
-        getSetting('SUI_NETWORK') as Pick<TSuiNetwork, 'testnet' | 'mainnet'>
-      ),
+      // We rely on the network set through the SuiClient.
+      // network: getSetting('SUI_NETWORK') as Network,
     })
   }
 
   public async resolveSuinsName(name: string): Promise<string | null> {
     const nameRecord = await this.suinsClient.getNameRecord(name)
     return nameRecord?.targetAddress || null
+  }
+
+  public static isValidSuinsName(name: string): boolean {
+    return name.endsWith('.sui') || name.startsWith('@')
   }
 }
