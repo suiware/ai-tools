@@ -8,7 +8,7 @@ Pluggable tools for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assis
 pnpm add @suiware/ai-tools
 ```
 
-# Configuration
+## Configuration
 
 To use the tools, you need to add a [few environment variables](https://github.com/suiware/ai-tools/blob/main/packages/examples/.env.example) to your `.env` file,
 such as `SUI_PRIVATE_KEY` and `SUI_NETWORK` as well as `ANTHROPIC_API_KEY` and `OPENAI_API_KEY` for Anthropic and OpenAI respectively.
