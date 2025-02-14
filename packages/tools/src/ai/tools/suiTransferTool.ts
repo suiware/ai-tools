@@ -14,6 +14,8 @@ export const suiTransferTool = tool({
       .describe('The target address'),
   }),
   execute: async ({ amount, address }) => {
+    return console.log('address valid');
+    
     const suiService = new SuiService()
 
     const txDigest = await suiService.nativeTransfer(

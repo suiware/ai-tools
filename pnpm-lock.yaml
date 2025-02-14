@@ -62,6 +62,9 @@ importers:
       '@mysten/sui':
         specifier: ^1.21.2
         version: 1.21.2(typescript@5.7.3)
+      '@mysten/suins':
+        specifier: ^0.7.2
+        version: 0.7.2(typescript@5.7.3)
       '@mysten/wallet-standard':
         specifier: ^0.13.26
         version: 0.13.26(typescript@5.7.3)
@@ -790,6 +793,10 @@ packages:
     resolution: {integrity: sha512-8AesvczokAUv796XiOo8af2+1IYA9bRon11Ra+rwehvqhz+sMRT8A+Cw5sDnlSc9/aQwM51JQKUnvMczNbpfYA==}
     engines: {node: '>=18'}
 
+  '@mysten/suins@0.7.2':
+    resolution: {integrity: sha512-Jmvs54zQdHnv7lhL5RRM6ZydGj4XAM805SpPkStpXtqA3boDjndGYJqbqhhE8JJkotk28hi3YispZfRdMYH21A==}
+    engines: {node: '>=16'}
+
   '@mysten/wallet-standard@0.13.26':
     resolution: {integrity: sha512-0fRHmQ5RS0WEeSyfzdqrOWLssrZwDgR9Mw7Qhsfzq1UyDlS/GXYoL+dKpH+Uqfan33lt6hROPeXFyqw/vmF9Zg==}
 
@@ -1037,6 +1044,9 @@ packages:
 
   axios-retry@3.9.1:
     resolution: {integrity: sha512-8PJDLJv7qTTMMwdnbMvrLYuvB47M81wRtxQmEdV5w4rgbTXTt+vtPkXwajOfOdSyv/wZICJOC+/UhXH4aQ/R+w==}
+
+  axios@0.24.0:
+    resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
 
   axios@1.7.9:
     resolution: {integrity: sha512-LhLcE7Hbiryz8oMDdDptSrWowmB4Bl6RCt6sIJKpRB4XtVf0iEgewX3au/pJqm+Py1kCASkb/FFKjxQaLtxJvw==}
@@ -2274,6 +2284,17 @@ snapshots:
       - '@gql.tada/vue-support'
       - typescript
 
+  '@mysten/suins@0.7.2(typescript@5.7.3)':
+    dependencies:
+      '@mysten/sui': 1.21.2(typescript@5.7.3)
+      axios: 0.24.0
+      axios-retry: 3.9.1
+    transitivePeerDependencies:
+      - '@gql.tada/svelte-support'
+      - '@gql.tada/vue-support'
+      - debug
+      - typescript
+
   '@mysten/wallet-standard@0.13.26(typescript@5.7.3)':
     dependencies:
       '@mysten/sui': 1.21.2(typescript@5.7.3)
@@ -2512,6 +2533,12 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.7
       is-retry-allowed: 2.2.0
+
+  axios@0.24.0:
+    dependencies:
+      follow-redirects: 1.15.9
+    transitivePeerDependencies:
+      - debug
 
   axios@1.7.9:
     dependencies:
