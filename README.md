@@ -26,7 +26,7 @@ Examples:
 - `transfer 1 sui to 0x1234567890abcdef`
 - `send 10 sui to 0x1234567890abcdef`
 - `donate 1 sui to @abcdef1234567890`
-- `donate 1 sui to abcdef1234567890.sui`
+- `throw 1 sui to abcdef1234567890.sui`
 
 ### suiSwapTool (mainnet only)
 
