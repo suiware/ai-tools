@@ -8,7 +8,10 @@ export const suiWalletBalanceTool = tool({
   description: 'Get my Sui Wallet balance',
   parameters: z.object({}),
   execute: async () => {
-    const suiService = new SuiService()
+    const suiService = SuiService.getInstance()
+
+    // @todo: Check if the sui settings are correct.
+
     const balance = await suiService.getBalance()
     const balanceInSui = formatBalance(balance, SUI_DECIMALS)
 

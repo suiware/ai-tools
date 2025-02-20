@@ -20,7 +20,9 @@ export const suiTransferTool = tool({
       .describe('The target address. Suins names starting with @ or ending with .sui are supported.'),
   }),
   execute: async ({ amount, address }) => {
-    const suiService = new SuiService()
+    const suiService = SuiService.getInstance()
+
+    // @todo: Check if the sui settings are correct.
 
     let resolvedAddress: string | null = address
 

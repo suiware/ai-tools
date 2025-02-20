@@ -9,26 +9,46 @@ import { Secp256k1Keypair } from '@mysten/sui/keypairs/secp256k1'
 import { Secp256r1Keypair } from '@mysten/sui/keypairs/secp256r1'
 import { Transaction } from '@mysten/sui/transactions'
 import { isValidSuiAddress } from '@mysten/sui/utils'
-import { getSetting } from '../core/utils/environment'
+import { getSetting, saveSettings } from '../core/utils/environment'
 import { TSuiNetwork } from '../types/TSuiNetwork'
 
 export class SuiService {
+  private static instance: SuiService
+
+  private network: TSuiNetwork | undefined
+  private privateKey: string | undefined
   private signer: Signer
   private client: SuiClient
 
-  constructor() {
-    this.signer = this.parseAccount()
+  private constructor() {
+    this.readAndValidateConfig()
+
+    const network = this.getNetwork()
+    const privateKey = this.getPrivateKey()
+
+    this.signer = this.getSignerFromPrivateKey(privateKey!)
 
     this.client = new SuiClient({
-      url: getFullnodeUrl(getSetting('SUI_NETWORK') as TSuiNetwork),
+      url: getFullnodeUrl(network!),
     })
   }
 
-  /**
-   * Get the SuiClient instance.
-   *
-   * @returns {SuiClient} - SuiClient instance
-   */
+  // Singleton.
+  public static getInstance(): SuiService {
+    if (!SuiService.instance) {
+      SuiService.instance = new SuiService()
+    }
+    return SuiService.instance
+  }
+
+  public getNetwork(): TSuiNetwork | undefined {
+    return this.network
+  }
+
+  public getPrivateKey(): string | undefined {
+    return this.privateKey
+  }
+
   public getSuiClient(): SuiClient {
     return this.client
   }
@@ -42,13 +62,14 @@ export class SuiService {
   public async executeTransaction(
     transaction: Transaction
   ): Promise<SuiTransactionBlockResponse> {
-    if (!this.signer) {
+    const instance = SuiService.getInstance()
+    if (!instance.signer) {
       throw new Error('Signer not found')
     }
 
-    return this.client.signAndExecuteTransaction({
+    return instance.client.signAndExecuteTransaction({
       transaction,
-      signer: this.signer,
+      signer: instance.signer,
     })
   }
 
@@ -128,25 +149,38 @@ export class SuiService {
     return response.digest as `0x${string}`
   }
 
-  public static isValidPrivateKey(privateKey: string | null) {
-    return privateKey && privateKey.startsWith('suiprivkey')
+  public createAccount(network: TSuiNetwork): {
+    address: string
+    privateKey: string
+    network: TSuiNetwork
+  } {
+    // Generate new keypair.
+    const keypair = Ed25519Keypair.generate()
+    const address = keypair.toSuiAddress()
+    const privateKey = `suiprivkey${Buffer.from(keypair.getSecretKey()).toString('hex')}`
+
+    // Save network and private key.
+    this.network = network
+    this.privateKey = privateKey
+    this.signer = this.getSignerFromPrivateKey(privateKey)
+    this.saveConfig()
+
+    return {
+      address,
+      privateKey,
+      network,
+    }
+  }
+
+  public static isValidPrivateKey(privateKey: string | undefined) {
+    return privateKey != null && privateKey.startsWith('suiprivkey')
   }
 
   public static isValidSuiAddress(address: string) {
     return isValidSuiAddress(address)
   }
 
-  private parseAccount(): Signer {
-    const privateKey = getSetting('SUI_PRIVATE_KEY')
-
-    if (!SuiService.isValidPrivateKey(privateKey)) {
-      throw new Error('Invalid SUI_PRIVATE_KEY in the config')
-    }
-
-    return this.loadFromSecretKey(privateKey!)
-  }
-
-  private loadFromSecretKey(privateKey: string) {
+  private getSignerFromPrivateKey(privateKey: string): Signer {
     const keypairClasses = [Ed25519Keypair, Secp256k1Keypair, Secp256r1Keypair]
     for (const KeypairClass of keypairClasses) {
       try {
@@ -154,5 +188,36 @@ export class SuiService {
       } catch {}
     }
     throw new Error('Failed to initialize keypair from secret key')
+  }
+
+  private readAndValidateConfig(): void {
+    const network = getSetting('SUI_NETWORK') as TSuiNetwork
+    const privateKey = getSetting('SUI_PRIVATE_KEY')
+
+    // @todo: Validate with a Zod schema.
+
+    if (network == null || network.trim() === '') {
+      throw new Error('Network is not set')
+    }
+
+    if (!SuiService.isValidPrivateKey(privateKey)) {
+      throw new Error('Private key is not valid')
+    }
+
+    this.network = network
+    this.privateKey = privateKey
+  }
+
+  private saveConfig(): void {
+    if (!this.network) {
+      throw new Error('Network is not set')
+    }
+    if (!this.privateKey) {
+      throw new Error('Private key is not set')
+    }
+    saveSettings({
+      SUI_NETWORK: this.network,
+      SUI_PRIVATE_KEY: this.privateKey,
+    })
   }
 }

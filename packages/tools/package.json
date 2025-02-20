@@ -80,6 +80,7 @@
     "@mysten/wallet-standard": "^0.13.26",
     "ai": "^4.1.39",
     "bignumber.js": "^9.1.2",
+    "env-file-rw": "^1.0.0",
     "navi-sdk": "^1.4.28",
     "zod": "^3.24.2"
   },
