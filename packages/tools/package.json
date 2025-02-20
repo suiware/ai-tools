@@ -78,10 +78,10 @@
     "@mysten/sui": "^1.21.2",
     "@mysten/suins": "^0.7.2",
     "@mysten/wallet-standard": "^0.13.26",
-    "ai": "^4.1.39",
+    "ai": "^4.1.44",
     "bignumber.js": "^9.1.2",
     "env-file-rw": "^1.0.0",
-    "navi-sdk": "^1.4.28",
+    "navi-sdk": "^1.4.29",
     "zod": "^3.24.2"
   },
   "publishConfig": {
