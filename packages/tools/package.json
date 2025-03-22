@@ -69,19 +69,19 @@
   "license": "Apache-2.0",
   "description": "",
   "devDependencies": {
-    "@types/node": "^22.13.4",
-    "prettier": "^3.5.1",
-    "tsup": "^8.3.6",
-    "typescript": "^5.7.3"
+    "@types/node": "^22.13.11",
+    "prettier": "^3.5.3",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@mysten/sui": "^1.21.2",
-    "@mysten/suins": "^0.7.2",
-    "@mysten/wallet-standard": "^0.13.26",
-    "ai": "^4.1.44",
+    "@mysten/sui": "^1.24.0",
+    "@mysten/suins": "^0.7.5",
+    "@mysten/wallet-standard": "^0.13.29",
+    "ai": "^4.2.0",
     "bignumber.js": "^9.1.2",
     "env-file-rw": "^1.0.0",
-    "navi-sdk": "^1.4.29",
+    "navi-sdk": "^1.6.0",
     "zod": "^3.24.2"
   },
   "publishConfig": {

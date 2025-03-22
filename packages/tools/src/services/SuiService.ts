@@ -1,4 +1,5 @@
 import {
+  CoinMetadata,
   getFullnodeUrl,
   SuiClient,
   SuiTransactionBlockResponse,
@@ -19,6 +20,10 @@ export class SuiService {
   private privateKey: string | undefined
   private signer: Signer
   private client: SuiClient
+  private coinInfoMap: Map<string, CoinMetadata> = new Map<
+    string,
+    CoinMetadata
+  >()
 
   private constructor() {
     this.readAndValidateConfig()
@@ -178,6 +183,21 @@ export class SuiService {
 
   public static isValidSuiAddress(address: string) {
     return isValidSuiAddress(address)
+  }
+
+  public async getCoinMetadata(coinType: string): Promise<CoinMetadata | null> {
+    if (this.coinInfoMap.has(coinType)) {
+      return this.coinInfoMap.get(coinType) || null
+    }
+
+    const metadata = await this.client.getCoinMetadata({ coinType: coinType })
+    if (!metadata) {
+      return null
+    }
+
+    this.coinInfoMap.set(coinType, metadata)
+
+    return metadata
   }
 
   private getSignerFromPrivateKey(privateKey: string): Signer {
