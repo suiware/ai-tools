@@ -10,7 +10,7 @@ pnpm add @suiware/ai-tools
 
 ## Configuration
 
-To use the tools, you need to add a [few environment variables](https://github.com/suiware/ai-tools/blob/main/packages/examples/.env.example) to your `.env` file,
+To use the tools, you need to add a [few environment variables](/packages/examples/.env.example) to your `.env` file,
 such as `SUI_PRIVATE_KEY` and `SUI_NETWORK` as well as `ANTHROPIC_API_KEY` and `OPENAI_API_KEY` for Anthropic and OpenAI respectively.
 
 ## Usage
@@ -41,7 +41,7 @@ async function main() {
 main().catch(console.error)
 ```
 
-See more **[usage examples](https://github.com/suiware/ai-tools/blob/main/packages/examples/README.md)**.
+See more **[usage examples](/packages/examples/README.md)**.
 
 ## Available tools
 
@@ -81,7 +81,7 @@ Examples:
 - `get current cboe vix`
 - `get vix`
 
-Check the [source code](https://github.com/suiware/ai-tools/tree/main/packages/tools/src/ai/tools) of the tools.
+Check the [source code](/packages/tools/src/ai/tools) of the tools.
 
 ## Links
 

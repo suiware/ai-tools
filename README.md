@@ -46,16 +46,16 @@ Examples:
 - `get current cboe vix`
 - `get vix`
 
-Check the [source code](./packages/tools/src/ai/tools) of the tools.
+Check the [source code](/packages/tools/src/ai/tools) of the tools.
 
 ## Available examples
 
 |Example|Model|Description|
 |---|---|---|
-|[Simple balance tool](./packages/examples/src/anthropic-simple-balance.ts)| Anthropic: claude-3-5-sonnet-latest | Gets Sui wallet balance, no interactivity |
-|[Interactive agent (text streaming)](./packages/examples/src/anthropic-streaming.ts)| Anthropic: claude-3-5-sonnet-latest | Portfolio management agent with [all tools](#available-tools) enabled |
-|[Interactive agent (text streaming)](./packages/examples/src/openai-streaming.ts) | OpenAI: gpt-3.5-turbo | Portfolio management agent with [all tools](#available-tools) enabled |
-|[Interactive agent (text generating)](./packages/examples/src/openai-generating.ts)| OpenAI: gpt-3.5-turbo | Portfolio management agent with [all tools](#available-tools) enabled |
+|[Simple balance tool](/packages/examples/src/anthropic-simple-balance.ts)| Anthropic: claude-3-5-sonnet-latest | Gets Sui wallet balance, no interactivity |
+|[Interactive agent (text streaming)](/packages/examples/src/anthropic-streaming.ts)| Anthropic: claude-3-5-sonnet-latest | Portfolio management agent with [all tools](#available-tools) enabled |
+|[Interactive agent (text streaming)](/packages/examples/src/openai-streaming.ts) | OpenAI: gpt-3.5-turbo | Portfolio management agent with [all tools](#available-tools) enabled |
+|[Interactive agent (text generating)](/packages/examples/src/openai-generating.ts)| OpenAI: gpt-3.5-turbo | Portfolio management agent with [all tools](#available-tools) enabled |
 
 
 ## How to use examples
@@ -88,5 +88,5 @@ pnpm start:openai:generating
 
 ## How to contribute
 
-Learn the simple [packages/tools](./packages/tools/) package and contribute your own tool by sending a PR to this repository. 
+Learn the simple [packages/tools](/packages/tools/) package and contribute your own tool by sending a PR to this repository. 
 It can be an integration with pools, lending protocols, or any other services that can be beneficial for building AI assistants for Sui.
