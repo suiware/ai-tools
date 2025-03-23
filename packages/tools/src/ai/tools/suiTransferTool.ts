@@ -17,7 +17,9 @@ export const suiTransferTool = tool({
           SuinsService.isValidSuinsName(value),
         { message: 'Invalid Sui address' }
       )
-      .describe('The target address. Suins names starting with @ or ending with .sui are supported.'),
+      .describe(
+        'The target address. Suins names starting with @ or ending with .sui are supported.'
+      ),
   }),
   execute: async ({ amount, address }) => {
     const suiService = SuiService.getInstance()
