@@ -65,7 +65,8 @@ Examples:
 
 ### suiSwapTool (mainnet only)
 
-Performs token swaps.  
+Performs token swaps.
+Supported tokens are listed [here](/packages/tools/src/core/config/swap.ts)
 
 Examples:
 - `swap 1 sui for usdc`

@@ -1,31 +1,7 @@
 import { CoinMetadata, getFullnodeUrl, SuiClient } from '@mysten/sui/client'
-import {
-  AccountManager,
-  AUSD,
-  BLUE,
-  BUCK,
-  CETUS,
-  DEEP,
-  ETH,
-  FDUSD,
-  haSui,
-  LorenzoBTC,
-  NAVISDKClient,
-  NAVX,
-  NS,
-  nUSDC,
-  stSUI,
-  Sui,
-  suiBTC,
-  suiUSDT,
-  USDT,
-  USDY,
-  vSui,
-  WBTC,
-  WETH,
-  wUSDC,
-} from 'navi-sdk'
+import { AccountManager, NAVISDKClient } from 'navi-sdk'
 import { CoinInfo } from 'navi-sdk/dist/types'
+import { KNOWN_TOKENS } from '../core/config/swap'
 import { getSetting } from '../core/utils/environment'
 import { formatBalance } from '../core/utils/utils'
 import { TSuiNetwork } from '../types/TSuiNetwork'
@@ -97,7 +73,7 @@ export class NaviService {
         continue
       }
 
-      const coinInfo = this.getCoinInfo(coin.coinType)
+      const coinInfo = this.getKnownTokenInfo(coin.coinType)
       if (coinInfo) {
         result.set(
           coinInfo.symbol,
@@ -130,7 +106,7 @@ export class NaviService {
       throw new Error('Sorry, swap is currently only supported on mainnet')
     }
 
-    return this.getKnownCoins()
+    return this.getKnownTokens()
   }
 
   public static isSwappableToken(token: string) {
@@ -157,35 +133,12 @@ export class NaviService {
     )
   }
 
-  public static getKnownCoins() {
-    return [
-      NAVX,
-      Sui,
-      vSui,
-      USDT,
-      WETH,
-      CETUS,
-      haSui,
-      WBTC,
-      AUSD,
-      wUSDC,
-      nUSDC,
-      ETH,
-      USDY,
-      NS,
-      LorenzoBTC,
-      DEEP,
-      FDUSD,
-      BLUE,
-      BUCK,
-      suiUSDT,
-      stSUI,
-      suiBTC,
-    ]
+  public static getKnownTokens() {
+    return KNOWN_TOKENS
   }
 
-  public getCoinInfo(coinType: string) {
-    const naviCoins = NaviService.getKnownCoins()
+  public getKnownTokenInfo(coinType: string) {
+    const naviCoins = NaviService.getKnownTokens()
 
     return naviCoins.find((x) => x.address === coinType)
 
