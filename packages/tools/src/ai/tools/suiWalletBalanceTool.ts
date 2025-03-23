@@ -1,19 +1,25 @@
-import { SUI_DECIMALS } from '@mysten/sui/utils'
 import { tool } from 'ai'
 import z from 'zod'
-import { formatBalance } from '../../core/utils/utils'
-import { SuiService } from '../../services/SuiService'
+import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
+import { NaviService } from '../../services/NaviService'
 
 export const suiWalletBalanceTool = tool({
-  description: 'Get my Sui Wallet balance',
+  description:
+    'Get non-zero wallet balances. Note that the nUSDC balance should be displayed as USDC.',
   parameters: z.object({}),
   execute: async () => {
-    const suiService = new SuiService()
-    const balance = await suiService.getBalance()
-    const balanceInSui = formatBalance(balance, SUI_DECIMALS)
+    // We need to suppress the Navi's console log messages to prevent polluting the output.
+    // See https://github.com/naviprotocol/navi-sdk/issues/82
+    const originalConsoleLog = disableConsoleLog()
+
+    const naviService = new NaviService()
+    const balances = await naviService.getWalletNonZeroCoins()
+
+    // Get the logs back.
+    enableConsoleLog(originalConsoleLog)
 
     return {
-      balance: balanceInSui,
+      balances: Object.fromEntries(balances),
     }
   },
 })
