@@ -30,7 +30,7 @@ Examples:
 
 ### suiSwapTool (mainnet only)
 
-Performs coin swaps.  
+Performs token swaps.  
 
 Examples:
 - `swap 1 sui for usdc`
