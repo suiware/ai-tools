@@ -12,11 +12,11 @@ Pluggable tools for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assis
 
 ### suiWalletBalanceTool
 
-Gets Sui wallet balance.
+Gets non-zero wallet balances.
 
 Examples:
-- `get my sui wallet balance`
-- `my sui balance`
+- `get my wallet balances`
+- `my balances`
 
 ### suiTransferTool
 
@@ -30,12 +30,13 @@ Examples:
 
 ### suiSwapTool (mainnet only)
 
-Swaps SUI for USDC or vice versa.  
-Uses [Navi SDK](https://github.com/naviprotocol/navi-sdk) for swapping.
+Performs token swaps.
+Supported tokens are listed [here](/packages/tools/src/core/config/swap.ts)
 
 Examples:
 - `swap 1 sui for usdc`
 - `convert 10 usdc to sui`
+- `swap 1 sui for weth`
 
 ### vixTool
 
