@@ -5,7 +5,7 @@ import { NaviService } from '../../services/NaviService'
 
 export const suiWalletBalanceTool = tool({
   description:
-    'Get my non-zero wallet balances. Note that the nUSDC balance should be displayed as USDC.',
+    'Get non-zero wallet balances. Note that the nUSDC balance should be displayed as USDC.',
   parameters: z.object({}),
   execute: async () => {
     // We need to suppress the Navi's console log messages to prevent polluting the output.

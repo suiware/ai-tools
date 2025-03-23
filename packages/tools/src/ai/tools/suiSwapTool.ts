@@ -4,7 +4,7 @@ import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
 import { NaviService } from '../../services/NaviService'
 
 export const suiSwapTool = tool({
-  description: 'Swap tokens',
+  description: 'Swap coins',
   parameters: z.object({
     amount: z.number().describe('The amount of source token to swap'),
     sourceToken: z
