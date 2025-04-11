@@ -1,13 +1,22 @@
-import { SUI_DECIMALS } from '@mysten/sui/utils'
 import { tool } from 'ai'
 import z from 'zod'
-import { formatBalance } from '../../core/utils/utils'
+import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
+import { NaviService } from '../../services/NaviService'
 import { SuiService } from '../../services/SuiService'
 import { SuinsService } from '../../services/SuinsService'
 
 export const suiTransferTool = tool({
-  description: 'Transfer the amount of SUI to the specified address',
+  description:
+    'Transfer the amount of the specified coin to the specified address',
   parameters: z.object({
+    coin: z
+      .string()
+      .refine((value: string) => NaviService.isSupportedCoin(value), {
+        message: 'The coin not supported',
+      })
+      .describe(
+        'The target address. Suins names starting with @ or ending with .sui are supported.'
+      ),
     amount: z.number().describe('The amount of SUI'),
     address: z
       .string()
@@ -21,35 +30,41 @@ export const suiTransferTool = tool({
         'The target address. Suins names starting with @ or ending with .sui are supported.'
       ),
   }),
-  execute: async ({ amount, address }) => {
-    const suiService = SuiService.getInstance()
+  execute: async ({ coin, amount, address }) => {
+    // We need to suppress the Navi's console log messages to prevent polluting the output.
+    // See https://github.com/naviprotocol/navi-sdk/issues/82
+    const originalConsoleLog = disableConsoleLog()
 
-    // @todo: Check if the sui settings are correct.
+    const naviService = new NaviService()
 
     let resolvedAddress: string | null = address
-
     // If it's a Suins name, try to resolve it a Sui address.
     if (SuinsService.isValidSuinsName(address)) {
-      const suinsService = new SuinsService(suiService.getSuiClient())
+      const suinsService = new SuinsService(naviService.getSuiClient())
       resolvedAddress = await suinsService.resolveSuinsName(address)
       if (!resolvedAddress) {
         throw new Error(`Suins name ${address} not found`)
       }
     }
 
-    const txDigest = await suiService.nativeTransfer(
+    if (resolvedAddress == naviService.getAddress()) {
+      throw new Error('You cannot transfer to your own address')
+    }
+
+    const txDigest = await naviService.transfer(
+      coin,
       resolvedAddress as `0x{string}`,
       amount
     )
 
-    await suiService.waitForTransactionReceipt(txDigest)
+    const balances = await naviService.getAllBalances()
 
-    const balance = await suiService.getBalance()
-    const balanceInSui = formatBalance(balance, SUI_DECIMALS)
+    // Get the logs back.
+    enableConsoleLog(originalConsoleLog)
 
     return {
       digest: txDigest,
-      balance: balanceInSui,
+      balances,
     }
   },
 })

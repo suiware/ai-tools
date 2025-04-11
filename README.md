@@ -27,18 +27,19 @@ Examples:
 
 ### suiTransferTool
 
-Transfers the specified amount of SUI to the specified address.
+Transfer the amount of the specified coin to the specified address.
 
 Examples:
 - `transfer 1 sui to 0x1234567890abcdef`
-- `send 10 sui to 0x1234567890abcdef`
+- `send 10 wal to 0x1234567890abcdef`
 - `donate 1 sui to @abcdef1234567890`
 - `throw 1 sui to abcdef1234567890.sui`
 
+Supported coins are listed [here](/packages/tools/src/core/config/coins.ts)
+
 ### suiSwapTool (mainnet only)
 
-Performs token swaps.
-Supported tokens are listed [here](/packages/tools/src/core/config/swap.ts)
+Performs coin swap. Supported coins are listed [here](/packages/tools/src/core/config/coins.ts)
 
 Examples:
 - `swap 1 sui for usdc`
@@ -63,7 +64,7 @@ Check the [source code](/packages/tools/src/ai/tools) of the tools.
 |[Interactive agent (text streaming)](/packages/examples/src/anthropic-streaming.ts)| Anthropic: claude-3-5-sonnet-latest | Portfolio management agent with [all tools](#available-tools) enabled |
 |[Interactive agent (text streaming)](/packages/examples/src/openai-streaming.ts) | OpenAI: gpt-3.5-turbo | Portfolio management agent with [all tools](#available-tools) enabled |
 |[Interactive agent (text generating)](/packages/examples/src/openai-generating.ts)| OpenAI: gpt-3.5-turbo | Portfolio management agent with [all tools](#available-tools) enabled |
-
+|[Interactive agent (text generating)](/packages/examples/src/google-streaming.ts)| Google: gemini-2.0-flash-001 | Portfolio management agent with [all tools](#available-tools) enabled |
 
 ## How to use examples
 
@@ -91,6 +92,8 @@ pnpm start || pnpm start:anthropic:streaming
 pnpm start:openai:streaming
 # or
 pnpm start:openai:generating
+# or 
+pnpm start:google:streaming
 ```
 
 ## How to contribute

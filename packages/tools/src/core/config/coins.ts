@@ -8,6 +8,7 @@ import {
   ETH,
   FDUSD,
   haSui,
+  LBTC,
   LorenzoBTC,
   NAVX,
   NS,
@@ -19,12 +20,14 @@ import {
   USDT,
   USDY,
   vSui,
+  WAL,
   WBTC,
   WETH,
+  WSOL,
   wUSDC,
 } from 'navi-sdk'
 
-export const KNOWN_TOKENS: CoinInfo[] = [
+export const SUPPORTED_COINS: CoinInfo[] = [
   NAVX,
   Sui,
   vSui,
@@ -47,4 +50,7 @@ export const KNOWN_TOKENS: CoinInfo[] = [
   suiUSDT,
   stSUI,
   suiBTC,
+  WSOL,
+  LBTC,
+  WAL,
 ]

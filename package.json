@@ -7,6 +7,7 @@
     "start:anthropic:simple:balance": "pnpm build && pnpm --filter examples start:anthropic:simple:balance",
     "start:openai:streaming": "pnpm build && pnpm --filter examples start:openai:streaming",
     "start:openai:generating": "pnpm build && pnpm --filter examples start:openai:generating",
+    "start:google:streaming": "pnpm build && pnpm --filter examples start:google:streaming",
     "tools:publish": "pnpm --filter @suiware/ai-tools publish",
     "format": "pnpm -r format"
   },
