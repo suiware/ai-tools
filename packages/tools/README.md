@@ -45,6 +45,13 @@ See more **[usage examples](/packages/examples/README.md)**.
 
 ## Available tools
 
+### suiAddressTool
+
+Gets user address.
+
+Examples:
+- `get my address`
+
 ### suiWalletBalanceTool
 
 Gets non-zero wallet balances.

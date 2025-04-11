@@ -10,6 +10,13 @@ Pluggable tools for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assis
 
 ## Available tools
 
+### suiAddressTool
+
+Gets user address.
+
+Examples:
+- `get my address`
+
 ### suiWalletBalanceTool
 
 Gets non-zero wallet balances.

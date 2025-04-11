@@ -1,5 +1,6 @@
 import { anthropic } from '@ai-sdk/anthropic'
 import {
+  suiAddressTool,
   suiSwapTool,
   suiTransferTool,
   suiWalletBalanceTool,
@@ -41,6 +42,7 @@ async function main() {
       model: anthropic('claude-3-5-sonnet-latest'),
       messages,
       tools: {
+        address: suiAddressTool,
         balance: suiWalletBalanceTool,
         transfer: suiTransferTool,
         vix: vixTool,

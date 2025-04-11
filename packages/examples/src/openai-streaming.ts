@@ -1,5 +1,6 @@
 import { openai } from '@ai-sdk/openai'
 import {
+  suiAddressTool,
   suiSwapTool,
   suiTransferTool,
   suiWalletBalanceTool,
@@ -41,6 +42,7 @@ async function main() {
       model: openai('gpt-3.5-turbo'),
       messages,
       tools: {
+        address: suiAddressTool,
         balance: suiWalletBalanceTool,
         transfer: suiTransferTool,
         vix: vixTool,
