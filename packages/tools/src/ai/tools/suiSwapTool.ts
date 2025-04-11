@@ -40,6 +40,7 @@ export const suiSwapTool = tool({
 
     return {
       digest: transactionResult.digest,
+      balances,
     }
   },
 })

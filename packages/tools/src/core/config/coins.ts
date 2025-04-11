@@ -27,7 +27,7 @@ import {
   wUSDC,
 } from 'navi-sdk'
 
-export const KNOWN_COINS: CoinInfo[] = [
+export const SUPPORTED_COINS: CoinInfo[] = [
   NAVX,
   Sui,
   vSui,

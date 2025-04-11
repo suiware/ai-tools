@@ -1,7 +1,7 @@
 import { CoinMetadata, getFullnodeUrl, SuiClient } from '@mysten/sui/client'
 import { AccountManager, NAVISDKClient } from 'navi-sdk'
 import { CoinInfo } from 'navi-sdk/dist/types'
-import { KNOWN_COINS } from '../core/config/coins'
+import { SUPPORTED_COINS } from '../core/config/coins'
 import { getSetting } from '../core/utils/environment'
 import { formatBalance } from '../core/utils/utils'
 import { TSuiNetwork } from '../types/TSuiNetwork'
@@ -130,7 +130,7 @@ export class NaviService {
   }
 
   public static getSupportedCoins(): CoinInfo[] {
-    return KNOWN_COINS
+    return SUPPORTED_COINS
   }
 
   public static isSupportedCoin(symbol: string) {
