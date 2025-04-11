@@ -16,6 +16,16 @@
         "default": "./dist/index.js"
       }
     },
+    "./suiAddressTool": {
+      "import": {
+        "types": "./dist/ai/tools/suiAddressTool.d.mts",
+        "default": "./dist/ai/tools/suiAddressTool.mjs"
+      },
+      "require": {
+        "types": "./dist/ai/tools/suiAddressTool.d.ts",
+        "default": "./dist/ai/tools/suiAddressTool.js"
+      }
+    },
     "./suiSwapTool": {
       "import": {
         "types": "./dist/ai/tools/suiSwapTool.d.mts",
