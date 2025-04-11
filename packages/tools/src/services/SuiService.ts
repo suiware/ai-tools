@@ -185,6 +185,10 @@ export class SuiService {
     return isValidSuiAddress(address)
   }
 
+  public static isNotMyOwnAddress(address: string) {
+    return this.getInstance().getAddress() !== address
+  }
+
   public async getCoinMetadata(coinType: string): Promise<CoinMetadata | null> {
     if (this.coinInfoMap.has(coinType)) {
       return this.coinInfoMap.get(coinType) || null

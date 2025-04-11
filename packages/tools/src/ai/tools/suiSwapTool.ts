@@ -4,23 +4,23 @@ import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
 import { NaviService } from '../../services/NaviService'
 
 export const suiSwapTool = tool({
-  description: 'Swap tokens',
+  description: 'Swap coins',
   parameters: z.object({
-    amount: z.number().describe('The amount of source token to swap'),
-    sourceToken: z
+    amount: z.number().describe('The amount of source coin to swap'),
+    sourceCoin: z
       .string()
-      .refine((arg: string) => NaviService.isSupportedToken(arg), {
-        message: 'The source token not supported',
+      .refine((arg: string) => NaviService.isSupportedCoin(arg), {
+        message: 'The source coin not supported',
       })
-      .describe('The source token'),
-    targetToken: z
+      .describe('The source coin'),
+    targetCoin: z
       .string()
-      .refine((arg: string) => NaviService.isSupportedToken(arg), {
-        message: 'The target token not supported',
+      .refine((arg: string) => NaviService.isSupportedCoin(arg), {
+        message: 'The target coin not supported',
       })
-      .describe('The target token'),
+      .describe('The target coin'),
   }),
-  execute: async ({ amount, sourceToken, targetToken }) => {
+  execute: async ({ amount, sourceCoin, targetCoin }) => {
     // We need to suppress the Navi's console log messages to prevent polluting the output.
     // See https://github.com/naviprotocol/navi-sdk/issues/82
     const originalConsoleLog = disableConsoleLog()
@@ -28,8 +28,8 @@ export const suiSwapTool = tool({
     const naviService = new NaviService()
 
     const transactionResult = await naviService.swap(
-      sourceToken,
-      targetToken,
+      sourceCoin,
+      targetCoin,
       amount
     )
 
@@ -40,7 +40,6 @@ export const suiSwapTool = tool({
 
     return {
       digest: transactionResult.digest,
-      balances,
     }
   },
 })

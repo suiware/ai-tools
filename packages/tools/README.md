@@ -62,18 +62,19 @@ Examples:
 
 ### suiTransferTool
 
-Transfers the specified amount of SUI to the specified address.
+Transfer the amount of the specified coin to the specified address.
 
 Examples:
 - `transfer 1 sui to 0x1234567890abcdef`
-- `send 10 sui to 0x1234567890abcdef`
+- `send 10 wal to 0x1234567890abcdef`
 - `donate 1 sui to @abcdef1234567890`
 - `throw 1 sui to abcdef1234567890.sui`
 
+Supported coins are listed [here](/packages/tools/src/core/config/coins.ts)
+
 ### suiSwapTool (mainnet only)
 
-Performs token swaps.
-Supported tokens are listed [here](/packages/tools/src/core/config/swap.ts)
+Performs coin swap. Supported coins are listed [here](/packages/tools/src/core/config/coins.ts)
 
 Examples:
 - `swap 1 sui for usdc`

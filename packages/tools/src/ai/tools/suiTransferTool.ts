@@ -1,5 +1,6 @@
 import { tool } from 'ai'
 import z from 'zod'
+import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
 import { NaviService } from '../../services/NaviService'
 import { SuiService } from '../../services/SuiService'
 import { SuinsService } from '../../services/SuinsService'
@@ -10,8 +11,8 @@ export const suiTransferTool = tool({
   parameters: z.object({
     coin: z
       .string()
-      .refine((value: string) => NaviService.isSupportedToken(value), {
-        message: 'Coin not supported',
+      .refine((value: string) => NaviService.isSupportedCoin(value), {
+        message: 'The coin not supported',
       })
       .describe(
         'The target address. Suins names starting with @ or ending with .sui are supported.'
@@ -30,21 +31,25 @@ export const suiTransferTool = tool({
       ),
   }),
   execute: async ({ coin, amount, address }) => {
-    const suiService = SuiService.getInstance()
+    // We need to suppress the Navi's console log messages to prevent polluting the output.
+    // See https://github.com/naviprotocol/navi-sdk/issues/82
+    const originalConsoleLog = disableConsoleLog()
+
     const naviService = new NaviService()
 
     let resolvedAddress: string | null = address
     // If it's a Suins name, try to resolve it a Sui address.
     if (SuinsService.isValidSuinsName(address)) {
-      const suinsService = new SuinsService(suiService.getSuiClient())
+      const suinsService = new SuinsService(naviService.getSuiClient())
       resolvedAddress = await suinsService.resolveSuinsName(address)
       if (!resolvedAddress) {
         throw new Error(`Suins name ${address} not found`)
       }
     }
 
-    console.log(coin, amount, address)
-    return
+    if (resolvedAddress == naviService.getAddress()) {
+      throw new Error('You cannot transfer to your own address')
+    }
 
     const txDigest = await naviService.transfer(
       coin,
@@ -52,9 +57,10 @@ export const suiTransferTool = tool({
       amount
     )
 
-    console.log(txDigest)
-
     const balances = await naviService.getAllBalances()
+
+    // Get the logs back.
+    enableConsoleLog(originalConsoleLog)
 
     return {
       digest: txDigest,

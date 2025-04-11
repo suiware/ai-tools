@@ -1,7 +1,7 @@
 import { CoinMetadata, getFullnodeUrl, SuiClient } from '@mysten/sui/client'
 import { AccountManager, NAVISDKClient } from 'navi-sdk'
 import { CoinInfo } from 'navi-sdk/dist/types'
-import { KNOWN_TOKENS } from '../core/config/knownTokens'
+import { KNOWN_COINS } from '../core/config/coins'
 import { getSetting } from '../core/utils/environment'
 import { formatBalance } from '../core/utils/utils'
 import { TSuiNetwork } from '../types/TSuiNetwork'
@@ -35,10 +35,18 @@ export class NaviService {
     })
   }
 
+  public getSuiClient() {
+    return this.suiClient
+  }
+
+  public getAddress() {
+    return this.account.address
+  }
+
   public async getAllBalances() {
     const allBalances = await this.naviClient.getAllBalances()
 
-    return NaviService.getSupportedTokens().map((x) => ({
+    return NaviService.getSupportedCoins().map((x) => ({
       [NaviService.naviUsdcToUsdc(x.symbol)]: allBalances[x.address],
     }))
   }
@@ -48,8 +56,10 @@ export class NaviService {
     targetToken: string,
     amount: string | number
   ) {
-    const sourceTokenMetadata = NaviService.getSupportedToken(sourceToken)
-    const targetTokenMetadata = NaviService.getSupportedToken(targetToken)
+    const sourceTokenMetadata =
+      NaviService.getSupportedCoinBySymbol(sourceToken)
+    const targetTokenMetadata =
+      NaviService.getSupportedCoinBySymbol(targetToken)
 
     const amountIn =
       (typeof amount === 'string' ? parseFloat(amount) : amount) *
@@ -68,7 +78,7 @@ export class NaviService {
     targetAddress: string,
     amount: string | number
   ) {
-    const sourceTokenMetadata = NaviService.getSupportedToken(token)
+    const sourceTokenMetadata = NaviService.getSupportedCoinBySymbol(token)
 
     // @todo: Add target address validation/ conversion from suins.
 
@@ -93,7 +103,7 @@ export class NaviService {
         continue
       }
 
-      const coinInfo = this.getKnownTokenInfo(coin.coinType)
+      const coinInfo = this.getSupportedCoinByAddress(coin.coinType)
       if (coinInfo) {
         result.set(
           coinInfo.symbol,
@@ -119,42 +129,35 @@ export class NaviService {
     return await this.naviClient.accounts[0].getWalletBalance()
   }
 
-  public static getSupportedTokens(): CoinInfo[] {
-    return this.getKnownTokens()
+  public static getSupportedCoins(): CoinInfo[] {
+    return KNOWN_COINS
   }
 
-  public static isSupportedToken(token: string) {
-    return this.getSupportedTokens().some(
-      (swappableToken) =>
-        this.naviUsdcToUsdc(swappableToken.symbol).toUpperCase() ===
-        token.toUpperCase()
+  public static isSupportedCoin(symbol: string) {
+    return this.getSupportedCoins().some(
+      (coin) =>
+        this.naviUsdcToUsdc(coin.symbol).toUpperCase() === symbol.toUpperCase()
     )
   }
 
-  public static getSupportedToken(token: string) {
-    return this.getSupportedTokens().find(
-      (swappableToken) =>
-        this.naviUsdcToUsdc(swappableToken.symbol).toUpperCase() ===
-        token.toUpperCase()
+  public static getSupportedCoinBySymbol(symbol: string) {
+    return this.getSupportedCoins().find(
+      (coin) =>
+        this.naviUsdcToUsdc(coin.symbol).toUpperCase() === symbol.toUpperCase()
     )
   }
 
-  public static getMissingSupportedToken(passedToken: string) {
-    return this.getSupportedTokens().find(
-      (swappableToken) =>
-        this.naviUsdcToUsdc(swappableToken.symbol).toUpperCase() !==
-        passedToken.toUpperCase()
+  public static getMissingSupportedCoin(symbol: string) {
+    return this.getSupportedCoins().find(
+      (coin) =>
+        this.naviUsdcToUsdc(coin.symbol).toUpperCase() !== symbol.toUpperCase()
     )
   }
 
-  public static getKnownTokens() {
-    return KNOWN_TOKENS
-  }
+  public getSupportedCoinByAddress(address: string) {
+    const naviCoins = NaviService.getSupportedCoins()
 
-  public getKnownTokenInfo(coinType: string) {
-    const naviCoins = NaviService.getKnownTokens()
-
-    return naviCoins.find((x) => x.address === coinType)
+    return naviCoins.find((x) => x.address === address)
 
     // @todo Get more token info through SuiClient.getCoinMetadata({coinType: ''})
   }
