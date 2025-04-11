@@ -1,7 +1,7 @@
 import { CoinMetadata, getFullnodeUrl, SuiClient } from '@mysten/sui/client'
 import { AccountManager, NAVISDKClient } from 'navi-sdk'
 import { CoinInfo } from 'navi-sdk/dist/types'
-import { KNOWN_TOKENS } from '../core/config/swap'
+import { KNOWN_TOKENS } from '../core/config/knownTokens'
 import { getSetting } from '../core/utils/environment'
 import { formatBalance } from '../core/utils/utils'
 import { TSuiNetwork } from '../types/TSuiNetwork'
@@ -20,7 +20,7 @@ export class NaviService {
 
     const suiNetwork = getSetting('SUI_NETWORK') as TSuiNetwork
     if (suiNetwork !== 'mainnet') {
-      throw new Error('Only mainnet is supported for USDC swaps')
+      throw new Error('Only mainnet is supported')
     }
 
     this.naviClient = new NAVISDKClient({
@@ -38,7 +38,7 @@ export class NaviService {
   public async getAllBalances() {
     const allBalances = await this.naviClient.getAllBalances()
 
-    return NaviService.getSwappableTokens().map((x) => ({
+    return NaviService.getSupportedTokens().map((x) => ({
       [NaviService.naviUsdcToUsdc(x.symbol)]: allBalances[x.address],
     }))
   }
@@ -48,8 +48,8 @@ export class NaviService {
     targetToken: string,
     amount: string | number
   ) {
-    const sourceTokenMetadata = NaviService.getSwappableToken(sourceToken)
-    const targetTokenMetadata = NaviService.getSwappableToken(targetToken)
+    const sourceTokenMetadata = NaviService.getSupportedToken(sourceToken)
+    const targetTokenMetadata = NaviService.getSupportedToken(targetToken)
 
     const amountIn =
       (typeof amount === 'string' ? parseFloat(amount) : amount) *
@@ -60,6 +60,26 @@ export class NaviService {
       targetTokenMetadata!.address,
       amountIn,
       0
+    )
+  }
+
+  public async transfer(
+    token: string,
+    targetAddress: string,
+    amount: string | number
+  ) {
+    const sourceTokenMetadata = NaviService.getSupportedToken(token)
+
+    // @todo: Add target address validation/ conversion from suins.
+
+    const amountIn =
+      (typeof amount === 'string' ? parseFloat(amount) : amount) *
+      10 ** sourceTokenMetadata!.decimal
+
+    return await this.account.sendCoin(
+      sourceTokenMetadata!.address,
+      targetAddress,
+      amountIn
     )
   }
 
@@ -99,34 +119,28 @@ export class NaviService {
     return await this.naviClient.accounts[0].getWalletBalance()
   }
 
-  public static getSwappableTokens(): CoinInfo[] {
-    const networkType = getSetting('SUI_NETWORK')
-
-    if (!networkType || !['mainnet'].includes(networkType)) {
-      throw new Error('Sorry, swap is currently only supported on mainnet')
-    }
-
+  public static getSupportedTokens(): CoinInfo[] {
     return this.getKnownTokens()
   }
 
-  public static isSwappableToken(token: string) {
-    return this.getSwappableTokens().some(
+  public static isSupportedToken(token: string) {
+    return this.getSupportedTokens().some(
       (swappableToken) =>
         this.naviUsdcToUsdc(swappableToken.symbol).toUpperCase() ===
         token.toUpperCase()
     )
   }
 
-  public static getSwappableToken(token: string) {
-    return this.getSwappableTokens().find(
+  public static getSupportedToken(token: string) {
+    return this.getSupportedTokens().find(
       (swappableToken) =>
         this.naviUsdcToUsdc(swappableToken.symbol).toUpperCase() ===
         token.toUpperCase()
     )
   }
 
-  public static getMissingSwappableToken(passedToken: string) {
-    return this.getSwappableTokens().find(
+  public static getMissingSupportedToken(passedToken: string) {
+    return this.getSupportedTokens().find(
       (swappableToken) =>
         this.naviUsdcToUsdc(swappableToken.symbol).toUpperCase() !==
         passedToken.toUpperCase()

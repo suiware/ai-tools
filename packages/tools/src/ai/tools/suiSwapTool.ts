@@ -9,13 +9,13 @@ export const suiSwapTool = tool({
     amount: z.number().describe('The amount of source token to swap'),
     sourceToken: z
       .string()
-      .refine((arg: string) => NaviService.isSwappableToken(arg), {
+      .refine((arg: string) => NaviService.isSupportedToken(arg), {
         message: 'The source token not supported',
       })
       .describe('The source token'),
     targetToken: z
       .string()
-      .refine((arg: string) => NaviService.isSwappableToken(arg), {
+      .refine((arg: string) => NaviService.isSupportedToken(arg), {
         message: 'The target token not supported',
       })
       .describe('The target token'),
