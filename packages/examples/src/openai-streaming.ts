@@ -4,7 +4,6 @@ import {
   suiSwapTool,
   suiTransferTool,
   suiWalletBalanceTool,
-  vixTool,
 } from '@suiware/ai-tools'
 import {
   CoreMessage,
@@ -45,7 +44,6 @@ async function main() {
         address: suiAddressTool,
         balance: suiWalletBalanceTool,
         transfer: suiTransferTool,
-        vix: vixTool,
         swap: suiSwapTool,
       },
       maxSteps: 5,

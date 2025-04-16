@@ -81,14 +81,6 @@ Examples:
 - `convert 10 usdc to sui`
 - `swap 1 sui for weth`
 
-### vixTool
-
-Gets the current CBOE Volatility Index (VIX) index value.
-
-Examples:
-- `get current cboe vix`
-- `get vix`
-
 Check the [source code](/packages/tools/src/ai/tools) of the tools.
 
 ## Links

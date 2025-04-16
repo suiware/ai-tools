@@ -1,10 +1,9 @@
-import { anthropic } from '@ai-sdk/anthropic'
+import { google } from '@ai-sdk/google'
 import {
   suiAddressTool,
   suiSwapTool,
   suiTransferTool,
   suiWalletBalanceTool,
-  vixTool,
 } from '@suiware/ai-tools'
 import {
   CoreMessage,
@@ -16,7 +15,6 @@ import {
 import chalk from 'chalk'
 import { configDotenv } from 'dotenv'
 import * as readline from 'node:readline/promises'
-import { google } from '@ai-sdk/google'
 
 configDotenv()
 
@@ -46,7 +44,6 @@ async function main() {
         address: suiAddressTool,
         balance: suiWalletBalanceTool,
         transfer: suiTransferTool,
-        vix: vixTool,
         swap: suiSwapTool,
       },
       maxSteps: 5,
