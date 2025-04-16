@@ -1,5 +1,6 @@
 {
   "name": "@suiware/ai-tools",
+  "description": "Pluggable tools for Vercel AI SDK which allow AI assistants to interact with Sui Network and perform various actions.",
   "version": "1.0.0",
   "sideEffects": false,
   "type": "commonjs",
@@ -67,7 +68,6 @@
     "prepublishOnly": "pnpm build"
   },
   "license": "Apache-2.0",
-  "description": "",
   "devDependencies": {
     "@types/node": "^22.14.1",
     "prettier": "^3.5.3",
