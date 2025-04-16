@@ -55,16 +55,6 @@
         "types": "./dist/ai/tools/suiWalletBalanceTool.d.ts",
         "default": "./dist/ai/tools/suiWalletBalanceTool.js"
       }
-    },
-    "./vixTool": {
-      "import": {
-        "types": "./dist/ai/tools/vixTool.d.mts",
-        "default": "./dist/ai/tools/vixTool.mjs"
-      },
-      "require": {
-        "types": "./dist/ai/tools/vixTool.d.ts",
-        "default": "./dist/ai/tools/vixTool.js"
-      }
     }
   },
   "files": [
