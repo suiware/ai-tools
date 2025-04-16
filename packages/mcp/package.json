@@ -1,0 +1,26 @@
+{
+  "name": "@suiware/mcp",
+  "version": "0.1.0",
+  "description": "Sui AI Tools by Suiware, which allow AI assistants to interact with Sui Network and perform various actions.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpx @modelcontextprotocol/inspector pnpm server:start",
+    "server:start": "tsx server.ts"
+  },
+  "keywords": [
+    "sui",
+    "suiware",
+    "suiware-mcp",
+    "mcp",
+    "ai"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "zod": "^3.24.2",
+    "@suiware/ai-tools": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.3"
+  }
+}
