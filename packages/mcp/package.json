@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpx @modelcontextprotocol/inspector pnpm server:start",
-    "server:start": "tsx server.ts"
+    "server:start": "tsx src/server.ts"
   },
   "keywords": [
     "sui",
@@ -18,7 +18,8 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.9.0",
     "zod": "^3.24.2",
-    "@suiware/ai-tools": "workspace:*"
+    "@suiware/ai-tools": "workspace:*",
+    "ai": "^4.3.8"
   },
   "devDependencies": {
     "tsx": "^4.19.3"
