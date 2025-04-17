@@ -6,6 +6,7 @@ import { getSetting } from '../core/utils/environment'
 import { formatBalance } from '../core/utils/utils'
 import { TSuiNetwork } from '../types/TSuiNetwork'
 import { SuiService } from './SuiService'
+import { SuinsService } from './SuinsService'
 
 export class NaviService {
   private naviClient: NAVISDKClient
@@ -76,12 +77,24 @@ export class NaviService {
 
   public async transfer(
     token: string,
-    targetAddress: string,
+    address: string,
     amount: string | number
   ) {
-    const sourceTokenMetadata = NaviService.getSupportedCoinBySymbol(token)
+    let resolvedAddress: string | null = address
+    // If it's a Suins name, try to resolve it to a Sui address.
+    if (SuinsService.isValidSuinsName(address)) {
+      const suinsService = new SuinsService(this.getSuiClient())
+      resolvedAddress = await suinsService.resolveSuinsName(address)
+      if (!resolvedAddress) {
+        throw new Error(`Suins name ${address} not found`)
+      }
+    }
 
-    // @todo: Add target address validation/ conversion from suins.
+    if (resolvedAddress == this.getAddress()) {
+      throw new Error('You cannot transfer to your own address')
+    }
+
+    const sourceTokenMetadata = NaviService.getSupportedCoinBySymbol(token)
 
     const amountIn =
       (typeof amount === 'string' ? parseFloat(amount) : amount) *
@@ -89,7 +102,7 @@ export class NaviService {
 
     return await this.account.sendCoin(
       sourceTokenMetadata!.address,
-      targetAddress,
+      resolvedAddress,
       amountIn
     )
   }
