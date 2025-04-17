@@ -4,6 +4,7 @@ export function formatBalance(
   balance: bigint | number | string,
   decimals: number
 ) {
+  // Number(totalBalance) / Math.pow(10, decimal);
   return BigNumber(balance.toString()).shiftedBy(-decimals).toFixed(8)
 }
 

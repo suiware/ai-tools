@@ -57,14 +57,11 @@ export const suiTransferTool = tool({
       amount
     )
 
-    const balances = await naviService.getAllBalances()
-
     // Get the logs back.
     enableConsoleLog(originalConsoleLog)
 
     return {
       digest: txDigest,
-      balances,
     }
   },
 })

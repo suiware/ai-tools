@@ -33,14 +33,11 @@ export const suiSwapTool = tool({
       amount
     )
 
-    const balances = await naviService.getAllBalances()
-
     // Get the logs back.
     enableConsoleLog(originalConsoleLog)
 
     return {
       digest: transactionResult.digest,
-      balances,
     }
   },
 })

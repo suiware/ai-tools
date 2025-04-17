@@ -1,7 +1,7 @@
 import { tool } from 'ai'
 import z from 'zod'
-import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
 import { NaviService } from '../../services/NaviService'
+import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
 
 export const suiWalletBalanceTool = tool({
   description:
@@ -19,7 +19,7 @@ export const suiWalletBalanceTool = tool({
     enableConsoleLog(originalConsoleLog)
 
     return {
-      balances: Object.fromEntries(balances),
+      balances: balances,
     }
   },
 })

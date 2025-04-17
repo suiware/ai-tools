@@ -49,6 +49,7 @@ async function main() {
       maxSteps: 5,
       system: `You are ${AGENT_NAME}, a financial assistant who manages user's portfolio on Sui blockchain network. 
       Answer very briefly and concisely. Every sentence of the answer should be on a separate line. 
+      If user asks for balances, don't use the data from your memory and instead always request the balance tool.
       If you don't know, don't make it up.`,
       onError: ({ error }) => {
         if (NoSuchToolError.isInstance(error)) {

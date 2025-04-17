@@ -19,9 +19,6 @@ export class NaviService {
     }
 
     const suiNetwork = getSetting('SUI_NETWORK') as TSuiNetwork
-    if (suiNetwork !== 'mainnet') {
-      throw new Error('Only mainnet is supported')
-    }
 
     this.naviClient = new NAVISDKClient({
       privateKeyList: [privateKey],
@@ -56,6 +53,10 @@ export class NaviService {
     targetToken: string,
     amount: string | number
   ) {
+    if (this.naviClient.networkType !== 'mainnet') {
+      throw new Error('Only mainnet is supported')
+    }
+
     const sourceTokenMetadata =
       NaviService.getSupportedCoinBySymbol(sourceToken)
     const targetTokenMetadata =
@@ -94,35 +95,40 @@ export class NaviService {
   }
 
   async getWalletNonZeroCoins() {
-    const allCoins = await this.account.getAllCoins()
+    const allBalances = await this.suiClient.getAllBalances({
+      owner: this.account.address,
+    })
 
-    const result: Map<string, string> = new Map<string, string>()
+    const coinBalances: Record<string, string> = {}
 
-    for (const coin of allCoins) {
-      if (parseFloat(coin.balance) == 0) {
+    for (const { coinType, totalBalance } of allBalances) {
+      if (parseFloat(totalBalance) == 0) {
         continue
       }
 
-      const coinInfo = this.getSupportedCoinByAddress(coin.coinType)
+      const coinInfo = this.getSupportedCoinByAddress(coinType)
       if (coinInfo) {
-        result.set(
-          coinInfo.symbol,
-          formatBalance(coin.balance, coinInfo.decimal)
+        coinBalances[coinInfo.symbol] = formatBalance(
+          totalBalance,
+          coinInfo.decimal
         )
         continue
       }
 
-      const coinMetadata = await this.fetchCoinMetadata(coin.coinType)
+      const coinMetadata = await this.fetchCoinMetadata(coinType)
       if (coinMetadata) {
-        result.set(
-          coinMetadata.symbol,
-          formatBalance(coin.balance, coinMetadata.decimals)
+        coinBalances[coinMetadata.symbol] = formatBalance(
+          totalBalance,
+          coinMetadata.decimals
         )
         continue
       }
+
+      const decimal = await this.account.getCoinDecimal(coinType)
+      coinBalances[coinType] = formatBalance(totalBalance, decimal)
     }
 
-    return result
+    return coinBalances
   }
 
   public async getWalletBalance() {
@@ -158,8 +164,6 @@ export class NaviService {
     const naviCoins = NaviService.getSupportedCoins()
 
     return naviCoins.find((x) => x.address === address)
-
-    // @todo Get more token info through SuiClient.getCoinMetadata({coinType: ''})
   }
 
   public async fetchCoinMetadata(
