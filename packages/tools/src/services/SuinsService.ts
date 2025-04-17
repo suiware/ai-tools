@@ -1,5 +1,6 @@
 import { SuiClient } from '@mysten/sui/client'
 import { SuinsClient } from '@mysten/suins'
+import { getSetting } from '../core/utils/environment'
 
 export class SuinsService {
   private suinsClient: SuinsClient
@@ -10,8 +11,7 @@ export class SuinsService {
 
     this.suinsClient = new SuinsClient({
       client: this.suiClient,
-      // We rely on the network set through the SuiClient.
-      // network: getSetting('SUI_NETWORK') as Network,
+      network: getSetting('SUI_NETWORK') as 'mainnet' | 'testnet',
     })
   }
 

@@ -19,9 +19,6 @@ export class NaviService {
     }
 
     const suiNetwork = getSetting('SUI_NETWORK') as TSuiNetwork
-    if (suiNetwork !== 'mainnet') {
-      throw new Error('Only mainnet is supported')
-    }
 
     this.naviClient = new NAVISDKClient({
       privateKeyList: [privateKey],
@@ -56,6 +53,10 @@ export class NaviService {
     targetToken: string,
     amount: string | number
   ) {
+    if (this.naviClient.networkType !== 'mainnet') {
+      throw new Error('Only mainnet is supported')
+    }
+
     const sourceTokenMetadata =
       NaviService.getSupportedCoinBySymbol(sourceToken)
     const targetTokenMetadata =
@@ -163,8 +164,6 @@ export class NaviService {
     const naviCoins = NaviService.getSupportedCoins()
 
     return naviCoins.find((x) => x.address === address)
-
-    // @todo Get more token info through SuiClient.getCoinMetadata({coinType: ''})
   }
 
   public async fetchCoinMetadata(
