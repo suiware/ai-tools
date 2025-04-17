@@ -37,23 +37,9 @@ export const suiTransferTool = tool({
 
     const naviService = new NaviService()
 
-    let resolvedAddress: string | null = address
-    // If it's a Suins name, try to resolve it a Sui address.
-    if (SuinsService.isValidSuinsName(address)) {
-      const suinsService = new SuinsService(naviService.getSuiClient())
-      resolvedAddress = await suinsService.resolveSuinsName(address)
-      if (!resolvedAddress) {
-        throw new Error(`Suins name ${address} not found`)
-      }
-    }
-
-    if (resolvedAddress == naviService.getAddress()) {
-      throw new Error('You cannot transfer to your own address')
-    }
-
     const txDigest = await naviService.transfer(
       coin,
-      resolvedAddress as `0x{string}`,
+      address as `0x{string}`,
       amount
     )
 
