@@ -22,6 +22,7 @@ const tools: Record<string, Tool> = {
 };
 
 for (const [name, tool] of Object.entries(tools)) {
+  // Hope we will have a native Tool type soon https://github.com/modelcontextprotocol/typescript-sdk/issues/369
   const mcpTool = mapVercelToolToMcpTool(tool);
   server.tool(name, mcpTool.description, mcpTool.paramsSchema, mcpTool.cb);
 }
