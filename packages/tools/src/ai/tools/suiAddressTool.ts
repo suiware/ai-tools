@@ -3,7 +3,7 @@ import z from 'zod'
 import { SuiService } from '../../services/SuiService'
 
 export const suiAddressTool = tool({
-  description: 'Get my Sui address',
+  description: 'Get Sui address',
   parameters: z.object({}),
   execute: async () => {
     const suiService = SuiService.getInstance()

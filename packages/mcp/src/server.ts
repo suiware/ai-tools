@@ -7,7 +7,7 @@ import {
   suiWalletBalanceTool,
 } from "@suiware/ai-tools";
 import type { Tool } from "ai";
-import { mapZodSchemaToMCPSchema } from "./utils/helpers";
+import { mapVercelToolToMcpTool } from "./utils/helpers";
 
 const server = new McpServer({
   name: "Sui AI Tools by Suiware",
@@ -22,38 +22,8 @@ const tools: Record<string, Tool> = {
 };
 
 for (const [name, tool] of Object.entries(tools)) {
-  const mcpSchema = mapZodSchemaToMCPSchema(tool.parameters);
-
-  server.tool(name, tool.description!, mcpSchema, async (params) => {
-    try {
-      // @todo: Improve parameter types.
-      let result;
-      if (tool.execute instanceof Function) {
-        result = await tool.execute(params as any, {} as any);
-      }
-
-      return {
-        content: [
-          {
-            type: "text",
-            text: JSON.stringify(result, null, 2),
-          },
-        ],
-      };
-    } catch (error) {
-      console.error("error", error);
-      return {
-        isError: true,
-        content: [
-          {
-            type: "text",
-            text:
-              error instanceof Error ? error.message : "Unknown error occurred",
-          },
-        ],
-      };
-    }
-  });
+  const mcpTool = mapVercelToolToMcpTool(tool);
+  server.tool(name, mcpTool.description, mcpTool.paramsSchema, mcpTool.cb);
 }
 
 async function main() {
