@@ -77,15 +77,15 @@ Then update the environment variables in the `packages/examples/.env` file.
 ### 3. Run examples
 
 ```bash
+pnpm start || pnpm start:google:streaming
+# or
 pnpm start:anthropic:simple:balance
 # or
-pnpm start || pnpm start:anthropic:streaming
+pnpm start:anthropic:streaming
 # or 
 pnpm start:openai:streaming
 # or
 pnpm start:openai:generating
-# or 
-pnpm start:google:streaming
 ```
 
 ## How to contribute
