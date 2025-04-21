@@ -9,7 +9,10 @@ import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519'
 import { Secp256k1Keypair } from '@mysten/sui/keypairs/secp256k1'
 import { Secp256r1Keypair } from '@mysten/sui/keypairs/secp256r1'
 import { Transaction } from '@mysten/sui/transactions'
-import { isValidSuiAddress } from '@mysten/sui/utils'
+import {
+  isValidSuiAddress,
+  SUI_SYSTEM_STATE_OBJECT_ID,
+} from '@mysten/sui/utils'
 import { getSetting, saveSettings } from '../core/utils/environment'
 import { TSuiNetwork } from '../types/TSuiNetwork'
 
@@ -24,6 +27,10 @@ export class SuiService {
     string,
     CoinMetadata
   >()
+
+  // @todo: Make the validator address configurable.
+  private readonly stakingValidatorAddress: string =
+    '0xcb7efe4253a0fe58df608d8a2d3c0eea94b4b40a8738c8daae4eb77830c16cd7' // Mysten-2
 
   private constructor() {
     this.readAndValidateConfig()
@@ -175,6 +182,74 @@ export class SuiService {
       privateKey,
       network,
     }
+  }
+
+  /**
+   * Stake SUI natively.
+   *
+   * @param amount - The amount to transfer in whole SUI units
+   * @returns The transaction digest.
+   */
+  public async stake(amount: string | number): Promise<`0x${string}`> {
+    // Convert whole SUI units to MIST (1 SUI = 1e9 MIST)
+    const amountInMist =
+      (typeof amount === 'string' ? parseFloat(amount) : amount) * 1e9
+
+    const tx = new Transaction()
+
+    // first, split the gas coin into multiple coins
+    const [coin] = tx.splitCoins(tx.gas, [amountInMist])
+
+    tx.moveCall({
+      target: '0x3::sui_system::request_add_stake',
+      arguments: [
+        tx.object(SUI_SYSTEM_STATE_OBJECT_ID),
+        coin,
+        tx.object(this.stakingValidatorAddress),
+      ],
+    })
+
+    const response = await this.executeTransaction(tx)
+
+    if (!response.digest) {
+      throw new Error('Transaction failed')
+    }
+
+    return response.digest as `0x${string}`
+  }
+
+  /**
+   * Unstake SUI natively.
+   *
+   * @param amount - The amount to transfer in whole SUI units
+   * @returns The transaction digest.
+   */
+  public async unstake(amount: string | number): Promise<`0x${string}`> {
+    // Convert whole SUI units to MIST (1 SUI = 1e9 MIST)
+    const amountInMist =
+      (typeof amount === 'string' ? parseFloat(amount) : amount) * 1e9
+
+    const tx = new Transaction()
+
+    // first, split the gas coin into multiple coins
+    const [coin] = tx.splitCoins(tx.gas, [amountInMist])
+
+    tx.moveCall({
+      target: '0x3::sui_system::request_withdraw_stake',
+      arguments: [
+        tx.object(SUI_SYSTEM_STATE_OBJECT_ID),
+        coin,
+        tx.object(this.stakingValidatorAddress),
+      ],
+    })
+
+    const response = await this.executeTransaction(tx)
+
+    if (!response.digest) {
+      throw new Error('Transaction failed')
+    }
+
+    return response.digest as `0x${string}`
   }
 
   public static isValidPrivateKey(privateKey: string | undefined) {
