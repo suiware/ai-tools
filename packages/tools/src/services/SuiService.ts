@@ -9,11 +9,9 @@ import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519'
 import { Secp256k1Keypair } from '@mysten/sui/keypairs/secp256k1'
 import { Secp256r1Keypair } from '@mysten/sui/keypairs/secp256r1'
 import { Transaction } from '@mysten/sui/transactions'
-import {
-  isValidSuiAddress,
-  SUI_SYSTEM_STATE_OBJECT_ID,
-} from '@mysten/sui/utils'
+import { isValidSuiAddress } from '@mysten/sui/utils'
 import { getSetting, saveSettings } from '../core/utils/environment'
+import { suiToMist } from '../core/utils/utils'
 import { TSuiNetwork } from '../types/TSuiNetwork'
 
 export class SuiService {
@@ -28,17 +26,13 @@ export class SuiService {
     CoinMetadata
   >()
 
-  // @todo: Make the validator address configurable.
-  private readonly stakingValidatorAddress: string =
-    '0xcb7efe4253a0fe58df608d8a2d3c0eea94b4b40a8738c8daae4eb77830c16cd7' // Mysten-2
-
   private constructor() {
     this.readAndValidateConfig()
 
     const network = this.getNetwork()
     const privateKey = this.getPrivateKey()
 
-    this.signer = this.getSignerFromPrivateKey(privateKey!)
+    this.signer = this.extractSignerFromPrivateKey(privateKey!)
 
     this.client = new SuiClient({
       url: getFullnodeUrl(network!),
@@ -141,9 +135,7 @@ export class SuiService {
     to: `0x${string}`,
     value: string | number
   ): Promise<`0x${string}`> {
-    // Convert whole SUI units to MIST (1 SUI = 1e9 MIST)
-    const amountInMist =
-      (typeof value === 'string' ? parseFloat(value) : value) * 1e9
+    const amountInMist = suiToMist(value)
 
     const tx = new Transaction()
 
@@ -174,7 +166,7 @@ export class SuiService {
     // Save network and private key.
     this.network = network
     this.privateKey = privateKey
-    this.signer = this.getSignerFromPrivateKey(privateKey)
+    this.signer = this.extractSignerFromPrivateKey(privateKey)
     this.saveConfig()
 
     return {
@@ -182,74 +174,6 @@ export class SuiService {
       privateKey,
       network,
     }
-  }
-
-  /**
-   * Stake SUI natively.
-   *
-   * @param amount - The amount to transfer in whole SUI units
-   * @returns The transaction digest.
-   */
-  public async stake(amount: string | number): Promise<`0x${string}`> {
-    // Convert whole SUI units to MIST (1 SUI = 1e9 MIST)
-    const amountInMist =
-      (typeof amount === 'string' ? parseFloat(amount) : amount) * 1e9
-
-    const tx = new Transaction()
-
-    // first, split the gas coin into multiple coins
-    const [coin] = tx.splitCoins(tx.gas, [amountInMist])
-
-    tx.moveCall({
-      target: '0x3::sui_system::request_add_stake',
-      arguments: [
-        tx.object(SUI_SYSTEM_STATE_OBJECT_ID),
-        coin,
-        tx.object(this.stakingValidatorAddress),
-      ],
-    })
-
-    const response = await this.executeTransaction(tx)
-
-    if (!response.digest) {
-      throw new Error('Transaction failed')
-    }
-
-    return response.digest as `0x${string}`
-  }
-
-  /**
-   * Unstake SUI natively.
-   *
-   * @param amount - The amount to transfer in whole SUI units
-   * @returns The transaction digest.
-   */
-  public async unstake(amount: string | number): Promise<`0x${string}`> {
-    // Convert whole SUI units to MIST (1 SUI = 1e9 MIST)
-    const amountInMist =
-      (typeof amount === 'string' ? parseFloat(amount) : amount) * 1e9
-
-    const tx = new Transaction()
-
-    // first, split the gas coin into multiple coins
-    const [coin] = tx.splitCoins(tx.gas, [amountInMist])
-
-    tx.moveCall({
-      target: '0x3::sui_system::request_withdraw_stake',
-      arguments: [
-        tx.object(SUI_SYSTEM_STATE_OBJECT_ID),
-        coin,
-        tx.object(this.stakingValidatorAddress),
-      ],
-    })
-
-    const response = await this.executeTransaction(tx)
-
-    if (!response.digest) {
-      throw new Error('Transaction failed')
-    }
-
-    return response.digest as `0x${string}`
   }
 
   public static isValidPrivateKey(privateKey: string | undefined) {
@@ -279,7 +203,7 @@ export class SuiService {
     return metadata
   }
 
-  private getSignerFromPrivateKey(privateKey: string): Signer {
+  private extractSignerFromPrivateKey(privateKey: string): Signer {
     const keypairClasses = [Ed25519Keypair, Secp256k1Keypair, Secp256r1Keypair]
     for (const KeypairClass of keypairClasses) {
       try {

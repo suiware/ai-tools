@@ -7,6 +7,8 @@ export default defineConfig((options) => ({
     'src/ai/tools/suiSwapTool.ts',
     'src/ai/tools/suiTransferTool.ts',
     'src/ai/tools/suiWalletBalanceTool.ts',
+    'src/ai/tools/suiStakeTool.ts',
+    'src/ai/tools/suiUnstakeTool.ts',
   ],
   format: ['cjs', 'esm'],
   dts: true,
