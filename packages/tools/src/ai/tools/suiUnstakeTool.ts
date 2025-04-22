@@ -8,7 +8,7 @@ export const suiUnstakeTool = tool({
   execute: async () => {
     const suiStakingService = new SuiStakingService()
 
-    const digests = await suiStakingService.unstakeAll()
+    const digests = await suiStakingService.unstake()
 
     return { digests }
   },

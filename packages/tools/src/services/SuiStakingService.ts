@@ -1,7 +1,7 @@
 import { DelegatedStake } from '@mysten/sui/client'
 import { Transaction } from '@mysten/sui/transactions'
 import { SUI_SYSTEM_STATE_OBJECT_ID } from '@mysten/sui/utils'
-import { formatBalance, suiToMist, timer } from '../core/utils/utils'
+import { formatBalance, suiToMist } from '../core/utils/utils'
 import { SuiService } from './SuiService'
 
 export class SuiStakingService {
@@ -21,7 +21,7 @@ export class SuiStakingService {
    * @param amount - The amount to stake in whole SUI units
    * @returns The transaction digest
    */
-  public async stake(amount: string | number): Promise<`0x${string}`> {
+  public async stake(amount: string | number): Promise<string> {
     const amountInMist = suiToMist(amount)
 
     const tx = new Transaction()
@@ -44,39 +44,15 @@ export class SuiStakingService {
 
     await this.suiService.waitForTransactionReceipt(response.digest)
 
-    return response.digest as `0x${string}`
+    return response.digest
   }
 
   /**
-   * Unstake SUI tokens from a validator.
-   *
-   * @param stakeId - The ID of the stake object to unstake
-   * @returns The transaction digest
-   */
-  public async unstake(stakeId: string): Promise<`0x${string}`> {
-    const tx = new Transaction()
-
-    tx.moveCall({
-      target: '0x3::sui_system::request_withdraw_stake',
-      arguments: [tx.object(SUI_SYSTEM_STATE_OBJECT_ID), tx.object(stakeId)],
-    })
-
-    const response = await this.suiService.executeTransaction(tx)
-    if (!response.digest) {
-      throw new Error('Unstaking transaction failed')
-    }
-
-    await this.suiService.waitForTransactionReceipt(response.digest)
-
-    return response.digest as `0x${string}`
-  }
-
-  /**
-   * Unstake all SUI tokens from all validator.
+   * Unstake all stakes.
    *
    * @returns The transaction digests
    */
-  public async unstakeAll(): Promise<`0x${string}`[]> {
+  public async unstake(): Promise<string> {
     const stakedObjects = await this.getStakedObjects()
 
     if (stakedObjects.length === 0) {
@@ -89,17 +65,21 @@ export class SuiStakingService {
         (stakeIds = stakeIds.concat(x.stakes.map((stake) => stake.stakedSuiId)))
     )
 
-    const digests: `0x${string}`[] = []
-    stakeIds.forEach(async (stakeId) => {
-      const digest = await this.unstake(stakeId)
-      digests.push(digest)
+    const tx = new Transaction()
 
-      // @todo: Remove delay after fixing the issue with unstaking of the second stake.
-      // JsonRpcError: Failed to sign transaction by a quorum of validators because one or more of its objects is reserved for another transaction. 
-      await timer(500)
+    stakeIds.forEach((stakeId) => {
+      tx.moveCall({
+        target: '0x3::sui_system::request_withdraw_stake',
+        arguments: [tx.object(SUI_SYSTEM_STATE_OBJECT_ID), tx.object(stakeId)],
+      })
     })
 
-    return digests
+    const response = await this.suiService.executeTransaction(tx)
+    if (!response.digest) {
+      throw new Error('Unstaking transaction failed')
+    }
+
+    return response.digest
   }
 
   /**
