@@ -1,7 +1,7 @@
 import { DelegatedStake } from '@mysten/sui/client'
 import { Transaction } from '@mysten/sui/transactions'
 import { SUI_SYSTEM_STATE_OBJECT_ID } from '@mysten/sui/utils'
-import { formatBalance, suiToMist } from '../core/utils/utils'
+import { formatBalance, suiToMist, timer } from '../core/utils/utils'
 import { SuiService } from './SuiService'
 
 export class SuiStakingService {
@@ -90,9 +90,14 @@ export class SuiStakingService {
     )
 
     const digests: `0x${string}`[] = []
-    stakeIds.forEach(async (stakeId) =>
-      digests.push(await this.unstake(stakeId))
-    )
+    stakeIds.forEach(async (stakeId) => {
+      const digest = await this.unstake(stakeId)
+      digests.push(digest)
+
+      // @todo: Remove delay after fixing the issue with unstaking of the second stake.
+      // JsonRpcError: Failed to sign transaction by a quorum of validators because one or more of its objects is reserved for another transaction. 
+      await timer(500)
+    })
 
     return digests
   }
