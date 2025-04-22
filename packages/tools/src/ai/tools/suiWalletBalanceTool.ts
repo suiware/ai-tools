@@ -1,7 +1,8 @@
 import { tool } from 'ai'
 import z from 'zod'
-import { NaviService } from '../../services/NaviService'
 import { disableConsoleLog, enableConsoleLog } from '../../core/utils/utils'
+import { NaviService } from '../../services/NaviService'
+import { SuiStakingService } from '../../services/SuiStakingService'
 
 export const suiWalletBalanceTool = tool({
   description:
@@ -17,6 +18,12 @@ export const suiWalletBalanceTool = tool({
 
     // Get the logs back.
     enableConsoleLog(originalConsoleLog)
+
+    const suiStakingService = new SuiStakingService()
+    const stakedSuiBalance = await suiStakingService.getTotalStakedBalance()
+    if (Number(stakedSuiBalance) > 0) {
+      balances['Natively Staked SUI'] = stakedSuiBalance
+    }
 
     return {
       balances: balances,

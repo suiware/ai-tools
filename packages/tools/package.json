@@ -1,7 +1,7 @@
 {
   "name": "@suiware/ai-tools",
   "description": "Pluggable tools for Vercel AI SDK which allow AI assistants to interact with Sui Network and perform various actions.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "sideEffects": false,
   "type": "commonjs",
   "main": "./dist/index.js",
@@ -55,6 +55,26 @@
       "require": {
         "types": "./dist/ai/tools/suiWalletBalanceTool.d.ts",
         "default": "./dist/ai/tools/suiWalletBalanceTool.js"
+      }
+    },
+    "./suiStakeTool": {
+      "import": {
+        "types": "./dist/ai/tools/suiStakeTool.d.mts",
+        "default": "./dist/ai/tools/suiStakeTool.mjs"
+      },
+      "require": {
+        "types": "./dist/ai/tools/suiStakeTool.d.ts",
+        "default": "./dist/ai/tools/suiStakeTool.js"
+      }
+    },
+    "./suiUnstakeTool": {
+      "import": {
+        "types": "./dist/ai/tools/suiUnstakeTool.d.mts",
+        "default": "./dist/ai/tools/suiUnstakeTool.mjs"
+      },
+      "require": {
+        "types": "./dist/ai/tools/suiUnstakeTool.d.ts",
+        "default": "./dist/ai/tools/suiUnstakeTool.js"
       }
     }
   },
