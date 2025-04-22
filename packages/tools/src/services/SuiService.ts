@@ -17,8 +17,8 @@ import { TSuiNetwork } from '../types/TSuiNetwork'
 export class SuiService {
   private static instance: SuiService
 
-  private network: TSuiNetwork | undefined
-  private privateKey: string | undefined
+  private network!: TSuiNetwork
+  private privateKey!: string
   private signer: Signer
   private client: SuiClient
   private coinInfoMap: Map<string, CoinMetadata> = new Map<
@@ -27,7 +27,7 @@ export class SuiService {
   >()
 
   private constructor() {
-    this.readAndValidateConfig()
+    this.init()
 
     const network = this.getNetwork()
     const privateKey = this.getPrivateKey()
@@ -47,11 +47,11 @@ export class SuiService {
     return SuiService.instance
   }
 
-  public getNetwork(): TSuiNetwork | undefined {
+  public getNetwork(): TSuiNetwork {
     return this.network
   }
 
-  public getPrivateKey(): string | undefined {
+  public getPrivateKey(): string {
     return this.privateKey
   }
 
@@ -213,7 +213,7 @@ export class SuiService {
     throw new Error('Failed to initialize keypair from secret key')
   }
 
-  private readAndValidateConfig(): void {
+  private init(): void {
     const network = getSetting('SUI_NETWORK') as TSuiNetwork
     const privateKey = getSetting('SUI_PRIVATE_KEY')
 
@@ -223,7 +223,7 @@ export class SuiService {
       throw new Error('Network is not set')
     }
 
-    if (!SuiService.isValidPrivateKey(privateKey)) {
+    if (privateKey == null || !SuiService.isValidPrivateKey(privateKey)) {
       throw new Error('Private key is not valid')
     }
 

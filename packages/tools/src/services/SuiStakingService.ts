@@ -8,8 +8,12 @@ export class SuiStakingService {
   private suiService: SuiService
 
   // @todo: Make the validator address configurable.
-  private readonly VALIDATOR_ADDRESS =
-    '0x4fffd0005522be4bc029724c7f0f6ed7093a6bf3a09b90e62f61dc15181e1a3e' // Mysten-1
+  private readonly VALIDATOR_ADDRESSES: Record<string, string> = {
+    mainnet:
+      '0x4fffd0005522be4bc029724c7f0f6ed7093a6bf3a09b90e62f61dc15181e1a3e', // Mysten-1
+    testnet:
+      '0x6d6e9f9d3d81562a0f9b767594286c69c21fea741b1c2303c5b7696d6c63618a', // Mysten-1
+  }
 
   constructor() {
     this.suiService = SuiService.getInstance()
@@ -28,12 +32,15 @@ export class SuiStakingService {
 
     const [coin] = tx.splitCoins(tx.gas, [tx.pure.u64(amountInMist)])
 
+    const validatorAddress =
+      this.VALIDATOR_ADDRESSES[this.suiService.getNetwork()]
+
     tx.moveCall({
       target: '0x3::sui_system::request_add_stake',
       arguments: [
         tx.object(SUI_SYSTEM_STATE_OBJECT_ID),
         coin,
-        tx.pure.address(this.VALIDATOR_ADDRESS),
+        tx.pure.address(validatorAddress),
       ],
     })
 
@@ -41,8 +48,6 @@ export class SuiStakingService {
     if (!response.digest) {
       throw new Error('Staking transaction failed')
     }
-
-    await this.suiService.waitForTransactionReceipt(response.digest)
 
     return response.digest
   }

@@ -48,7 +48,7 @@ Examples:
 - `convert 10 usdc to sui`
 - `swap 1 sui for weth`
 
-### suiStakeTool (mainnet only)
+### suiStakeTool
 
 Stakes SUI natively on the Mysten-1 validator.
 
@@ -57,7 +57,7 @@ _Please note if the staked amount less than 1 SUI, it might not work._
 Examples:
 - `stake 1 sui`
 
-### suiUnstakeTool (mainnet only)
+### suiUnstakeTool
 
 Unstake all SUI.
 
