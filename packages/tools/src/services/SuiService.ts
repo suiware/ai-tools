@@ -11,13 +11,14 @@ import { Secp256r1Keypair } from '@mysten/sui/keypairs/secp256r1'
 import { Transaction } from '@mysten/sui/transactions'
 import { isValidSuiAddress } from '@mysten/sui/utils'
 import { getSetting, saveSettings } from '../core/utils/environment'
+import { suiToMist } from '../core/utils/utils'
 import { TSuiNetwork } from '../types/TSuiNetwork'
 
 export class SuiService {
   private static instance: SuiService
 
-  private network: TSuiNetwork | undefined
-  private privateKey: string | undefined
+  private network!: TSuiNetwork
+  private privateKey!: string
   private signer: Signer
   private client: SuiClient
   private coinInfoMap: Map<string, CoinMetadata> = new Map<
@@ -26,12 +27,12 @@ export class SuiService {
   >()
 
   private constructor() {
-    this.readAndValidateConfig()
+    this.init()
 
     const network = this.getNetwork()
     const privateKey = this.getPrivateKey()
 
-    this.signer = this.getSignerFromPrivateKey(privateKey!)
+    this.signer = this.extractSignerFromPrivateKey(privateKey!)
 
     this.client = new SuiClient({
       url: getFullnodeUrl(network!),
@@ -46,11 +47,11 @@ export class SuiService {
     return SuiService.instance
   }
 
-  public getNetwork(): TSuiNetwork | undefined {
+  public getNetwork(): TSuiNetwork {
     return this.network
   }
 
-  public getPrivateKey(): string | undefined {
+  public getPrivateKey(): string {
     return this.privateKey
   }
 
@@ -134,9 +135,7 @@ export class SuiService {
     to: `0x${string}`,
     value: string | number
   ): Promise<`0x${string}`> {
-    // Convert whole SUI units to MIST (1 SUI = 1e9 MIST)
-    const amountInMist =
-      (typeof value === 'string' ? parseFloat(value) : value) * 1e9
+    const amountInMist = suiToMist(value)
 
     const tx = new Transaction()
 
@@ -167,7 +166,7 @@ export class SuiService {
     // Save network and private key.
     this.network = network
     this.privateKey = privateKey
-    this.signer = this.getSignerFromPrivateKey(privateKey)
+    this.signer = this.extractSignerFromPrivateKey(privateKey)
     this.saveConfig()
 
     return {
@@ -204,7 +203,7 @@ export class SuiService {
     return metadata
   }
 
-  private getSignerFromPrivateKey(privateKey: string): Signer {
+  private extractSignerFromPrivateKey(privateKey: string): Signer {
     const keypairClasses = [Ed25519Keypair, Secp256k1Keypair, Secp256r1Keypair]
     for (const KeypairClass of keypairClasses) {
       try {
@@ -214,7 +213,7 @@ export class SuiService {
     throw new Error('Failed to initialize keypair from secret key')
   }
 
-  private readAndValidateConfig(): void {
+  private init(): void {
     const network = getSetting('SUI_NETWORK') as TSuiNetwork
     const privateKey = getSetting('SUI_PRIVATE_KEY')
 
@@ -224,7 +223,7 @@ export class SuiService {
       throw new Error('Network is not set')
     }
 
-    if (!SuiService.isValidPrivateKey(privateKey)) {
+    if (privateKey == null || !SuiService.isValidPrivateKey(privateKey)) {
       throw new Error('Private key is not valid')
     }
 

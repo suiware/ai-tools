@@ -1,3 +1,4 @@
+import { SUI_DECIMALS } from '@mysten/sui/utils'
 import BigNumber from 'bignumber.js'
 
 export function formatBalance(
@@ -6,6 +7,13 @@ export function formatBalance(
 ) {
   // Number(totalBalance) / Math.pow(10, decimal);
   return BigNumber(balance.toString()).shiftedBy(-decimals).toFixed(8)
+}
+
+export function suiToMist(amount: number | string): number {
+  return (
+    (typeof amount === 'string' ? parseFloat(amount) : amount) *
+    10 ** SUI_DECIMALS
+  )
 }
 
 export function disableConsoleLog() {

@@ -21,6 +21,8 @@ Examples:
 
 Gets non-zero wallet balances.
 
+_Please note if you have Staked SUI, it will be included in the results._
+
 Examples:
 - `get my wallet balances`
 - `my balances`
@@ -45,6 +47,23 @@ Examples:
 - `swap 1 sui for usdc`
 - `convert 10 usdc to sui`
 - `swap 1 sui for weth`
+
+### suiStakeTool
+
+Stakes SUI natively on the Mysten-1 validator.
+
+_Please note if the staked amount less than 1 SUI, it might not work._
+
+Examples:
+- `stake 1 sui`
+
+### suiUnstakeTool
+
+Unstake all SUI.
+
+Examples:
+- `unstake`
+- `unstake sui`
 
 Check the [source code](/packages/tools/src/ai/tools) of the tools.
 

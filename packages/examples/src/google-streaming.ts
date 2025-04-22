@@ -1,8 +1,10 @@
 import { google } from '@ai-sdk/google'
 import {
   suiAddressTool,
+  suiStakeTool,
   suiSwapTool,
   suiTransferTool,
+  suiUnstakeTool,
   suiWalletBalanceTool,
 } from '@suiware/ai-tools'
 import {
@@ -45,6 +47,8 @@ async function main() {
         balance: suiWalletBalanceTool,
         transfer: suiTransferTool,
         swap: suiSwapTool,
+        stake: suiStakeTool,
+        unstake: suiUnstakeTool,
       },
       maxSteps: 5,
       system: `You are ${AGENT_NAME}, a financial assistant who manages user's portfolio on Sui blockchain network. 
