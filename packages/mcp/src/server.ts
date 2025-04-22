@@ -2,8 +2,10 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   suiAddressTool,
+  suiStakeTool,
   suiSwapTool,
   suiTransferTool,
+  suiUnstakeTool,
   suiWalletBalanceTool,
 } from "@suiware/ai-tools";
 import type { Tool } from "ai";
@@ -19,6 +21,8 @@ const tools: Record<string, Tool> = {
   "get-wallet-balance": suiWalletBalanceTool,
   "swap-coin": suiSwapTool,
   "transfer-coin": suiTransferTool,
+  "stake-sui": suiStakeTool,
+  "unstake-sui": suiUnstakeTool,
 };
 
 for (const [name, tool] of Object.entries(tools)) {
