@@ -22,8 +22,8 @@ export class SuiStakingService {
   /**
    * Stake SUI tokens to a validator.
    *
-   * @param amount - The amount to stake in whole SUI units
-   * @returns The transaction digest
+   * @param amount - The amount to stake in whole SUI units.
+   * @returns The transaction digest.
    */
   public async stake(amount: string | number): Promise<string> {
     const amountInMist = suiToMist(amount)
@@ -55,7 +55,7 @@ export class SuiStakingService {
   /**
    * Unstake all stakes.
    *
-   * @returns The transaction digests
+   * @returns The transaction digests.
    */
   public async unstake(): Promise<string> {
     const stakedObjects = await this.getStakedObjects()
@@ -90,7 +90,7 @@ export class SuiStakingService {
   /**
    * Get all staked objects.
    *
-   * @returns Array of delegated stake objects
+   * @returns Array of delegated stake objects.
    */
   public async getStakedObjects(): Promise<DelegatedStake[]> {
     const stakedObjects = await this.suiService.getSuiClient().getStakes({
@@ -103,14 +103,14 @@ export class SuiStakingService {
   /**
    * Get the total staked Sui balance.
    *
-   * @returns The total staked balance
+   * @returns The total staked balance.
    */
   public async getTotalStakedBalance(): Promise<string> {
     const stakedObjects = await this.getStakedObjects()
 
-    // Sum up all stake principals from all stakes
+    // Sum up all stake principals from all stakes.
     const amountMist = stakedObjects.reduce((total, delegatedStake) => {
-      // Each delegated stake can have multiple stakes
+      // Each delegated stake can have multiple stakes.
       const stakesTotal = delegatedStake.stakes.reduce(
         (stakeTotal, stake) => stakeTotal + BigInt(stake.principal),
         BigInt(0)
