@@ -1,12 +1,5 @@
 import { openai } from '@ai-sdk/openai'
-import {
-  suiAddressTool,
-  suiStakeTool,
-  suiSwapTool,
-  suiTransferTool,
-  suiUnstakeTool,
-  suiWalletBalanceTool,
-} from '@suiware/ai-tools'
+import { getSuiwareAiTools } from '@suiware/ai-tools'
 import {
   CoreMessage,
   generateText,
@@ -43,14 +36,7 @@ async function main() {
       const { text } = await generateText({
         model: openai('gpt-3.5-turbo'),
         messages,
-        tools: {
-          address: suiAddressTool,
-          balance: suiWalletBalanceTool,
-          transfer: suiTransferTool,
-          swap: suiSwapTool,
-          stake: suiStakeTool,
-          unstake: suiUnstakeTool,
-        },
+        tools: getSuiwareAiTools(),
         maxSteps: 5,
         system: `You are ${AGENT_NAME}, a financial assistant who manages user's portfolio on Sui blockchain network. 
       Answer very briefly and concisely. Every sentence of the answer should be on a separate line. 

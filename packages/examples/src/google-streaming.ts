@@ -1,12 +1,5 @@
 import { google } from '@ai-sdk/google'
-import {
-  suiAddressTool,
-  suiStakeTool,
-  suiSwapTool,
-  suiTransferTool,
-  suiUnstakeTool,
-  suiWalletBalanceTool,
-} from '@suiware/ai-tools'
+import { getSuiwareAiTools } from '@suiware/ai-tools'
 import {
   CoreMessage,
   InvalidToolArgumentsError,
@@ -42,14 +35,7 @@ async function main() {
     const result = streamText({
       model: google('gemini-2.0-flash-001'),
       messages,
-      tools: {
-        address: suiAddressTool,
-        balance: suiWalletBalanceTool,
-        transfer: suiTransferTool,
-        swap: suiSwapTool,
-        stake: suiStakeTool,
-        unstake: suiUnstakeTool,
-      },
+      tools: getSuiwareAiTools(),
       maxSteps: 5,
       system: `You are ${AGENT_NAME}, a financial assistant who manages user's portfolio on Sui blockchain network. 
       Answer very briefly and concisely. Every sentence of the answer should be on a separate line. 

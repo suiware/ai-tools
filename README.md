@@ -65,6 +65,8 @@ Examples:
 - `unstake`
 - `unstake sui`
 
+To get all available tools, use `getSuiwareAiTools()`.
+
 Check the [source code](/packages/tools/src/ai/tools) of the tools.
 
 ## Available examples
