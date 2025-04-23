@@ -95,9 +95,9 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@mysten/sui": "^1.28.0",
-    "@mysten/suins": "^0.7.11",
-    "@mysten/wallet-standard": "^0.14.5",
+    "@mysten/sui": "^1.28.1",
+    "@mysten/suins": "^0.7.12",
+    "@mysten/wallet-standard": "^0.14.6",
     "ai": "^4.3.9",
     "bignumber.js": "^9.3.0",
     "env-file-rw": "^1.0.0",
