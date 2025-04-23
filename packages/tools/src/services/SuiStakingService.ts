@@ -64,18 +64,17 @@ export class SuiStakingService {
       throw new Error('No staked objects found')
     }
 
-    let stakeIds: string[] = []
-    stakedObjects.forEach(
-      (x) =>
-        (stakeIds = stakeIds.concat(x.stakes.map((stake) => stake.stakedSuiId)))
-    )
-
     const tx = new Transaction()
 
-    stakeIds.forEach((stakeId) => {
-      tx.moveCall({
-        target: '0x3::sui_system::request_withdraw_stake',
-        arguments: [tx.object(SUI_SYSTEM_STATE_OBJECT_ID), tx.object(stakeId)],
+    stakedObjects.forEach((x) => {
+      x.stakes.forEach(({ stakedSuiId }) => {
+        tx.moveCall({
+          target: '0x3::sui_system::request_withdraw_stake',
+          arguments: [
+            tx.object(SUI_SYSTEM_STATE_OBJECT_ID),
+            tx.object(stakedSuiId),
+          ],
+        })
       })
     })
 
