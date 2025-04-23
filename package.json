@@ -8,7 +8,8 @@
     "start:openai:streaming": "pnpm build && pnpm --filter examples start:openai:streaming",
     "start:openai:generating": "pnpm build && pnpm --filter examples start:openai:generating",
     "start:google:streaming": "pnpm build && pnpm --filter examples start:google:streaming",
-    "start:mcp": "pnpm --filter @suiware/mcp dev",
+    "mcp:dev": "pnpm --filter @suiware/mcp dev",
+    "mcp:start": "pnpm --filter @suiware/mcp start",
     "tools:publish": "pnpm --filter @suiware/ai-tools publish",
     "format": "pnpm -r format"
   },

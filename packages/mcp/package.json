@@ -1,11 +1,12 @@
 {
   "name": "@suiware/mcp",
   "version": "0.1.0",
-  "description": "Sui AI Tools by Suiware, which allow AI assistants to interact with Sui Network and perform various actions.",
+  "description": "Sui AI Tools by Suiware, which allow AI assistants to interact with Sui Network and perform various actions on chain.",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpx @modelcontextprotocol/inspector pnpm server:start",
-    "server:start": "tsx src/server.ts"
+    "dev": "pnpx @modelcontextprotocol/inspector pnpm start",
+    "start": "tsx src/server.ts",
+    "format": "prettier --write './src/**/*.{js,ts}'"
   },
   "keywords": [
     "sui",
@@ -22,6 +23,9 @@
     "zod": "^3.24.3"
   },
   "devDependencies": {
-    "tsx": "^4.19.3"
+    "@types/node": "^22.14.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "prettier": "^3.5.3"
   }
 }

@@ -1,5 +1,6 @@
 {
   "name": "examples",
+  "private": true,
   "version": "0.0.0",
   "scripts": {
     "start:anthropic:simple:balance": "tsx src/anthropic-simple-balance.ts",
@@ -12,7 +13,8 @@
   "devDependencies": {
     "@types/node": "^22.14.1",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "prettier": "^3.5.3"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^1.2.10",
@@ -26,7 +28,6 @@
     "chalk": "^5.4.1",
     "dotenv": "^16.5.0",
     "navi-sdk": "^1.6.4",
-    "prettier": "^3.5.3",
     "zod": "^3.24.3"
   }
 }

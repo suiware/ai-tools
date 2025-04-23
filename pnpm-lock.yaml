@@ -43,9 +43,6 @@ importers:
       navi-sdk:
         specifier: ^1.6.4
         version: 1.6.4(@types/node@22.14.1)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
-      prettier:
-        specifier: ^3.5.3
-        version: 3.5.3
       zod:
         specifier: ^3.24.3
         version: 3.24.3
@@ -53,6 +50,9 @@ importers:
       '@types/node':
         specifier: ^22.14.1
         version: 22.14.1
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       tsx:
         specifier: ^4.19.3
         version: 4.19.3
@@ -75,9 +75,18 @@ importers:
         specifier: ^3.24.3
         version: 3.24.3
     devDependencies:
+      '@types/node':
+        specifier: ^22.14.1
+        version: 22.14.1
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       tsx:
         specifier: ^4.19.3
         version: 4.19.3
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
 
   packages/tools:
     dependencies:
