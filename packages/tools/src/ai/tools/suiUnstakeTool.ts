@@ -3,7 +3,7 @@ import z from 'zod'
 import { SuiStakingService } from '../../services/SuiStakingService'
 
 export const suiUnstakeTool = tool({
-  description: 'Unstake all Sui',
+  description: 'Unstake Sui',
   parameters: z.object({}),
   execute: async () => {
     const suiStakingService = new SuiStakingService()
