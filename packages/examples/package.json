@@ -17,9 +17,9 @@
   "dependencies": {
     "@ai-sdk/anthropic": "^1.2.10",
     "@ai-sdk/google": "^1.2.12",
-    "@ai-sdk/openai": "^1.3.16",
-    "@mysten/sui": "^1.28.0",
-    "@mysten/wallet-standard": "^0.14.5",
+    "@ai-sdk/openai": "^1.3.17",
+    "@mysten/sui": "^1.28.1",
+    "@mysten/wallet-standard": "^0.14.6",
     "@suiware/ai-tools": "workspace:*",
     "ai": "^4.3.9",
     "bignumber.js": "^9.3.0",
