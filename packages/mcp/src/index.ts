@@ -4,7 +4,7 @@ import { getSuiwareAiTools } from '@suiware/ai-tools'
 import { mapVercelToolToMcpTool } from './utils/mappers'
 import { getPackageMeta } from './utils/misc'
 
-export const createMcpServer = (): McpServer => {
+export const createSuiwareMcpServer = (): McpServer => {
   const packageMeta = getPackageMeta()
 
   const server = new McpServer({
@@ -21,7 +21,7 @@ export const createMcpServer = (): McpServer => {
   return server
 }
 
-export const startMcpServer = async (server: McpServer) => {
+export const startSuiwareMcpServer = async (server: McpServer) => {
   const transport = new StdioServerTransport()
   await server.connect(transport)
 }

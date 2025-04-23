@@ -1,9 +1,9 @@
-import { createMcpServer, startMcpServer } from './'
+import { createSuiwareMcpServer, startSuiwareMcpServer } from './'
 
-const server = createMcpServer()
+const server = createSuiwareMcpServer()
 
 async function main() {
-  await startMcpServer(server)
+  await startSuiwareMcpServer(server)
 }
 
 main()
