@@ -1,9 +1,13 @@
-import { createSuiwareMcpServer, startSuiwareMcpServer } from './'
+import { startSuiwareStdioMcpServer } from './'
+import { getPackageMeta } from './utils/misc'
 
-const server = createSuiwareMcpServer()
+const packageMeta = getPackageMeta()
 
 async function main() {
-  await startSuiwareMcpServer(server)
+  await startSuiwareStdioMcpServer({
+    name: packageMeta.description,
+    version: packageMeta.version,
+  })
 }
 
 main()
