@@ -8,8 +8,6 @@ async function main() {
     name: packageMeta?.description || 'Suiware MCP Server',
     version: packageMeta?.version || '0.0.0',
   })
-
-  await startSuiwareMcpServer({ name: 'Suiware MCP Server', version: '0.1.0' })
 }
 
 main()
