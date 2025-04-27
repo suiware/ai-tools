@@ -6,6 +6,8 @@ An stdio MCP server with built-in [@suiware/ai-tools](https://www.npmjs.com/pack
 
 ### Configuration
 
+!!! TBU
+
 ```bash
 cp .env.example .env
 ```
@@ -39,10 +41,10 @@ pnpm add @suiware/mcp
 ### Usage
 
 ```ts
-import { startSuiwareStdioMcpServer } from '@suiware/mcp'
+import { startSuiwareMcpServer } from '@suiware/mcp'
 
 async function main() {
-  await startSuiwareStdioMcpServer({name: "Suiware MCP Server", version: "0.1.0"})
+  await startSuiwareMcpServer({ name: 'Suiware MCP Server', version: '0.1.0' })
 }
 
 main().catch(console.error)
