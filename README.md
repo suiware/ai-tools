@@ -1,4 +1,4 @@
-# Sui tools for Vercel AI SDK (monorepo)
+# Suiware AI Tools and MCP Server (monorepo)
 
 Pluggable tools for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assistants to interact with Sui Network and perform various actions.
 
@@ -110,6 +110,10 @@ pnpm start:openai:generating
 # or
 pnpm start:google:streaming
 ```
+
+## How to use the MCP server
+
+Please refer to the MCP package docs [@suiware/mcp](packages/mcp/README.md)
 
 ## How to contribute
 
