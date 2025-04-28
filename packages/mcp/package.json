@@ -54,5 +54,12 @@
   },
    "publishConfig": {
     "access": "public"
+  },
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suiware/ai-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/suiware/ai-tools/issues"
   }
 }
