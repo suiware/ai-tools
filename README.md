@@ -37,7 +37,7 @@ Check out the [examples](packages/examples/README.md) package docs for more deta
 
 ## MCP server
 
-Please refer to the MCP package docs [@suiware/mcp](packages/mcp/README.md)
+Please refer to the MCP package docs [@suiware/mcp](packages/mcp/README.md) to see how to use the server.
 
 ## How to contribute
 
