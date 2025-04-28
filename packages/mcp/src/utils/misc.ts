@@ -8,13 +8,10 @@ export const getCliDirectory = () => {
 }
 
 export const getPackageMeta = () => {
-  try {
-    const packageFile = readFileSync(
-      path.join(getCliDirectory(), '../package.json'),
-      'utf8'
-    )
-    return JSON.parse(packageFile)
-  } catch (e) {
-    return null
-  }
+  const packageFile = readFileSync(
+    path.join(getCliDirectory(), '../package.json'),
+    'utf8'
+  )
+
+  return JSON.parse(packageFile)
 }
