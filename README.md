@@ -41,5 +41,5 @@ Please refer to the MCP package docs [@suiware/mcp](packages/mcp/README.md) to s
 
 ## How to contribute
 
-Learn the simple [packages/tools](/packages/tools/) package and contribute your own tool by sending a PR to this repository. 
+Learn the simple [@suiware/ai-tools](/packages/tools/) package and contribute your own tool by sending a PR to this repository. 
 It can be an integration with pools, lending protocols, or any other services that can be beneficial for building AI assistants for Sui.
