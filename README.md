@@ -6,7 +6,7 @@ Pluggable tools for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assis
 
 - [@suiware/ai-tools](packages/tools/README.md) - a collection of pluggable [tools](https://sdk.vercel.ai/docs/foundations/tools) for [Vercel AI SDK](https://sdk.vercel.ai/), which allow AI assistants to interact with Sui Network and perform various actions.
 
-- [@suiware/ai-tools examples](packages/examples/README.md) - examples of AI assistants, demonstrating `@suiware/ai-tools` in action.
+- [Examples](packages/examples/README.md) - examples of AI assistants, demonstrating `@suiware/ai-tools` in action.
 
 - [@suiware/mcp](packages/mcp/README.md) - An stdio MCP server with built-in [@suiware/ai-tools](packages/tools/README.md) and API to use in your apps.
 
