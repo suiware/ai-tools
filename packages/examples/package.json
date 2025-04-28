@@ -1,5 +1,6 @@
 {
   "name": "examples",
+  "private": true,
   "version": "0.0.0",
   "scripts": {
     "start:anthropic:simple:balance": "tsx src/anthropic-simple-balance.ts",
@@ -10,23 +11,23 @@
     "format": "prettier --write './src/**/*.{js,ts}'"
   },
   "devDependencies": {
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.3",
+    "prettier": "^3.5.3",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^1.2.10",
     "@ai-sdk/google": "^1.2.13",
-    "@ai-sdk/openai": "^1.3.17",
-    "@mysten/sui": "^1.28.1",
-    "@mysten/wallet-standard": "^0.14.6",
+    "@ai-sdk/openai": "^1.3.20",
+    "@mysten/sui": "^1.28.2",
+    "@mysten/wallet-standard": "^0.14.7",
     "@suiware/ai-tools": "workspace:*",
-    "ai": "^4.3.9",
+    "ai": "^4.3.10",
     "bignumber.js": "^9.3.0",
     "chalk": "^5.4.1",
     "dotenv": "^16.5.0",
     "navi-sdk": "^1.6.4",
-    "prettier": "^3.5.3",
     "zod": "^3.24.3"
   }
 }

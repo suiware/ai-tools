@@ -36,6 +36,6 @@ pnpm start || pnpm start:anthropic:streaming
 pnpm start:openai:streaming
 # or
 pnpm start:openai:generating
-# or 
+# or
 pnpm start:google:streaming
 ```

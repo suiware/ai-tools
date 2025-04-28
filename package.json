@@ -8,7 +8,10 @@
     "start:openai:streaming": "pnpm build && pnpm --filter examples start:openai:streaming",
     "start:openai:generating": "pnpm build && pnpm --filter examples start:openai:generating",
     "start:google:streaming": "pnpm build && pnpm --filter examples start:google:streaming",
+    "mcp:dev": "pnpm --filter @suiware/mcp dev",
+    "mcp:start": "pnpm --filter @suiware/mcp start",
     "tools:publish": "pnpm --filter @suiware/ai-tools publish",
+    "mcp:publish": "pnpm --filter @suiware/mcp publish",
     "format": "pnpm -r format"
   },
   "license": "Apache-2.0",
