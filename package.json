@@ -11,6 +11,7 @@
     "mcp:dev": "pnpm --filter @suiware/mcp dev",
     "mcp:start": "pnpm --filter @suiware/mcp start",
     "tools:publish": "pnpm --filter @suiware/ai-tools publish",
+    "mcp:publish": "pnpm --filter @suiware/mcp publish",
     "format": "pnpm -r format"
   },
   "license": "Apache-2.0",
