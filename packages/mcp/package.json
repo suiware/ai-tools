@@ -8,7 +8,8 @@
     "build": "tsup",
     "dev": "pnpx @modelcontextprotocol/inspector pnpm start",
     "start": "pnpm build && node dist/server.js --env-file=.env",
-    "format": "prettier --write './src/**/*.{js,ts}'"
+    "format": "prettier --write './src/**/*.{js,ts}'",
+    "prepublishOnly": "pnpm build"
   },
   "bin": {
     "suiware-mcp-server": "dist/server.js"
