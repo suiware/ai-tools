@@ -12,7 +12,7 @@
     "prepublishOnly": "pnpm build"
   },
   "bin": {
-    "suiware-mcp-server": "dist/server.js"
+    "suiware-mcp-server": "./dist/server.js"
   },
   "exports": {
     ".": {
