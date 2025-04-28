@@ -6,34 +6,36 @@ An stdio MCP server with built-in [@suiware/ai-tools](https://www.npmjs.com/pack
 
 ### Configuration
 
-Create an .env file in your project root with the following variables in it:
+Create an `.env` file in your project folder with the following variables in it:
 
-```env
+```environment
 SUI_PRIVATE_KEY= # "suiprivkey...."
 SUI_NETWORK= # "testnet" or "mainnet"
 ```
-
-When you run the server, supply the `--config="file/path/.env"` param with the `.env` file path.
 
 ### Usage
 
 1. Run the server:
 
+When you run the server, supply the `--env-file="file/path/.env"` param with the `.env` file path.
+
 ```bash
-pnpx @suiware/mcp --config="file/path/.env"
+pnpx @suiware/mcp --env-file="file/path/.env"
 ```
 
-_You may omit the `--config` param if you're supplying the config variables in any other way available to you._
+_You may omit the optional `--env-file` param if you're providing the config variables in any other way available to you._
 
 2. Connect the MCP server to your Claude Desktop or any other program which supports plugging third-party MCP servers. 
 
 ### Test
 
-```
-pnpx @modelcontextprotocol/inspector pnpx @suiware/mcp --config="file/path/.env"
+```bash
+pnpx @modelcontextprotocol/inspector pnpx @suiware/mcp --env-file="file/path/.env"
 ```
 
 ## API
+
+Currently the API is super-simple - it's just one function `startSuiwareMcpServer()` which lets you start the MCP server from your code. 
 
 ### Installation
 
