@@ -1,6 +1,6 @@
 # Suiware AI Tools and MCP Server (monorepo)
 
-Pluggable tools for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assistants to interact with Sui Network and perform various actions.
+Pluggable tools for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assistants to interact with Sui Network and perform various actions, and an MCP server to use within your AI app, like Claude Desktop.
 
 ## Packages
 
