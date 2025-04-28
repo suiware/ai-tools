@@ -12,64 +12,16 @@ Pluggable tools for [Vercel AI SDK](https://sdk.vercel.ai/) which allow AI assis
 
 ## Available tools
 
-### suiAddressTool
-
-Gets user address.
-
-Examples:
-- `get my address`
-
-### suiWalletBalanceTool
-
-Gets non-zero wallet balances.
-
-_Please note if you have Staked SUI, it will be included in the results._
-
-Examples:
-- `get my wallet balances`
-- `my balances`
-
-### suiTransferTool
-
-Transfer the amount of the specified coin to the specified address.
-
-Examples:
-- `transfer 1 sui to 0x1234567890abcdef`
-- `send 10 wal to 0x1234567890abcdef`
-- `donate 1 sui to @abcdef1234567890`
-- `throw 1 sui to abcdef1234567890.sui`
-
-Supported coins are listed [here](/packages/tools/src/core/config/coins.ts)
-
-### suiSwapTool (mainnet only)
-
-Performs coin swap. Supported coins are listed [here](/packages/tools/src/core/config/coins.ts)
-
-Examples:
-- `swap 1 sui for usdc`
-- `convert 10 usdc to sui`
-- `swap 1 sui for weth`
-
-### suiStakeTool
-
-Stakes SUI natively on the Mysten-1 validator.
-
-_Please note if the staked amount less than 1 SUI, it might not work._
-
-Examples:
-- `stake 1 sui`
-
-### suiUnstakeTool
-
-Unstake all SUI.
-
-Examples:
-- `unstake`
-- `unstake sui`
+- suiAddressTool
+- suiWalletBalanceTool
+- suiTransferTool
+- suiSwapTool (mainnet only)
+- suiStakeTool
+- suiUnstakeTool
 
 To get all available tools, use `getSuiwareAiTools()`.
 
-Check the [source code](/packages/tools/src/ai/tools) of the tools.
+Check out the [@suiware/ai-tools](packages/tools/README.md) package docs for more details.
 
 ## Available examples
 
@@ -81,37 +33,9 @@ Check the [source code](/packages/tools/src/ai/tools) of the tools.
 |[Interactive agent (text generating)](/packages/examples/src/openai-generating.ts)| OpenAI: gpt-3.5-turbo | Portfolio management agent with [all tools](#available-tools) enabled |
 |[Interactive agent (text generating)](/packages/examples/src/google-streaming.ts)| Google: gemini-2.0-flash-001 | Portfolio management agent with [all tools](#available-tools) enabled |
 
-## How to use examples
+Check out the [examples](packages/examples/README.md) package docs for more details.
 
-### 1. Install dependencies
-
-```bash
-pnpm install
-```
-
-### 2. Configure environment variables
-
-```bash
-cp packages/examples/.env.example packages/examples/.env
-```
-
-Then update the environment variables in the `packages/examples/.env` file.
-
-### 3. Run examples
-
-```bash
-pnpm start:anthropic:simple:balance
-# or
-pnpm start || pnpm start:anthropic:streaming
-# or 
-pnpm start:openai:streaming
-# or
-pnpm start:openai:generating
-# or
-pnpm start:google:streaming
-```
-
-## How to use the MCP server
+## MCP server
 
 Please refer to the MCP package docs [@suiware/mcp](packages/mcp/README.md)
 
