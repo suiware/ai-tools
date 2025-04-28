@@ -4,6 +4,11 @@ An stdio MCP server with built-in [@suiware/ai-tools](https://www.npmjs.com/pack
 
 ## SERVER
 
+## Prerequisites
+
+- [Node (>= 20)](https://nodejs.org/en/download/)
+- [pnpm (>= 10)](https://pnpm.io/installation)
+
 ### Configuration
 
 Create an `.env` file in your project folder with the following variables in it:
@@ -15,7 +20,7 @@ SUI_NETWORK= # "testnet" or "mainnet"
 
 ### Usage
 
-1. Run the server:
+#### Run the server
 
 When you run the server, supply the `--env-file="file/path/.env"` param with the `.env` file path.
 
@@ -25,7 +30,11 @@ pnpx @suiware/mcp --env-file="file/path/.env"
 
 _You may omit the optional `--env-file` param if you're providing the config variables in any other way available to you._
 
-2. Connect the MCP server to your Claude Desktop or any other program which supports plugging third-party MCP servers. 
+#### Connect to the Suiware MCP server 
+
+Use Claude Desktop or any other tool which supports plugging in third-party MCP servers to connect to the Suiware MCP server.
+
+Check out an [example config file](./claude_desktop_config.json) for Claude Desktop.
 
 ### Test
 
