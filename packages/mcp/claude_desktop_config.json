@@ -1,11 +1,14 @@
 {
   "mcpServers": {
     "suiware-mcp-server": {
-      "command": "pnpx @suiware/mcp",
+      "command": "pnpx",
+      "args": [
+        "@suiware/mcp"
+      ],
       "env": {
         "SUI_PRIVATE_KEY": "your_sui_account_private_key",
         "SUI_NETWORK": "testnet_or_mainnet"
-      },
+      }
     }
   }
 }

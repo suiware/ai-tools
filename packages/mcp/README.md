@@ -34,7 +34,7 @@ _You may omit the optional `--env-file` param if you're providing the config var
 
 Use Claude Desktop or any other tool which supports plugging in third-party MCP servers to connect to the Suiware MCP server.
 
-Check out an [example config file](packages/mcp/claude_desktop_config.json) for Claude Desktop.
+Check out an [example config file](./claude_desktop_config.json) for Claude Desktop.
 
 ### Test
 
