@@ -4,7 +4,7 @@ import * as path from 'path'
 export class Environment {
   private static instance: Environment
 
-  private env: EnvFileRW
+  private env: EnvFileRW | undefined
 
   // Singleton.
   public static getInstance(): Environment {
@@ -15,20 +15,27 @@ export class Environment {
   }
 
   public getSetting(name: string): string | undefined {
-    return this.env.get(name)
+    return this.env?.get(name)
   }
 
   public setSetting(name: string, value: string): void {
-    this.env.set(name, value)
+    this.env?.set(name, value)
   }
 
   public saveSettings(): void {
-    this.env.save()
+    this.env?.save()
   }
 
   private constructor() {
-    const envPath = path.resolve(process.cwd(), '.env')
-    this.env = new EnvFileRW(envPath)
+    const envPath =
+      process.env?.SUIWARE_MCP_CONFIG_PATH ||
+      path.resolve(process.cwd(), '.env')
+
+    try {
+      this.env = new EnvFileRW(envPath, true)
+    } catch (e) {
+      console.debug('Failed to load environment file:', e)
+    }
   }
 }
 
