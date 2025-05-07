@@ -89,20 +89,20 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/node": "^22.15.3",
+    "@types/node": "^22.15.14",
     "prettier": "^3.5.3",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@mysten/sui": "^1.28.2",
-    "@mysten/suins": "^0.7.13",
-    "@mysten/wallet-standard": "^0.14.7",
-    "ai": "^4.3.10",
+    "@mysten/sui": "^1.29.1",
+    "@mysten/suins": "^0.7.15",
+    "@mysten/wallet-standard": "^0.14.9",
+    "ai": "^4.3.14",
     "bignumber.js": "^9.3.0",
     "env-file-rw": "^1.0.0",
     "navi-sdk": "^1.6.4",
-    "zod": "^3.24.3"
+    "zod": "^3.24.4"
   },
   "publishConfig": {
     "access": "public"
