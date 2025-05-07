@@ -1,17 +1,49 @@
 import EnvFileRW from 'env-file-rw'
 import * as path from 'path'
 
-const envPath = path.resolve(process.cwd(), '.env')
-const env = new EnvFileRW(envPath)
+export class Environment {
+  private static instance: Environment
+
+  private env: EnvFileRW
+
+  // Singleton.
+  public static getInstance(): Environment {
+    if (!Environment.instance) {
+      Environment.instance = new Environment()
+    }
+    return Environment.instance
+  }
+
+  public getSetting(name: string): string | undefined {
+    return this.env.get(name)
+  }
+
+  public setSetting(name: string, value: string): void {
+    this.env.set(name, value)
+  }
+
+  public saveSettings(): void {
+    this.env.save()
+  }
+
+  private constructor() {
+    const envPath = path.resolve(process.cwd(), '.env')
+    this.env = new EnvFileRW(envPath)
+  }
+}
 
 export function getSetting(name: string): string | undefined {
-  return process.env?.[name] || env.get(name)
+  const env = Environment.getInstance()
+
+  return process.env?.[name] || env.getSetting(name)
 }
 
 export function saveSettings(settings: Record<string, string>): void {
+  const env = Environment.getInstance()
+
   for (const [key, value] of Object.entries(settings)) {
-    env.set(key, value)
+    env.setSetting(key, value)
     process.env[key] = value
   }
-  env.save()
+  env.saveSettings()
 }
