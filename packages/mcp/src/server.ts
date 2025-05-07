@@ -1,5 +1,4 @@
 import { Command } from 'commander'
-import { configDotenv } from 'dotenv'
 import { startSuiwareMcpServer } from './'
 import { getPackageMeta } from './utils/misc'
 
@@ -16,11 +15,11 @@ async function main() {
   program
     .command('start', { isDefault: true })
     .description(`Start Suiware MCP Server`)
-    .option('--env-file [envFile]', 'path to .env config file')
-    .action(async ({ envFile }) => {
-      if (envFile != null) {
-        console.log('Reading provided .env file...')
-        configDotenv({ path: envFile })
+    .option('--env-config-file [envConfigFile]', 'path to .env config file')
+    .action(async ({ envConfigFile }) => {
+      if (envConfigFile != null) {
+        console.log('Reading provided config file...')
+        process.env.SUIWARE_MCP_ENV_CONFIG_FILE_PATH = envConfigFile
       }
 
       console.log('Starting Suiware MCP Server...')
