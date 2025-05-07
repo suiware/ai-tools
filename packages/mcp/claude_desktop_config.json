@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "suiware-mcp-server": {
+    "suiware-mcp": {
       "command": "pnpx",
       "args": [
         "@suiware/mcp"
