@@ -20,26 +20,30 @@ SUI_NETWORK= # "testnet" or "mainnet"
 
 ### Usage
 
-#### 1. Run the server
+#### Option 1. Run the Suiware MCP server directly
 
-When you run the server, supply the `--env-file="file/path/.env"` param with the `.env` file path.
+When you run the server, supply the `--env-config-file="file/path/.env"` param with the `.env` file path.
 
 ```bash
-pnpx @suiware/mcp --env-file="file/path/.env"
+pnpx @suiware/mcp --env-config-file="file/path/.env"
 ```
 
-_You may omit the optional `--env-file` param if you're providing the config variables in any other way available to you._
+_You may omit the optional `--env-config-file` param if you're providing the config variables in any other way available to you._
 
-#### 2. Connect to the Suiware MCP server 
+#### Option 2. Connect to the Suiware MCP server through your AI app
 
-Use Claude Desktop or any other tool which supports plugging in third-party MCP servers to connect to the Suiware MCP server.
+Use Claude Desktop or any other app which supports plugging in third-party MCP servers to connect to the Suiware MCP server.
 
-Check out an [example config file](./claude_desktop_config.json) for Claude Desktop.
+Check out the example [claude_desktop_config.json](./claude_desktop_config.json) for Claude Desktop.
+
+Update the `--env-config-file` param value in the config with the location of your `.env` file which contains `SUI_PRIVATE_KEY` and `SUI_NETWORK` variables.
+
+Last step is to actually add this `claude_desktop_config.json` to the Claude Desktop config like in the [official MCP guide](https://modelcontextprotocol.io/quickstart/user#mac-os-linux).
 
 ### Test
 
 ```bash
-pnpx @modelcontextprotocol/inspector pnpx @suiware/mcp --env-file="file/path/.env"
+pnpx @modelcontextprotocol/inspector pnpx @suiware/mcp --env-config-file="file/path/.env"
 ```
 
 ## API
@@ -60,6 +64,7 @@ pnpm add @suiware/mcp
 import { startSuiwareMcpServer } from '@suiware/mcp'
 
 async function main() {
+  // Assuming you have .env file with Sui account access details in the same folder.
   await startSuiwareMcpServer({ name: 'Suiware MCP Server', version: '0.1.0' })
 }
 

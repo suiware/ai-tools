@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "pnpx @modelcontextprotocol/inspector pnpm start",
-    "start": "pnpm build && node dist/server.js --env-file=.env",
+    "start": "pnpm build && node dist/server.js --env-config-file=.env",
     "format": "prettier --write './src/**/*.{js,ts}'",
     "prepublishOnly": "pnpm build"
   },
@@ -41,10 +41,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.0",
-    "@suiware/ai-tools": "^1.3.0",
+    "@suiware/ai-tools": "workspace:*",
     "ai": "^4.3.14",
     "commander": "^13.1.0",
-    "dotenv": "^16.5.0",
     "zod": "^3.24.4"
   },
   "devDependencies": {

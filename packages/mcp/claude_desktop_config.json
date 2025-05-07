@@ -3,12 +3,9 @@
     "suiware-mcp": {
       "command": "pnpx",
       "args": [
-        "@suiware/mcp"
-      ],
-      "env": {
-        "SUI_PRIVATE_KEY": "your_sui_account_private_key",
-        "SUI_NETWORK": "testnet_or_mainnet"
-      }
+        "@suiware/mcp",
+        "--env-config-file=/srv/sites/sui/suiware/ai-tools/packages/mcp/.env"
+      ]
     }
   }
 }

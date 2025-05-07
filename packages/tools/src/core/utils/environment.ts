@@ -27,14 +27,22 @@ export class Environment {
   }
 
   private constructor() {
-    const envPath =
-      process.env?.SUIWARE_MCP_CONFIG_PATH ||
-      path.resolve(process.cwd(), '.env')
+    const providedEnvConfigFilePath =
+      process.env?.SUIWARE_MCP_ENV_CONFIG_FILE_PATH
+
+    let envPath: string = '.env'
+    if (providedEnvConfigFilePath) {
+      envPath = providedEnvConfigFilePath
+    }
+
+    if (!path.isAbsolute(envPath)) {
+      envPath = path.resolve(process.cwd(), envPath)
+    }
 
     try {
       this.env = new EnvFileRW(envPath, true)
     } catch (e) {
-      console.debug('Failed to load environment file:', e)
+      console.debug('Failed to load env config file:', e)
     }
   }
 }
