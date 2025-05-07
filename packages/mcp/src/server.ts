@@ -1,5 +1,4 @@
 import { Command } from 'commander'
-import * as path from 'path'
 import { startSuiwareMcpServer } from './'
 import { getPackageMeta } from './utils/misc'
 
