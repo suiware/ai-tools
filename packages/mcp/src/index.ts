@@ -13,7 +13,7 @@ export const startSuiwareMcpServer = async (
   const transport = new StdioServerTransport()
 
   await server.connect(transport)
-  
+
   return server
 }
 
