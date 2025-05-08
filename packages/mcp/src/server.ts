@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander'
-import 'mcps-logger/console'
 import { startSuiwareMcpServer } from './'
 import { getPackageMeta } from './utils/misc'
 

@@ -23,3 +23,8 @@
 - [x] Switched from pnpx to npx in the claude_desktop_config.json.
 - [x] Replaced console.log with process.stdout.write in the server script.
 - [x] Updated deps.
+
+
+## 0.1.5-alpha.3 Debugging issues
+
+- [x] Removed mcps-logger because it didn't help.
