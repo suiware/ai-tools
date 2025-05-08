@@ -3,8 +3,8 @@
     "suiware-mcp": {
       "command": "npx",
       "args": [
-        "@suiware/mcp@latest",
         "-y",
+        "@suiware/mcp@latest",
         "--env-config-file=/srv/sites/sui/suiware/ai-tools/packages/mcp/.env"
       ]
     }
