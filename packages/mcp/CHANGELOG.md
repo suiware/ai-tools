@@ -16,3 +16,10 @@
 ## 0.1.5-alpha.1 Debugging issues
 
 - [x] Reverted the `bin` field back because it's needed actually.
+
+## 0.1.5-alpha.2 Debugging issues
+
+- [x] Added mcps-logger to see console.log messages.
+- [x] Switched from pnpx to npx in the claude_desktop_config.json.
+- [x] Replaced console.log with process.stdout.write in the server script.
+- [x] Updated deps.

@@ -1,6 +1,6 @@
 {
   "name": "@suiware/mcp",
-  "version": "0.1.5-alpha.1",
+  "version": "0.1.5-alpha.2",
   "description": "An stdio MCP server with built-in Suiware AI Tools.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -44,10 +44,11 @@
     "@suiware/ai-tools": "^1.4.0",
     "ai": "^4.3.15",
     "commander": "^13.1.0",
+    "mcps-logger": "^1.0.0",
     "zod": "^3.24.4"
   },
   "devDependencies": {
-    "@types/node": "^22.15.14",
+    "@types/node": "^22.15.16",
     "prettier": "^3.5.3",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3"

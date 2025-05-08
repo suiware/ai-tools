@@ -1,9 +1,10 @@
 {
   "mcpServers": {
     "suiware-mcp": {
-      "command": "pnpx",
+      "command": "npx",
       "args": [
-        "@suiware/mcp",
+        "@suiware/mcp@latest",
+        "-y",
         "--env-config-file=/srv/sites/sui/suiware/ai-tools/packages/mcp/.env"
       ]
     }
