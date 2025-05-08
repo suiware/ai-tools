@@ -89,7 +89,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/node": "^22.15.16",
+    "@types/node": "^22.15.17",
     "prettier": "^3.5.3",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3"

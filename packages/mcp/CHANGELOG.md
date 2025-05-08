@@ -27,3 +27,8 @@
 ## 0.1.5-alpha.3 Debugging issues
 
 - [x] Removed mcps-logger because it didn't help.
+
+## 0.1.5-alpha.4 Debugging issues
+
+- [x] Implemented a custom logger to log to stderr.
+- [x] Handled errors better.

@@ -42,14 +42,14 @@ importers:
         version: 16.5.0
       navi-sdk:
         specifier: ^1.6.4
-        version: 1.6.4(@types/node@22.15.16)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
+        version: 1.6.4(@types/node@22.15.17)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
       zod:
         specifier: ^3.24.4
         version: 3.24.4
     devDependencies:
       '@types/node':
-        specifier: ^22.15.16
-        version: 22.15.16
+        specifier: ^22.15.17
+        version: 22.15.17
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
@@ -63,11 +63,11 @@ importers:
   packages/mcp:
     dependencies:
       '@modelcontextprotocol/sdk':
-        specifier: ^1.11.0
-        version: 1.11.0
+        specifier: ^1.11.1
+        version: 1.11.1
       '@suiware/ai-tools':
         specifier: ^1.4.0
-        version: 1.4.0(@types/node@22.15.16)(react@19.0.0)(typescript@5.8.3)
+        version: 1.4.0(@types/node@22.15.17)(react@19.0.0)(typescript@5.8.3)
       ai:
         specifier: ^4.3.15
         version: 4.3.15(react@19.0.0)(zod@3.24.4)
@@ -79,8 +79,8 @@ importers:
         version: 3.24.4
     devDependencies:
       '@types/node':
-        specifier: ^22.15.16
-        version: 22.15.16
+        specifier: ^22.15.17
+        version: 22.15.17
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
@@ -113,14 +113,14 @@ importers:
         version: 1.0.0
       navi-sdk:
         specifier: ^1.6.4
-        version: 1.6.4(@types/node@22.15.16)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
+        version: 1.6.4(@types/node@22.15.17)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
       zod:
         specifier: ^3.24.4
         version: 3.24.4
     devDependencies:
       '@types/node':
-        specifier: ^22.15.16
-        version: 22.15.16
+        specifier: ^22.15.17
+        version: 22.15.17
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
@@ -675,8 +675,8 @@ packages:
   '@mayanfinance/swap-sdk@10.3.0':
     resolution: {integrity: sha512-6wAfjRYQL9726DIUKcsT+hdUURI8QDJVXQ11yhX1IVknK0ypiFpPrFdAY2KcpifhVOE2osFUMZ+YqO95Y5LJ1A==}
 
-  '@modelcontextprotocol/sdk@1.11.0':
-    resolution: {integrity: sha512-k/1pb70eD638anoi0e8wUGAlbMJXyvdV4p62Ko+EZ7eBe1xMx8Uhak1R5DgfoofsK5IBBnRwsYGTaLZl+6/+RQ==}
+  '@modelcontextprotocol/sdk@1.11.1':
+    resolution: {integrity: sha512-9LfmxKTb1v+vUS1/emSk1f5ePmTLkb9Le9AxOB5T0XM59EUumwcS45z05h7aiZx3GI0Bl7mjb3FMEglYj+acuQ==}
     engines: {node: '>=18'}
 
   '@mysten/bcs@0.11.1':
@@ -896,8 +896,8 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@22.15.16':
-    resolution: {integrity: sha512-3pr+KjwpVujqWqOKT8mNR+rd09FqhBLwg+5L/4t0cNYBzm/yEiYGCxWttjaPBsLtAo+WFNoXzGJfolM1JuRXoA==}
+  '@types/node@22.15.17':
+    resolution: {integrity: sha512-wIX2aSZL5FE+MR0JlvF87BNVrtFWf6AE6rxSE9X7OwnVvoyCQjpzSRJ+M87se/4QCkCiebQAqrJ0y6fwIyi7nw==}
 
   '@types/node@22.7.5':
     resolution: {integrity: sha512-jML7s2NAzMWc//QSJ1a3prpk78cOPchGvXJsC3C6R6PSMoooztvRVQEz89gmBTBY1SPMaqo5teB4uNHPdetShQ==}
@@ -2554,7 +2554,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@modelcontextprotocol/sdk@1.11.0':
+  '@modelcontextprotocol/sdk@1.11.1':
     dependencies:
       content-type: 1.0.5
       cors: 2.8.5
@@ -2809,7 +2809,7 @@ snapshots:
 
   '@suchipi/femver@1.0.0': {}
 
-  '@suiware/ai-tools@1.4.0(@types/node@22.15.16)(react@19.0.0)(typescript@5.8.3)':
+  '@suiware/ai-tools@1.4.0(@types/node@22.15.17)(react@19.0.0)(typescript@5.8.3)':
     dependencies:
       '@mysten/sui': 1.29.1(typescript@5.8.3)
       '@mysten/suins': 0.7.15(typescript@5.8.3)
@@ -2817,7 +2817,7 @@ snapshots:
       ai: 4.3.15(react@19.0.0)(zod@3.24.4)
       bignumber.js: 9.3.0
       env-file-rw: 1.0.0
-      navi-sdk: 1.6.4(@types/node@22.15.16)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
+      navi-sdk: 1.6.4(@types/node@22.15.17)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
       zod: 3.24.4
     transitivePeerDependencies:
       - '@edge-runtime/vm'
@@ -2849,7 +2849,7 @@ snapshots:
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 22.15.16
+      '@types/node': 22.15.17
 
   '@types/diff-match-patch@1.0.36': {}
 
@@ -2857,7 +2857,7 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@22.15.16':
+  '@types/node@22.15.17':
     dependencies:
       undici-types: 6.21.0
 
@@ -2869,11 +2869,11 @@ snapshots:
 
   '@types/ws@7.4.7':
     dependencies:
-      '@types/node': 22.15.16
+      '@types/node': 22.15.17
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 22.15.16
+      '@types/node': 22.15.17
 
   '@vitest/expect@1.6.1':
     dependencies:
@@ -3668,7 +3668,7 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  navi-sdk@1.6.4(@types/node@22.15.16)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10):
+  navi-sdk@1.6.4(@types/node@22.15.17)(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10):
     dependencies:
       '@mayanfinance/swap-sdk': 10.3.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
       '@mysten/sui': 1.29.1(typescript@5.8.3)
@@ -3682,7 +3682,7 @@ snapshots:
       esrun: 3.2.26
       ethers: 6.14.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       tsconfig-paths: 4.2.0
-      vitest: 1.6.1(@types/node@22.15.16)
+      vitest: 1.6.1(@types/node@22.15.17)
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@gql.tada/svelte-support'
@@ -4145,13 +4145,13 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-node@1.6.1(@types/node@22.15.16):
+  vite-node@1.6.1(@types/node@22.15.17):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0
       pathe: 1.1.2
       picocolors: 1.1.1
-      vite: 5.4.19(@types/node@22.15.16)
+      vite: 5.4.19(@types/node@22.15.17)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -4163,16 +4163,16 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.4.19(@types/node@22.15.16):
+  vite@5.4.19(@types/node@22.15.17):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.5.3
       rollup: 4.40.2
     optionalDependencies:
-      '@types/node': 22.15.16
+      '@types/node': 22.15.17
       fsevents: 2.3.3
 
-  vitest@1.6.1(@types/node@22.15.16):
+  vitest@1.6.1(@types/node@22.15.17):
     dependencies:
       '@vitest/expect': 1.6.1
       '@vitest/runner': 1.6.1
@@ -4191,11 +4191,11 @@ snapshots:
       strip-literal: 2.1.1
       tinybench: 2.9.0
       tinypool: 0.8.4
-      vite: 5.4.19(@types/node@22.15.16)
-      vite-node: 1.6.1(@types/node@22.15.16)
+      vite: 5.4.19(@types/node@22.15.17)
+      vite-node: 1.6.1(@types/node@22.15.17)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 22.15.16
+      '@types/node': 22.15.17
     transitivePeerDependencies:
       - less
       - lightningcss
