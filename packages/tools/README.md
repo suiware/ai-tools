@@ -104,6 +104,10 @@ To get all available tools, use `getSuiwareAiTools()`.
 
 Check the [source code](/packages/tools/src/ai/tools) of the tools.
 
+## Changelog
+
+Find the [detailed changelog](./CHANGELOG.md) in the package root.
+
 ## Links
 
 - [Vercel AI SDK](https://sdk.vercel.ai/)

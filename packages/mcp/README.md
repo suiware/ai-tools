@@ -70,3 +70,7 @@ async function main() {
 
 main().catch(console.error)
 ```
+
+## Changelog
+
+Find the [detailed changelog](./CHANGELOG.md) in the package root.
