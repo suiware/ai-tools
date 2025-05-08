@@ -12,6 +12,9 @@
     "format": "prettier --write './src/**/*.{js,ts}'",
     "prepublishOnly": "pnpm build"
   },
+  "bin": {
+    "suiware-mcp-server": "dist/server.js"
+  },
   "exports": {
     ".": {
       "import": {

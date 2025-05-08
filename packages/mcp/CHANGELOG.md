@@ -12,3 +12,7 @@
 - [x] Corrected `main` and `types` paths.
 - [x] Removed the `bin` field from the package.json because it's not planned to be used.
 - [x] Added shebang to the server script in order to make it run through Node.js.
+
+## 0.1.5-alpha.1 Debugging issues
+
+- [x] Reverted the `bin` field back because it's needed actually.
