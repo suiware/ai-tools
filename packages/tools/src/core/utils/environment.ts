@@ -42,7 +42,7 @@ export class Environment {
     try {
       this.env = new EnvFileRW(envPath, true)
     } catch (e) {
-      console.debug('Failed to load env config file:', e)
+      // console.debug('Failed to load env config file:', e)
     }
   }
 }
