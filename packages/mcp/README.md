@@ -42,7 +42,7 @@ _You may omit the optional `--env-config-file` param if you're providing the con
 
 Use Claude Code or any other app which supports plugging in third-party MCP servers to connect to the Suiware MCP server.
 
-Check out [claude_config.example.json](./claude_config.example.json) for Claude apps.
+Check out [claude_config.example.json](/packages/mcp/claude_config.example.json) for Claude apps.
 And make sure your `--env-config-file` value in it to the location of your `.env` file which contains `SUI_PRIVATE_KEY` and `SUI_NETWORK` variables.
 
 With Claude Code:
@@ -91,4 +91,4 @@ main().catch(console.error)
 
 ## Changelog
 
-Find the [detailed changelog](./CHANGELOG.md) in the package root.
+Find the [detailed changelog](/packages/mcp/CHANGELOG.md) in the package root.

@@ -106,7 +106,7 @@ Check the [source code](/packages/tools/src/ai/tools) of the tools.
 
 ## Changelog
 
-Find the [detailed changelog](./CHANGELOG.md) in the package root.
+Find the [detailed changelog](/packages/tools/CHANGELOG.md) in the package root.
 
 ## Links
 
