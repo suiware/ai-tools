@@ -85,7 +85,8 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "format": "prettier --write './src/**/*.{js,ts}'",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "publish": "pnpm publish"
   },
   "license": "Apache-2.0",
   "devDependencies": {

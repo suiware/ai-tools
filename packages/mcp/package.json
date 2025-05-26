@@ -1,6 +1,6 @@
 {
   "name": "@suiware/mcp",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "An stdio MCP server with built-in Suiware AI Tools.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,8 @@
     "dev": "pnpx @modelcontextprotocol/inspector pnpm start",
     "start": "pnpm build && node dist/server.js --env-config-file=.env",
     "format": "prettier --write './src/**/*.{js,ts}'",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "publish": "pnpm publish"
   },
   "bin": {
     "suiware-mcp-server": "dist/server.js"

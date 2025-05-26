@@ -1,5 +1,7 @@
 # Changelog
 
+## 0.1.6 Trying to fix a publish issue
+
 ## 0.1.5 Updated docs and deps
 
 - [x] Updated usage guide in README and change the example config file name.
