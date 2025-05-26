@@ -32,7 +32,7 @@
 - [x] Removed the `bin` field from the package.json because it's not planned to be used.
 - [x] Added shebang to the server script in order to make it run through Node.js.
 
-## 1.4.0 Made it possible to pass the env config path to tools
+## 0.1.4 Made it possible to pass the env config path to tools
 
 - [x] MCP doesn't read the env config file and only passes its path to tools.
 - [x] Changed `--env-file` to `--env-config-file` parameter.

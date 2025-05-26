@@ -1,3 +1,5 @@
+# Changelog
+
 TODO: Move previous release notes into this file https://github.com/suiware/ai-tools/releases
 
 ## 1.5.0 Updated dependencies
