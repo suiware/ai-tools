@@ -2,12 +2,20 @@
 
 An stdio MCP server with built-in [@suiware/ai-tools](https://www.npmjs.com/package/@suiware/ai-tools) and API to use in your apps.
 
-## SERVER
+## Available Tools
+
+- `get-address` (e.g. "show my address")
+- `get-wallet-balance` (e.g. "my balances")
+- `swap-coin` (e.g. "swap 1 sui to wal")
+- `transfer-coin` (e.g. "send 1 sui to @suiware")
+- `stake-sui` (e.g. "stake 1 sui")
+- `unstake-sui` (e.g. "unstake sui")
+
+## MCP SERVER
 
 ### Prerequisites
 
 - [Node (>= 20)](https://nodejs.org/en/download/)
-- [pnpm (>= 10)](https://pnpm.io/installation)
 
 ### Configuration
 
@@ -32,13 +40,23 @@ _You may omit the optional `--env-config-file` param if you're providing the con
 
 #### Option 2. Connect to the Suiware MCP server through your AI app
 
-Use Claude Desktop or any other app which supports plugging in third-party MCP servers to connect to the Suiware MCP server.
+Use Claude Code or any other app which supports plugging in third-party MCP servers to connect to the Suiware MCP server.
 
-Check out the example [claude_desktop_config.json](./claude_desktop_config.json) for Claude Desktop.
+Check out [claude_config.example.json](./claude_config.example.json) for Claude apps.
+And make sure your `--env-config-file` value in it to the location of your `.env` file which contains `SUI_PRIVATE_KEY` and `SUI_NETWORK` variables.
 
-Update the `--env-config-file` param value in the config with the location of your `.env` file which contains `SUI_PRIVATE_KEY` and `SUI_NETWORK` variables.
+With Claude Code:
 
-Last step is to actually add this `claude_desktop_config.json` to the Claude Desktop config like in the [official MCP guide](https://modelcontextprotocol.io/quickstart/user#mac-os-linux).
+```bash
+claude -p "get my balances and address" --mcp-config packages/mcp/claude_config.example.json --allowedTools "mcp__suiware-mcp__get-wallet-balance,mcp__suiware-mcp__get-address"
+```
+
+List the tools you want to use through the `--allowedTools` param (comma-separated).
+
+With Claude Desktop:
+
+I haven't manage to connect the MCP to Claude Desktop on Linux because it doesn't support this OS but you can follow
+the [official MCP usage guide for Claude Desktop](https://modelcontextprotocol.io/quickstart/user#mac-os-linux) to make it work for you.
 
 ### Test
 
