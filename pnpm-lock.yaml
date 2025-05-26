@@ -66,8 +66,8 @@ importers:
         specifier: ^1.12.0
         version: 1.12.0
       '@suiware/ai-tools':
-        specifier: ^1.4.0
-        version: 1.4.0(@types/node@22.15.21)(react@19.0.0)(typescript@5.8.3)
+        specifier: ^1.5.0
+        version: 1.5.0(@types/node@22.15.21)(react@19.0.0)(typescript@5.8.3)
       ai:
         specifier: ^4.3.16
         version: 4.3.16(react@19.0.0)(zod@3.25.28)
@@ -690,10 +690,6 @@ packages:
     engines: {node: '>=16'}
     deprecated: This package has been renamed to @mysten/sui, please update to use the renamed package.
 
-  '@mysten/sui@1.29.1':
-    resolution: {integrity: sha512-VkmaLIgXpuRMBFe47SC0swHemDx9qfhGQyxybFr2r3dTnh42gTFi0BlyW3aLr0Y2GxWbNlLphB5C3ELR7aqacw==}
-    engines: {node: '>=18'}
-
   '@mysten/sui@1.30.1':
     resolution: {integrity: sha512-WnyDpc5Fw6cvkJwXXmPWV80LA5YhvUgrKf86Pix0KLBSIc7aqwZi0GTPRWqiCedvayR6C3TkZqEhoDrVMusL7A==}
     engines: {node: '>=18'}
@@ -704,9 +700,6 @@ packages:
 
   '@mysten/utils@0.0.0':
     resolution: {integrity: sha512-KRI57Qow3E7TGqczimazwGf7+fwukdOi+6a31igSCzz0kPjAXbyK1a1gXaxeLMF8xEZ07ouW3RnsWt+EaUuHUw==}
-
-  '@mysten/wallet-standard@0.14.9':
-    resolution: {integrity: sha512-rEbuMQOAkT2LapIPh/4rn/GSMN1t0iOO8zQj5bxfRe5yVV+0xDDyI6Rbzov5KW/o8UluVlsd9KPWHapT3jyt5g==}
 
   '@mysten/wallet-standard@0.15.2':
     resolution: {integrity: sha512-YwqlR8vzVGcv85Ek5MiUmdbWBVvPQ21e1tt0GnYL5fPTn5z2WTl2Na8+1CP8kAq8kse4LCtznH+U0Cs2X1ZerA==}
@@ -885,8 +878,8 @@ packages:
   '@suchipi/femver@1.0.0':
     resolution: {integrity: sha512-bprE8+K5V+DPX7q2e2K57ImqNBdfGHDIWaGI5xHxZoxbKOuQZn4wzPiUxOAHnsUr3w3xHrWXwN7gnG/iIuEMIg==}
 
-  '@suiware/ai-tools@1.4.0':
-    resolution: {integrity: sha512-osiMDqbiPnShTFO5ZAgzB8Hxf7bZV7jtgaK8FzoOCCOPGadHFY38iHd7rJjObU+tOa0ibR8vPBijMQ2MN36l/A==}
+  '@suiware/ai-tools@1.5.0':
+    resolution: {integrity: sha512-y/cF8Pu6Fkz55mLEh+bo5wm79KXdP2R4qQZY7QQ2Pk8KWImO69Gr8WK8wHZFwJ6qiFyLYgvpeCx5Y9VgrCIFXg==}
 
   '@swc/helpers@0.5.17':
     resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
@@ -2627,25 +2620,6 @@ snapshots:
       - '@gql.tada/vue-support'
       - typescript
 
-  '@mysten/sui@1.29.1(typescript@5.8.3)':
-    dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@16.11.0)
-      '@mysten/bcs': 1.6.1
-      '@mysten/utils': 0.0.0
-      '@noble/curves': 1.9.1
-      '@noble/hashes': 1.8.0
-      '@scure/base': 1.2.5
-      '@scure/bip32': 1.7.0
-      '@scure/bip39': 1.6.0
-      gql.tada: 1.8.10(graphql@16.11.0)(typescript@5.8.3)
-      graphql: 16.11.0
-      poseidon-lite: 0.2.1
-      valibot: 0.36.0
-    transitivePeerDependencies:
-      - '@gql.tada/svelte-support'
-      - '@gql.tada/vue-support'
-      - typescript
-
   '@mysten/sui@1.30.1(typescript@5.8.3)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.11.0)
@@ -2679,15 +2653,6 @@ snapshots:
   '@mysten/utils@0.0.0':
     dependencies:
       '@scure/base': 1.2.5
-
-  '@mysten/wallet-standard@0.14.9(typescript@5.8.3)':
-    dependencies:
-      '@mysten/sui': 1.29.1(typescript@5.8.3)
-      '@wallet-standard/core': 1.1.0
-    transitivePeerDependencies:
-      - '@gql.tada/svelte-support'
-      - '@gql.tada/vue-support'
-      - typescript
 
   '@mysten/wallet-standard@0.15.2(typescript@5.8.3)':
     dependencies:
@@ -2867,11 +2832,11 @@ snapshots:
 
   '@suchipi/femver@1.0.0': {}
 
-  '@suiware/ai-tools@1.4.0(@types/node@22.15.21)(react@19.0.0)(typescript@5.8.3)':
+  '@suiware/ai-tools@1.5.0(@types/node@22.15.21)(react@19.0.0)(typescript@5.8.3)':
     dependencies:
       '@mysten/sui': 1.30.1(typescript@5.8.3)
       '@mysten/suins': 0.7.17(typescript@5.8.3)
-      '@mysten/wallet-standard': 0.14.9(typescript@5.8.3)
+      '@mysten/wallet-standard': 0.15.2(typescript@5.8.3)
       ai: 4.3.16(react@19.0.0)(zod@3.25.28)
       bignumber.js: 9.3.0
       env-file-rw: 1.0.0

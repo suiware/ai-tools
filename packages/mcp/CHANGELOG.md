@@ -1,8 +1,9 @@
 # Changelog
 
-## 0.1.5 Updated docs
+## 0.1.5 Updated docs and deps
 
 - [x] Updated usage guide in README and change the example config file name.
+- [x] Updated deps.
 
 ## 0.1.5-alpha.4 Debugging issues
 

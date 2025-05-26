@@ -1,6 +1,6 @@
 {
   "name": "@suiware/mcp",
-  "version": "0.1.5-alpha.5",
+  "version": "0.1.5",
   "description": "An stdio MCP server with built-in Suiware AI Tools.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -41,7 +41,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
-    "@suiware/ai-tools": "^1.4.0",
+    "@suiware/ai-tools": "^1.5.0",
     "ai": "^4.3.16",
     "commander": "^14.0.0",
     "zod": "^3.25.28"
