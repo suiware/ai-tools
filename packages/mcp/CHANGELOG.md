@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.7 Updated docs
+
+- [x] Updated docs.
+
 ## 0.1.6 Tried to fix the publishing issue caused by NPM
 
 ## 0.1.5 Updated docs and deps
