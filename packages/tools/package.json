@@ -1,7 +1,7 @@
 {
   "name": "@suiware/ai-tools",
   "description": "Pluggable tools for Vercel AI SDK which allow AI assistants to interact with Sui Network and perform various actions.",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "sideEffects": false,
   "type": "commonjs",
   "main": "./dist/index.js",
@@ -124,5 +124,5 @@
   "bugs": {
     "url": "https://github.com/suiware/ai-tools/issues"
   },
-  "homepage": "https://github.com/suiware/ai-tools/tree/main/packages/mcp#readme"
+  "homepage": "https://github.com/suiware/ai-tools/tree/main/packages/tools#readme"
 }

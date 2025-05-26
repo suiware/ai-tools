@@ -2,6 +2,10 @@
 
 TODO: Move previous release notes into this file https://github.com/suiware/ai-tools/releases
 
+## 1.5.2 Updated docs
+
+- [x] Updated docs.
+
 ## 1.5.1 Updated docs
 
 - [x] Updated docs.
