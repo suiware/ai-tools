@@ -23,7 +23,7 @@ const messages: CoreMessage[] = []
 const AGENT_NAME = 'Charlie'
 
 async function main() {
-  process.stdout.write(
+  terminal.write(
     chalk.cyan(`\nThe agent is connected and awaiting your instructions...\n\n`)
   )
 
@@ -44,28 +44,28 @@ async function main() {
       If you don't know, don't make it up.`,
       })
 
-      process.stdout.write(`\n${chalk.cyan(`${AGENT_NAME}: `)}`)
-      process.stdout.write(text)
-      process.stdout.write('\n\n')
+      terminal.write(`\n${chalk.cyan(`${AGENT_NAME}: `)}`)
+      terminal.write(text)
+      terminal.write('\n\n')
 
       messages.push({ role: 'assistant', content: text })
     } catch (error) {
       if (NoSuchToolError.isInstance(error)) {
-        process.stdout.write(chalk.red(`\nNo such tool: ${error.toolName}\n`))
+        terminal.write(chalk.red(`\nNo such tool: ${error.toolName}\n`))
       } else if (InvalidToolArgumentsError.isInstance(error)) {
-        process.stdout.write(
+        terminal.write(
           chalk.red(
             `\nInvalid arguments: ${error.toolName}: ${error.message}\n`
           )
         )
       } else if (ToolExecutionError.isInstance(error)) {
-        process.stdout.write(
+        terminal.write(
           chalk.red(
             `\nTool execution error: ${error.toolName}: ${error.message}\n`
           )
         )
       } else {
-        process.stdout.write(
+        terminal.write(
           chalk.red(`\nUnknown error: ${(error as Error)?.message}\n`)
         )
       }
